@@ -1,0 +1,29 @@
+settings:
+  deleteSameNameWorkout: true
+workouts:
+  fullhyroxweek5:
+  - warmup:
+    - cardio: lap
+  - repeat(3):
+    - 30-degree Lat Pull-down: lap | Band Straight Arm Pull Down x10
+    - Goblet Squat: lap | Kb ROL into Goblet Squat x10
+    - Kettlebell Floor to Shelf: lap | Kb Bottoms Up Press x8 each side
+    - rest: lap
+  - repeat(3):
+    - Incline Dumbbell Bench Press: lap | Db Incline Bench Press x8
+    - Dumbbell Power Clean and Jerk: lap | Ob Single Arm Push Jerk x6 each side
+    - Dumbbell Bulgarian Split Squat: lap | Bulgarian Split Squat x8
+    - rest: lap
+  - repeat(3):
+    - Incline Back Extension  Goodmorings: lap | Incline Back Extension Goodmorings
+        x2
+    - TRX Inverted Row: lap | Trx Rows x12
+    - rest: lap
+  - Medicine Ball Slam: lap | Kneeling Medball Slams x8
+  - Ski Moguls: 200m
+  - Pike Push-up: lap | Plank into Pike x8
+  - rest: lap
+schedulePlan:
+  start_from: '2025-11-08'
+  workouts:
+  - fullhyroxweek5

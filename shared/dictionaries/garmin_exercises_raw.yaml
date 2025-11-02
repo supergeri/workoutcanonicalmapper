@@ -1,0 +1,4422 @@
+3 way calf raise:
+  category: Calf Raise
+  name: ' 3 Way Calf Raise'
+3 way single leg calf raise:
+  category: Calf Raise
+  name: ' 3 Way Single Leg Calf Raise'
+3 way weighted calf raise:
+  category: Calf Raise
+  name: ' 3 Way Weighted Calf Raise'
+3 way weighted single leg calf raise:
+  category: Calf Raise
+  name: ' 3 Way Weighted Single Leg Calf Raise'
+30 degree lat pulldown:
+  category: Pull Up
+  name: ' 30 Degree Lat Pulldown'
+45 degree cable external rotation:
+  category: Lateral Raise
+  name: ' 45 Degree Cable External Rotation'
+45 degree plank:
+  category: Plank
+  name: ' 45 Degree Plank'
+90 degree cable external rotation:
+  category: Shoulder Stability
+  name: ' 90 Degree Cable External Rotation'
+90 degree static hold:
+  category: Plank
+  name: ' 90 Degree Static Hold'
+ab twist:
+  category: Banded Exercises
+  name: Ab Twist
+abs jabs:
+  category: Core
+  name: Abs Jabs
+agility:
+  category: Ladder
+  name: Agility
+air bike:
+  category: Indoor Bike
+  name: Air Bike
+air squat:
+  category: Squat
+  name: Air Squat
+alternating barbell forward lunge:
+  category: Lunge
+  name: Alternating Barbell Forward Lunge
+alternating box dumbbell step ups:
+  category: Squat
+  name: Alternating Box Dumbbell Step Ups
+alternating dumbbell biceps curl:
+  category: Curl
+  name: Alternating Dumbbell Biceps Curl
+alternating dumbbell biceps curl on swiss ball:
+  category: Curl
+  name: Alternating Dumbbell Biceps Curl On Swiss Ball
+alternating dumbbell chest press:
+  category: Bench Press
+  name: Alternating Dumbbell Chest Press
+alternating dumbbell chest press on swiss ball:
+  category: Bench Press
+  name: Alternating Dumbbell Chest Press On Swiss Ball
+alternating dumbbell lunge:
+  category: Lunge
+  name: Alternating Dumbbell Lunge
+alternating dumbbell lunge with reach:
+  category: Lunge
+  name: Alternating Dumbbell Lunge With Reach
+alternating dumbbell lying triceps extension:
+  category: Triceps Extension
+  name: Alternating Dumbbell Lying Triceps Extension
+alternating dumbbell row:
+  category: Row
+  name: Alternating Dumbbell Row
+alternating dumbbell shoulder press:
+  category: Shoulder Press
+  name: Alternating Dumbbell Shoulder Press
+alternating figure eight:
+  category: Battle Rope
+  name: Alternating Figure Eight
+alternating hands medicine ball push up:
+  category: Push Up
+  name: Alternating Hands Medicine Ball Push Up
+alternating incline dumbbell biceps curl:
+  category: Curl
+  name: Alternating Incline Dumbbell Biceps Curl
+alternating jump lunge:
+  category: Plyo
+  name: Alternating Jump Lunge
+alternating jump wave:
+  category: Battle Rope
+  name: Alternating Jump Wave
+alternating kneeling to standing wave:
+  category: Battle Rope
+  name: Alternating Kneeling To Standing Wave
+alternating lateral raise with static hold:
+  category: Lateral Raise
+  name: Alternating Lateral Raise With Static Hold
+alternating lunge wave:
+  category: Battle Rope
+  name: Alternating Lunge Wave
+alternating plate reach:
+  category: Core
+  name: Alternating Plate Reach
+alternating sit up:
+  category: Sit Up
+  name: Alternating Sit Up
+alternating slide out:
+  category: Core
+  name: Alternating Slide Out
+alternating squat wave:
+  category: Battle Rope
+  name: Alternating Squat Wave
+alternating staggered push up:
+  category: Push Up
+  name: Alternating Staggered Push Up
+alternating wave:
+  category: Battle Rope
+  name: Alternating Wave
+alternating wave with lateral shuffle:
+  category: Battle Rope
+  name: Alternating Wave With Lateral Shuffle
+ankle circles:
+  category: Warm Up
+  name: Ankle Circles
+ankle dorsiflexion with band:
+  category: Warm Up
+  name: Ankle Dorsiflexion With Band
+ankle internal rotation:
+  category: Warm Up
+  name: Ankle Internal Rotation
+arm circles:
+  category: Warm Up
+  name: Arm Circles
+arnold press:
+  category: Shoulder Press
+  name: Arnold Press
+around the world:
+  category: Sandbag
+  name: Around The World
+assault bike:
+  category: Indoor Bike
+  name: Assault Bike
+back extension:
+  category: Banded Exercises
+  name: Back Extension
+back extension with opposite arm and leg reach:
+  category: Hyperextension
+  name: Back Extension With Opposite Arm And Leg Reach
+back foot elevated dumbbell split squat:
+  category: Lunge
+  name: Back Foot Elevated Dumbbell Split Squat
+back squat:
+  category: Sandbag
+  name: Back Squat
+back squat with body bar:
+  category: Squat
+  name: Back Squat With Body Bar
+back squats:
+  category: Squat
+  name: Back Squats
+backward drag:
+  category: Sled
+  name: Backward Drag
+balancing squat:
+  category: Squat
+  name: Balancing Squat
+band assisted chin up:
+  category: Pull Up
+  name: Band Assisted Chin Up
+band assisted pull up:
+  category: Pull Up
+  name: Band Assisted Pull Up
+band external rotation:
+  category: Shoulder Stability
+  name: Band External Rotation
+band good morning:
+  category: Leg Curl
+  name: Band Good Morning
+band internal rotation:
+  category: Shoulder Stability
+  name: Band Internal Rotation
+band side lying leg raise:
+  category: Hip Stability
+  name: Band Side Lying Leg Raise
+banded face pulls:
+  category: Row
+  name: Banded Face Pulls
+banded pull ups:
+  category: Pull Up
+  name: Banded Pull Ups
+bar good morning:
+  category: Leg Curl
+  name: Bar Good Morning
+bar holds:
+  category: Carry
+  name: Bar Holds
+bar muscle up:
+  category: Lateral Raise
+  name: Bar Muscle Up
+barbell back squat:
+  category: Squat
+  name: Barbell Back Squat
+barbell bench press:
+  category: Bench Press
+  name: Barbell Bench Press
+barbell biceps curl:
+  category: Curl
+  name: Barbell Biceps Curl
+barbell board bench press:
+  category: Bench Press
+  name: Barbell Board Bench Press
+barbell box lunge:
+  category: Lunge
+  name: Barbell Box Lunge
+barbell box squat:
+  category: Squat
+  name: Barbell Box Squat
+barbell bulgarian split squat:
+  category: Lunge
+  name: Barbell Bulgarian Split Squat
+barbell burpee:
+  category: Total Body
+  name: Barbell Burpee
+barbell crossover lunge:
+  category: Lunge
+  name: Barbell Crossover Lunge
+barbell deadlift:
+  category: Deadlift
+  name: Barbell Deadlift
+barbell floor press:
+  category: Bench Press
+  name: Barbell Floor Press
+barbell front split squat:
+  category: Lunge
+  name: Barbell Front Split Squat
+barbell front squat:
+  category: Squat
+  name: Barbell Front Squat
+barbell front squat to push press:
+  category: Shoulder Press
+  name: Barbell Front Squat To Push Press
+barbell hack squat:
+  category: Squat
+  name: Barbell Hack Squat
+barbell hang power clean:
+  category: Olympic Lift
+  name: Barbell Hang Power Clean
+barbell hang power snatch:
+  category: Olympic Lift
+  name: Barbell Hang Power Snatch
+barbell hang pull:
+  category: Olympic Lift
+  name: Barbell Hang Pull
+barbell hang squat clean:
+  category: Olympic Lift
+  name: Barbell Hang Squat Clean
+barbell hang squat snatch:
+  category: Squat
+  name: Barbell Hang Squat Snatch
+barbell high pull:
+  category: Olympic Lift
+  name: Barbell High Pull
+barbell hip thrust on floor:
+  category: Hip Raise
+  name: Barbell Hip Thrust On Floor
+barbell hip thrust with bench:
+  category: Hip Raise
+  name: Barbell Hip Thrust With Bench
+barbell jump shrug:
+  category: Shrug
+  name: Barbell Jump Shrug
+barbell jump squat:
+  category: Plyo
+  name: Barbell Jump Squat
+barbell lateral step up:
+  category: Squat
+  name: Barbell Lateral Step Up
+barbell lunge:
+  category: Lunge
+  name: Barbell Lunge
+barbell power clean:
+  category: Olympic Lift
+  name: Barbell Power Clean
+barbell power snatch:
+  category: Olympic Lift
+  name: Barbell Power Snatch
+barbell push press:
+  category: Shoulder Press
+  name: Barbell Push Press
+barbell quarter squat:
+  category: Squat
+  name: Barbell Quarter Squat
+barbell reverse lunge:
+  category: Lunge
+  name: Barbell Reverse Lunge
+barbell reverse wrist curl:
+  category: Curl
+  name: Barbell Reverse Wrist Curl
+barbell rollout:
+  category: Core
+  name: Barbell Rollout
+barbell row:
+  category: Row
+  name: Barbell Row
+barbell shoulder press:
+  category: Shoulder Press
+  name: Barbell Shoulder Press
+barbell shrug:
+  category: Shrug
+  name: Barbell Shrug
+barbell side lunge:
+  category: Lunge
+  name: Barbell Side Lunge
+barbell siff squat:
+  category: Squat
+  name: Barbell Siff Squat
+barbell snatch:
+  category: Olympic Lift
+  name: Barbell Snatch
+barbell split jerk:
+  category: Olympic Lift
+  name: Barbell Split Jerk
+barbell split squat:
+  category: Lunge
+  name: Barbell Split Squat
+barbell squat clean:
+  category: Olympic Lift
+  name: Barbell Squat Clean
+barbell squat snatch:
+  category: Squat
+  name: Barbell Squat Snatch
+barbell squat with heels raised:
+  category: Squat
+  name: Barbell Squat With Heels Raised
+barbell step up:
+  category: Squat
+  name: Barbell Step Up
+barbell stepover:
+  category: Squat
+  name: Barbell Stepover
+barbell straight leg deadlift:
+  category: Deadlift
+  name: Barbell Straight Leg Deadlift
+barbell straight leg deadlift to row:
+  category: Row
+  name: Barbell Straight Leg Deadlift To Row
+barbell upright row:
+  category: Shrug
+  name: Barbell Upright Row
+barbell wrist curl:
+  category: Curl
+  name: Barbell Wrist Curl
+base rotations:
+  category: Hyperextension
+  name: Base Rotations
+battle rope:
+  category: Battle Rope
+  name: Battle Rope
+bear crawl:
+  category: Plank
+  name: Bear Crawl
+bear crawl pull through:
+  category: Sandbag
+  name: Bear Crawl Pull Through
+bear hug squat:
+  category: Sandbag
+  name: Bear Hug Squat
+behind the back barbell reverse wrist curl:
+  category: Curl
+  name: Behind The Back Barbell Reverse Wrist Curl
+behind the back one arm cable curl:
+  category: Curl
+  name: Behind The Back One Arm Cable Curl
+behind the back shrug:
+  category: Shrug
+  name: Behind The Back Shrug
+behind the back smith machine shrug:
+  category: Shrug
+  name: Behind The Back Smith Machine Shrug
+bench dip:
+  category: Triceps Extension
+  name: Bench Dip
+bench press:
+  category: Bench Press
+  name: Bench Press
+bench squat with rotational chop:
+  category: Squat
+  name: Bench Squat With Rotational Chop
+bent arm lateral raise and external rotation:
+  category: Shoulder Stability
+  name: Bent Arm Lateral Raise And External Rotation
+bent knee reverse hyperextension:
+  category: Hyperextension
+  name: Bent Knee Reverse Hyperextension
+bent knee swiss ball reverse hip raise:
+  category: Hip Raise
+  name: Bent Knee Swiss Ball Reverse Hip Raise
+bent knee v up:
+  category: Sit Up
+  name: Bent Knee V Up
+bent over lateral raise:
+  category: Lateral Raise
+  name: Bent Over Lateral Raise
+bent over reach to sky:
+  category: Warm Up
+  name: Bent Over Reach To Sky
+bent over row with barbell:
+  category: Row
+  name: Bent Over Row With Barbell
+bent over row with dumbell:
+  category: Row
+  name: Bent Over Row With Dumbell
+biceps push up:
+  category: Push Up
+  name: Biceps Push Up
+biceps stretch:
+  category: Warm Up
+  name: Biceps Stretch
+bicycle crunch:
+  category: Banded Exercises
+  name: Bicycle Crunch
+bike:
+  category: Bike Outdoor
+  name: Bike
+bob and weave circle:
+  category: Cardio
+  name: Bob And Weave Circle
+body bar oblique twist:
+  category: Core
+  name: Body Bar Oblique Twist
+body weight dip:
+  category: Triceps Extension
+  name: Body Weight Dip
+body weight jump squat:
+  category: Plyo
+  name: Body Weight Jump Squat
+body weight wall squat:
+  category: Squat
+  name: Body Weight Wall Squat
+bosu ball push up:
+  category: Push Up
+  name: Bosu Ball Push Up
+box jump:
+  category: Plyo
+  name: Box Jump
+box jump overs:
+  category: Plyo
+  name: Box Jump Overs
+box jump overs over the box:
+  category: Plyo
+  name: Box Jump Overs Over The Box
+box step squat:
+  category: Squat
+  name: Box Step Squat
+braced squat:
+  category: Squat
+  name: Braced Squat
+bridge with leg extension:
+  category: Hip Raise
+  name: Bridge With Leg Extension
+burpee:
+  category: Total Body
+  name: Burpee
+burpee box jump:
+  category: Total Body
+  name: Burpee Box Jump
+burpee box jump over:
+  category: Total Body
+  name: Burpee Box Jump Over
+burpee box jump step up over:
+  category: Total Body
+  name: Burpee Box Jump Step Up Over
+burpee pull up:
+  category: Pull Up
+  name: Burpee Pull Up
+butterfly sit up:
+  category: Sit Up
+  name: Butterfly Sit Up
+cable biceps curl:
+  category: Curl
+  name: Cable Biceps Curl
+cable core press:
+  category: Core
+  name: Cable Core Press
+cable crossover:
+  category: Flye
+  name: Cable Crossover
+cable crunch:
+  category: Crunch
+  name: Cable Crunch
+cable diagonal raise:
+  category: Lateral Raise
+  name: Cable Diagonal Raise
+cable external rotation:
+  category: Shoulder Stability
+  name: Cable External Rotation
+cable front raise:
+  category: Lateral Raise
+  name: Cable Front Raise
+cable hammer curl:
+  category: Curl
+  name: Cable Hammer Curl
+cable internal rotation:
+  category: Shoulder Stability
+  name: Cable Internal Rotation
+cable kickback:
+  category: Triceps Extension
+  name: Cable Kickback
+cable lying triceps extension:
+  category: Triceps Extension
+  name: Cable Lying Triceps Extension
+cable overhead triceps extension:
+  category: Triceps Extension
+  name: Cable Overhead Triceps Extension
+cable pull through:
+  category: Chop
+  name: Cable Pull Through
+cable rotational lift:
+  category: Chop
+  name: Cable Rotational Lift
+cable row standing:
+  category: Row
+  name: Cable Row Standing
+cable side bend:
+  category: Core
+  name: Cable Side Bend
+cable woodchop:
+  category: Chop
+  name: Cable Woodchop
+calf raise:
+  category: Calf Raise
+  name: Calf Raise
+calf raises:
+  category: Banded Exercises
+  name: Calf Raises
+calorie row:
+  category: Lateral Raise
+  name: Calorie Row
+cardio core crawl:
+  category: Cardio
+  name: Cardio Core Crawl
+carry:
+  category: Carry
+  name: Carry
+cat camel:
+  category: Warm Up
+  name: Cat Camel
+cheating barbell biceps curl:
+  category: Curl
+  name: Cheating Barbell Biceps Curl
+chest fly:
+  category: Suspension
+  name: Chest Fly
+chest press:
+  category: Sled
+  name: Chest Press
+chest press with band:
+  category: Push Up
+  name: Chest Press With Band
+chest supported dumbbell row:
+  category: Row
+  name: Chest Supported Dumbbell Row
+chin up:
+  category: Pull Up
+  name: Chin Up
+chop:
+  category: Chop
+  name: Chop
+circular arm crunch:
+  category: Crunch
+  name: Circular Arm Crunch
+clam bridge:
+  category: Hip Raise
+  name: Clam Bridge
+clam shells:
+  category: Banded Exercises
+  name: Clam Shells
+clap wave:
+  category: Battle Rope
+  name: Clap Wave
+clapping push up:
+  category: Push Up
+  name: Clapping Push Up
+clean:
+  category: Olympic Lift
+  name: Clean
+clean and jerk:
+  category: Olympic Lift
+  name: Clean And Jerk
+clean and press:
+  category: Olympic Lift
+  name: Clean And Press
+close grip barbell bench press:
+  category: Bench Press
+  name: Close Grip Barbell Bench Press
+close grip chin up:
+  category: Pull Up
+  name: Close Grip Chin Up
+close grip ez bar biceps curl:
+  category: Curl
+  name: Close Grip Ez Bar Biceps Curl
+close grip lat pulldown:
+  category: Pull Up
+  name: Close Grip Lat Pulldown
+close grip medicine ball push up:
+  category: Push Up
+  name: Close Grip Medicine Ball Push Up
+close hands push up:
+  category: Push Up
+  name: Close Hands Push Up
+combo shoulder raise:
+  category: Lateral Raise
+  name: Combo Shoulder Raise
+core:
+  category: Core
+  name: Core
+core control rear lunge:
+  category: Lunge
+  name: Core Control Rear Lunge
+crescent circle:
+  category: Core
+  name: Crescent Circle
+cross body dumbbell hammer curl:
+  category: Curl
+  name: Cross Body Dumbbell Hammer Curl
+cross body mountain climber:
+  category: Plank
+  name: Cross Body Mountain Climber
+cross chop to knee:
+  category: Chop
+  name: Cross Chop To Knee
+cross knee strike:
+  category: Plyo
+  name: Cross Knee Strike
+cross leg reverse crunch:
+  category: Crunch
+  name: Cross Leg Reverse Crunch
+cross punch roll up:
+  category: Sit Up
+  name: Cross Punch Roll Up
+crossed arm barbell front squat:
+  category: Squat
+  name: Crossed Arm Barbell Front Squat
+crossed arms crunch:
+  category: Crunch
+  name: Crossed Arms Crunch
+crossed arms sit up:
+  category: Sit Up
+  name: Crossed Arms Sit Up
+crossover chin up:
+  category: Pull Up
+  name: Crossover Chin Up
+crossover dumbbell step up:
+  category: Squat
+  name: Crossover Dumbbell Step Up
+crunch:
+  category: Crunch
+  name: Crunch
+crunch chop:
+  category: Crunch
+  name: Crunch Chop
+curl:
+  category: Banded Exercises
+  name: Curl
+curtsy lunge:
+  category: Lunge
+  name: Curtsy Lunge
+cycling russian twist:
+  category: Core
+  name: Cycling Russian Twist
+dead bug:
+  category: Hip Stability
+  name: Dead Bug
+dead curl press:
+  category: Shoulder Press
+  name: Dead Curl Press
+dead hang biceps curl:
+  category: Curl
+  name: Dead Hang Biceps Curl
+deadbug:
+  category: Banded Exercises
+  name: Deadbug
+deadlift:
+  category: Banded Exercises
+  name: Deadlift
+decline dumbbell bench press:
+  category: Bench Press
+  name: Decline Dumbbell Bench Press
+decline dumbbell flye:
+  category: Flye
+  name: Decline Dumbbell Flye
+decline hammer curl:
+  category: Curl
+  name: Decline Hammer Curl
+decline push up:
+  category: Push Up
+  name: Decline Push Up
+decline ring row:
+  category: Row
+  name: Decline Ring Row
+depth jump:
+  category: Plyo
+  name: Depth Jump
+diagonal lunge:
+  category: Lunge
+  name: Diagonal Lunge
+diamond push up:
+  category: Push Up
+  name: Diamond Push Up
+dip:
+  category: Suspension
+  name: Dip
+donkey calf raise:
+  category: Calf Raise
+  name: Donkey Calf Raise
+donkey kick:
+  category: Banded Exercises
+  name: Donkey Kick
+double arm figure eight:
+  category: Battle Rope
+  name: Double Arm Figure Eight
+double arm side to side snake:
+  category: Battle Rope
+  name: Double Arm Side To Side Snake
+double arm side wave:
+  category: Battle Rope
+  name: Double Arm Side Wave
+double arm slam:
+  category: Battle Rope
+  name: Double Arm Slam
+double arm wave:
+  category: Battle Rope
+  name: Double Arm Wave
+double crunch:
+  category: Crunch
+  name: Double Crunch
+double under:
+  category: Cardio
+  name: Double Under
+drop lunge:
+  category: Lunge
+  name: Drop Lunge
+dumbbell alternating shoulder press and twist:
+  category: Shoulder Press
+  name: Dumbbell Alternating Shoulder Press And Twist
+dumbbell bench press:
+  category: Bench Press
+  name: Dumbbell Bench Press
+dumbbell biceps curl:
+  category: Curl
+  name: Dumbbell Biceps Curl
+dumbbell biceps curl with static hold:
+  category: Curl
+  name: Dumbbell Biceps Curl With Static Hold
+dumbbell box lunge:
+  category: Lunge
+  name: Dumbbell Box Lunge
+dumbbell bulgarian split squat:
+  category: Lunge
+  name: Dumbbell Bulgarian Split Squat
+dumbbell chop:
+  category: Chop
+  name: Dumbbell Chop
+dumbbell clean:
+  category: Olympic Lift
+  name: Dumbbell Clean
+dumbbell crossover lunge:
+  category: Lunge
+  name: Dumbbell Crossover Lunge
+dumbbell deadlift:
+  category: Deadlift
+  name: Dumbbell Deadlift
+dumbbell diagonal lunge:
+  category: Lunge
+  name: Dumbbell Diagonal Lunge
+dumbbell diagonal raise:
+  category: Lateral Raise
+  name: Dumbbell Diagonal Raise
+dumbbell face pull with external rotation:
+  category: Shoulder Stability
+  name: Dumbbell Face Pull With External Rotation
+dumbbell floor press:
+  category: Bench Press
+  name: Dumbbell Floor Press
+dumbbell flye:
+  category: Flye
+  name: Dumbbell Flye
+dumbbell front raise:
+  category: Shoulder Press
+  name: Dumbbell Front Raise
+dumbbell front squat:
+  category: Squat
+  name: Dumbbell Front Squat
+dumbbell hammer curl:
+  category: Curl
+  name: Dumbbell Hammer Curl
+dumbbell hammer curl to lunge to press:
+  category: Shoulder Press
+  name: Dumbbell Hammer Curl To Lunge To Press
+dumbbell hang pull:
+  category: Olympic Lift
+  name: Dumbbell Hang Pull
+dumbbell hang snatch:
+  category: Olympic Lift
+  name: Dumbbell Hang Snatch
+dumbbell jump shrug:
+  category: Shrug
+  name: Dumbbell Jump Shrug
+dumbbell jump squat:
+  category: Plyo
+  name: Dumbbell Jump Squat
+dumbbell kickback:
+  category: Triceps Extension
+  name: Dumbbell Kickback
+dumbbell lateral raise:
+  category: Lateral Raise
+  name: Dumbbell Lateral Raise
+dumbbell lunge:
+  category: Lunge
+  name: Dumbbell Lunge
+dumbbell lunge and rotation:
+  category: Lunge
+  name: Dumbbell Lunge And Rotation
+dumbbell lying triceps extension:
+  category: Triceps Extension
+  name: Dumbbell Lying Triceps Extension
+dumbbell overhead bulgarian split squat:
+  category: Lunge
+  name: Dumbbell Overhead Bulgarian Split Squat
+dumbbell overhead squat single arm:
+  category: Squat
+  name: Dumbbell Overhead Squat Single Arm
+dumbbell overhead walking lunge:
+  category: Lunge
+  name: Dumbbell Overhead Walking Lunge
+dumbbell power clean and jerk:
+  category: Olympic Lift
+  name: Dumbbell Power Clean And Jerk
+dumbbell power clean and push press:
+  category: Olympic Lift
+  name: Dumbbell Power Clean And Push Press
+dumbbell power clean and strict press:
+  category: Olympic Lift
+  name: Dumbbell Power Clean And Strict Press
+dumbbell push press:
+  category: Shoulder Press
+  name: Dumbbell Push Press
+dumbbell reverse lunge:
+  category: Lunge
+  name: Dumbbell Reverse Lunge
+dumbbell reverse lunge to high knee and press:
+  category: Lunge
+  name: Dumbbell Reverse Lunge To High Knee And Press
+dumbbell reverse wrist curl:
+  category: Curl
+  name: Dumbbell Reverse Wrist Curl
+dumbbell row:
+  category: Row
+  name: Dumbbell Row
+dumbbell shoulder press:
+  category: Shoulder Press
+  name: Dumbbell Shoulder Press
+dumbbell shrug:
+  category: Shrug
+  name: Dumbbell Shrug
+dumbbell side lunge:
+  category: Lunge
+  name: Dumbbell Side Lunge
+dumbbell single leg deadlift to row:
+  category: Deadlift
+  name: Dumbbell Single Leg Deadlift To Row
+dumbbell snatch:
+  category: Olympic Lift
+  name: Dumbbell Snatch
+dumbbell split jump:
+  category: Plyo
+  name: Dumbbell Split Jump
+dumbbell split squat:
+  category: Squat
+  name: Dumbbell Split Squat
+dumbbell squat:
+  category: Squat
+  name: Dumbbell Squat
+dumbbell squat clean:
+  category: Squat
+  name: Dumbbell Squat Clean
+dumbbell squat snatch:
+  category: Squat
+  name: Dumbbell Squat Snatch
+dumbbell step up:
+  category: Squat
+  name: Dumbbell Step Up
+dumbbell stepover:
+  category: Squat
+  name: Dumbbell Stepover
+dumbbell straight leg deadlift:
+  category: Deadlift
+  name: Dumbbell Straight Leg Deadlift
+dumbbell thrusters:
+  category: Squat
+  name: Dumbbell Thrusters
+dumbbell upright row:
+  category: Shrug
+  name: Dumbbell Upright Row
+dumbbell v raise:
+  category: Lateral Raise
+  name: Dumbbell V Raise
+dumbbell waiter carry:
+  category: Carry
+  name: Dumbbell Waiter Carry
+dumbbell wrist curl:
+  category: Curl
+  name: Dumbbell Wrist Curl
+dynamic push up:
+  category: Push Up
+  name: Dynamic Push Up
+elbow plank pike jacks:
+  category: Plank
+  name: Elbow Plank Pike Jacks
+elbow to foot lunge:
+  category: Warm Up
+  name: Elbow To Foot Lunge
+elbow to knee crunch:
+  category: Crunch
+  name: Elbow To Knee Crunch
+elevated feet inverted row:
+  category: Row
+  name: Elevated Feet Inverted Row
+elevated feet plank:
+  category: Plank
+  name: Elevated Feet Plank
+elevated feet russian twist:
+  category: Core
+  name: Elevated Feet Russian Twist
+elevated front foot barbell split squat:
+  category: Lunge
+  name: Elevated Front Foot Barbell Split Squat
+elevated ring row:
+  category: Row
+  name: Elevated Ring Row
+elevated single leg squat:
+  category: Squat
+  name: Elevated Single Leg Squat
+elevator abs:
+  category: Plank
+  name: Elevator Abs
+elliptical:
+  category: Elliptical
+  name: Elliptical
+explosive crossover push up:
+  category: Push Up
+  name: Explosive Crossover Push Up
+explosive push up:
+  category: Push Up
+  name: Explosive Push Up
+extended plank:
+  category: Plank
+  name: Extended Plank
+external hip raise:
+  category: Hip Stability
+  name: External Hip Raise
+external rotation:
+  category: Banded Exercises
+  name: External Rotation
+external rotation at 90 degree abduction:
+  category: Banded Exercises
+  name: External Rotation At 90 Degree Abduction
+ez bar overhead triceps extension:
+  category: Triceps Extension
+  name: Ez Bar Overhead Triceps Extension
+ez bar preacher curl:
+  category: Curl
+  name: Ez Bar Preacher Curl
+ez bar pullover:
+  category: Pull Up
+  name: Ez Bar Pullover
+face pull:
+  category: Row
+  name: Face Pull
+face pull with external rotation:
+  category: Row
+  name: Face Pull With External Rotation
+farmers carry:
+  category: Carry
+  name: Farmers Carry
+farmers carry on toes:
+  category: Carry
+  name: Farmers Carry On Toes
+farmers carry walk lunge:
+  category: Carry
+  name: Farmers Carry Walk Lunge
+farmers walk:
+  category: Carry
+  name: Farmers Walk
+farmers walk on toes:
+  category: Carry
+  name: Farmers Walk On Toes
+feet elevated side to side push up:
+  category: Push Up
+  name: Feet Elevated Side To Side Push Up
+figure four squats:
+  category: Squat
+  name: Figure Four Squats
+fire hydrant:
+  category: Banded Exercises
+  name: Fire Hydrant
+fire hydrant kicks:
+  category: Hip Stability
+  name: Fire Hydrant Kicks
+flip:
+  category: Tire
+  name: Flip
+floor climb:
+  category: Floor Climb
+  name: Floor Climb
+floor i raise:
+  category: Shoulder Stability
+  name: Floor I Raise
+floor inverted shoulder press:
+  category: Shoulder Press
+  name: Floor Inverted Shoulder Press
+floor t raise:
+  category: Shoulder Stability
+  name: Floor T Raise
+floor y raise:
+  category: Shoulder Stability
+  name: Floor Y Raise
+flutter kicks:
+  category: Crunch
+  name: Flutter Kicks
+fly:
+  category: Banded Exercises
+  name: Fly
+foam roller reverse crunch on bench:
+  category: Crunch
+  name: Foam Roller Reverse Crunch On Bench
+foam roller reverse crunch with dumbbell:
+  category: Crunch
+  name: Foam Roller Reverse Crunch With Dumbbell
+foam roller reverse crunch with medicine ball:
+  category: Crunch
+  name: Foam Roller Reverse Crunch With Medicine Ball
+forward and backward leg swings:
+  category: Warm Up
+  name: Forward And Backward Leg Swings
+forward bend biceps curl:
+  category: Curl
+  name: Forward Bend Biceps Curl
+forward drag:
+  category: Sled
+  name: Forward Drag
+frog press:
+  category: Crunch
+  name: Frog Press
+front carry:
+  category: Sandbag
+  name: Front Carry
+front foot elevated dumbbell split squat:
+  category: Lunge
+  name: Front Foot Elevated Dumbbell Split Squat
+front kick tabletop:
+  category: Hip Raise
+  name: Front Kick Tabletop
+front knee strike:
+  category: Plyo
+  name: Front Knee Strike
+front raise:
+  category: Banded Exercises
+  name: Front Raise
+front squat:
+  category: Sandbag
+  name: Front Squat
+full plank passe twist:
+  category: Plank
+  name: Full Plank Passe Twist
+get up sit up:
+  category: Sit Up
+  name: Get Up Sit Up
+ghd back extensions:
+  category: Core
+  name: Ghd Back Extensions
+ghd sit ups:
+  category: Sit Up
+  name: Ghd Sit Ups
+glute bridge:
+  category: Banded Exercises
+  name: Glute Bridge
+glutes stretch:
+  category: Warm Up
+  name: Glutes Stretch
+goblet squat:
+  category: Squat
+  name: Goblet Squat
+good morning:
+  category: Leg Curl
+  name: Good Morning
+grappler toss:
+  category: Battle Rope
+  name: Grappler Toss
+groiners:
+  category: Warm Up
+  name: Groiners
+gunslinger lunge:
+  category: Lunge
+  name: Gunslinger Lunge
+half kneeling rotation:
+  category: Chop
+  name: Half Kneeling Rotation
+half kneeling rotational chop:
+  category: Chop
+  name: Half Kneeling Rotational Chop
+half kneeling rotational reverse chop:
+  category: Chop
+  name: Half Kneeling Rotational Reverse Chop
+half kneeling stability chop:
+  category: Chop
+  name: Half Kneeling Stability Chop
+half kneeling stability reverse chop:
+  category: Chop
+  name: Half Kneeling Stability Reverse Chop
+half turkish get up:
+  category: Core
+  name: Half Turkish Get Up
+hammer curl to press:
+  category: Curl
+  name: Hammer Curl To Press
+hammer slam:
+  category: Sledge Hammer
+  name: Hammer Slam
+hamstring curl:
+  category: Suspension
+  name: Hamstring Curl
+hamstring curls:
+  category: Banded Exercises
+  name: Hamstring Curls
+hand release push up:
+  category: Push Up
+  name: Hand Release Push Up
+handstand push up:
+  category: Push Up
+  name: Handstand Push Up
+hanging hurdle:
+  category: Pull Up
+  name: Hanging Hurdle
+hanging knee raise:
+  category: Leg Raise
+  name: Hanging Knee Raise
+hanging knee raise oblique crunch:
+  category: Crunch
+  name: Hanging Knee Raise Oblique Crunch
+hanging l sit:
+  category: Core
+  name: Hanging L Sit
+hanging leg raise:
+  category: Leg Raise
+  name: Hanging Leg Raise
+hanging single leg raise:
+  category: Leg Raise
+  name: Hanging Single Leg Raise
+hex dumbbell hold:
+  category: Carry
+  name: Hex Dumbbell Hold
+high box jump:
+  category: Plyo
+  name: High Box Jump
+high plank leg lifts:
+  category: Banded Exercises
+  name: High Plank Leg Lifts
+high pull burpee:
+  category: Total Body
+  name: High Pull Burpee
+hindu push up:
+  category: Push Up
+  name: Hindu Push Up
+hip circles:
+  category: Hip Stability
+  name: Hip Circles
+hip crossover:
+  category: Crunch
+  name: Hip Crossover
+hip drop:
+  category: Suspension
+  name: Hip Drop
+hip extension:
+  category: Banded Exercises
+  name: Hip Extension
+hip extension and cross:
+  category: Hip Raise
+  name: Hip Extension And Cross
+hip raise:
+  category: Hip Raise
+  name: Hip Raise
+hip raise with feet on swiss ball:
+  category: Hip Raise
+  name: Hip Raise With Feet On Swiss Ball
+hip raise with head on bosu ball:
+  category: Hip Raise
+  name: Hip Raise With Head On Bosu Ball
+hip raise with head on swiss ball:
+  category: Hip Raise
+  name: Hip Raise With Head On Swiss Ball
+hip raise with knee squeeze:
+  category: Hip Raise
+  name: Hip Raise With Knee Squeeze
+hip stability:
+  category: Hip Stability
+  name: Hip Stability
+hip swing:
+  category: Hip Swing
+  name: Hip Swing
+hip toss:
+  category: Battle Rope
+  name: Hip Toss
+hollow hold and roll:
+  category: Hyperextension
+  name: Hollow Hold And Roll
+hollow rock:
+  category: Crunch
+  name: Hollow Rock
+hovering sit up:
+  category: Sit Up
+  name: Hovering Sit Up
+hyperextension:
+  category: Hyperextension
+  name: Hyperextension
+in and out wave:
+  category: Battle Rope
+  name: In And Out Wave
+inching elbow plank:
+  category: Plank
+  name: Inching Elbow Plank
+inchworm:
+  category: Core
+  name: Inchworm
+inchworm to side plank:
+  category: Plank
+  name: Inchworm To Side Plank
+incline barbell bench press:
+  category: Bench Press
+  name: Incline Barbell Bench Press
+incline dip:
+  category: Triceps Extension
+  name: Incline Dip
+incline dumbbell bench press:
+  category: Bench Press
+  name: Incline Dumbbell Bench Press
+incline dumbbell biceps curl:
+  category: Curl
+  name: Incline Dumbbell Biceps Curl
+incline dumbbell flye:
+  category: Flye
+  name: Incline Dumbbell Flye
+incline dumbbell shrug:
+  category: Shrug
+  name: Incline Dumbbell Shrug
+incline ez bar lying triceps extension:
+  category: Triceps Extension
+  name: Incline Ez Bar Lying Triceps Extension
+incline i raise:
+  category: Shoulder Stability
+  name: Incline I Raise
+incline l raise:
+  category: Shoulder Stability
+  name: Incline L Raise
+incline offset thumb dumbbell curl:
+  category: Curl
+  name: Incline Offset Thumb Dumbbell Curl
+incline push up:
+  category: Push Up
+  name: Incline Push Up
+incline rear leg extension:
+  category: Hip Raise
+  name: Incline Rear Leg Extension
+incline reverse crunch:
+  category: Crunch
+  name: Incline Reverse Crunch
+incline reverse flye:
+  category: Flye
+  name: Incline Reverse Flye
+incline smith machine bench press:
+  category: Bench Press
+  name: Incline Smith Machine Bench Press
+incline t raise:
+  category: Shoulder Stability
+  name: Incline T Raise
+incline w raise:
+  category: Shoulder Stability
+  name: Incline W Raise
+incline y raise:
+  category: Shoulder Stability
+  name: Incline Y Raise
+indoor row:
+  category: Row
+  name: Indoor Row
+indoor track run:
+  category: Run Indoor
+  name: Indoor Track Run
+inner thigh lift:
+  category: Hip Stability
+  name: Inner Thigh Lift
+inside circle:
+  category: Battle Rope
+  name: Inside Circle
+internal rotation:
+  category: Banded Exercises
+  name: Internal Rotation
+inverted hamstring stretch:
+  category: Warm Up
+  name: Inverted Hamstring Stretch
+inverted row:
+  category: Row
+  name: Inverted Row
+inverted row with feet on swiss ball:
+  category: Row
+  name: Inverted Row With Feet On Swiss Ball
+inverted shoulder press:
+  category: Shoulder Press
+  name: Inverted Shoulder Press
+isometric barbell bench press:
+  category: Bench Press
+  name: Isometric Barbell Bench Press
+isometric explosive body weight jump squat:
+  category: Plyo
+  name: Isometric Explosive Body Weight Jump Squat
+isometric explosive push up:
+  category: Push Up
+  name: Isometric Explosive Push Up
+jog:
+  category: Run
+  name: Jog
+judo push up:
+  category: Push Up
+  name: Judo Push Up
+jump rope:
+  category: Cardio
+  name: Jump Rope
+jump rope crossover:
+  category: Cardio
+  name: Jump Rope Crossover
+jump rope jog:
+  category: Cardio
+  name: Jump Rope Jog
+jump squat:
+  category: Plyo
+  name: Jump Squat
+jumping jack:
+  category: Banded Exercises
+  name: Jumping Jack
+jumping jacks:
+  category: Battle Rope
+  name: Jumping Jacks
+jumping pull ups:
+  category: Pull Up
+  name: Jumping Pull Ups
+kettlebell biceps curl:
+  category: Curl
+  name: Kettlebell Biceps Curl
+kettlebell chest press:
+  category: Bench Press
+  name: Kettlebell Chest Press
+kettlebell deadlift:
+  category: Deadlift
+  name: Kettlebell Deadlift
+kettlebell floor to shelf:
+  category: Deadlift
+  name: Kettlebell Floor To Shelf
+kettlebell flye:
+  category: Flye
+  name: Kettlebell Flye
+kettlebell leg raises:
+  category: Leg Raise
+  name: Kettlebell Leg Raises
+kettlebell row:
+  category: Row
+  name: Kettlebell Row
+kettlebell sit up:
+  category: Sit Up
+  name: Kettlebell Sit Up
+kettlebell squat:
+  category: Squat
+  name: Kettlebell Squat
+kettlebell sumo deadlift:
+  category: Deadlift
+  name: Kettlebell Sumo Deadlift
+kettlebell swing:
+  category: Hip Raise
+  name: Kettlebell Swing
+kettlebell swing overhead:
+  category: Squat
+  name: Kettlebell Swing Overhead
+kettlebell swing with flip to squat:
+  category: Squat
+  name: Kettlebell Swing With Flip To Squat
+kettlebell windmill:
+  category: Core
+  name: Kettlebell Windmill
+kicks:
+  category: Hyperextension
+  name: Kicks
+kipping handstand push up:
+  category: Push Up
+  name: Kipping Handstand Push Up
+kipping parallette handstand push up:
+  category: Push Up
+  name: Kipping Parallette Handstand Push Up
+kipping pull up:
+  category: Pull Up
+  name: Kipping Pull Up
+knee drive jump:
+  category: Suspension
+  name: Knee Drive Jump
+knee raises:
+  category: Hyperextension
+  name: Knee Raises
+knee to chest:
+  category: Suspension
+  name: Knee To Chest
+kneeling ab wheel:
+  category: Core
+  name: Kneeling Ab Wheel
+kneeling cable crunch:
+  category: Crunch
+  name: Kneeling Cable Crunch
+kneeling cross crunch:
+  category: Crunch
+  name: Kneeling Cross Crunch
+kneeling crunch:
+  category: Banded Exercises
+  name: Kneeling Crunch
+kneeling lat pulldown:
+  category: Pull Up
+  name: Kneeling Lat Pulldown
+kneeling oblique cable crunch:
+  category: Crunch
+  name: Kneeling Oblique Cable Crunch
+kneeling plank:
+  category: Plank
+  name: Kneeling Plank
+kneeling push up:
+  category: Push Up
+  name: Kneeling Push Up
+kneeling rear flye:
+  category: Flye
+  name: Kneeling Rear Flye
+kneeling rotational chop:
+  category: Chop
+  name: Kneeling Rotational Chop
+kneeling rotational reverse chop:
+  category: Chop
+  name: Kneeling Rotational Reverse Chop
+kneeling side plank with leg lift:
+  category: Plank
+  name: Kneeling Side Plank With Leg Lift
+kneeling stability chop:
+  category: Chop
+  name: Kneeling Stability Chop
+kneeling superman:
+  category: Hyperextension
+  name: Kneeling Superman
+kneeling underhand grip lat pulldown:
+  category: Pull Up
+  name: Kneeling Underhand Grip Lat Pulldown
+kneeling woodchopper:
+  category: Chop
+  name: Kneeling Woodchopper
+knees to elbow:
+  category: Crunch
+  name: Knees To Elbow
+l pull up:
+  category: Pull Up
+  name: L Pull Up
+l sit:
+  category: Core
+  name: L Sit
+lat pull down with row:
+  category: Hyperextension
+  name: Lat Pull Down With Row
+lat pulldown:
+  category: Pull Up
+  name: Lat Pulldown
+lat pullover:
+  category: Suspension
+  name: Lat Pullover
+lateral band walks:
+  category: Banded Exercises
+  name: Lateral Band Walks
+lateral barbell burpee:
+  category: Total Body
+  name: Lateral Barbell Burpee
+lateral duck under:
+  category: Warm Up
+  name: Lateral Duck Under
+lateral dumbbell step up:
+  category: Squat
+  name: Lateral Dumbbell Step Up
+lateral leap and hop:
+  category: Plyo
+  name: Lateral Leap And Hop
+lateral plyo squats:
+  category: Plyo
+  name: Lateral Plyo Squats
+lateral raise:
+  category: Banded Exercises
+  name: Lateral Raise
+lateral roll:
+  category: Plank
+  name: Lateral Roll
+lateral slide:
+  category: Plyo
+  name: Lateral Slide
+lateral stepover:
+  category: Leg Raise
+  name: Lateral Stepover
+lateral swing:
+  category: Sledge Hammer
+  name: Lateral Swing
+lateral walks with band at ankles:
+  category: Hip Stability
+  name: Lateral Walks With Band At Ankles
+latpull:
+  category: Banded Exercises
+  name: Latpull
+lawnmower lunge:
+  category: Lunge
+  name: Lawnmower Lunge
+leaning dumbbell lateral raise:
+  category: Lateral Raise
+  name: Leaning Dumbbell Lateral Raise
+leg abduction:
+  category: Banded Exercises
+  name: Leg Abduction
+leg adduction:
+  category: Banded Exercises
+  name: Leg Adduction
+leg climb crunch:
+  category: Crunch
+  name: Leg Climb Crunch
+leg curl:
+  category: Leg Curl
+  name: Leg Curl
+leg extension:
+  category: Banded Exercises
+  name: Leg Extension
+leg extensions:
+  category: Crunch
+  name: Leg Extensions
+leg levers:
+  category: Crunch
+  name: Leg Levers
+leg lowering drill:
+  category: Leg Raise
+  name: Leg Lowering Drill
+leg press:
+  category: Squat
+  name: Leg Press
+leg raise:
+  category: Leg Raise
+  name: Leg Raise
+low lunge with isometric adduction:
+  category: Lunge
+  name: Low Lunge With Isometric Adduction
+low push:
+  category: Sled
+  name: Low Push
+low side to side lunge:
+  category: Lunge
+  name: Low Side To Side Lunge
+lunge:
+  category: Banded Exercises
+  name: Lunge
+lunge matrix:
+  category: Lunge
+  name: Lunge Matrix
+lunge with arm reach:
+  category: Lunge
+  name: Lunge With Arm Reach
+lunge with diagonal reach:
+  category: Lunge
+  name: Lunge With Diagonal Reach
+lunge with side bend:
+  category: Lunge
+  name: Lunge With Side Bend
+lying abduction stretch:
+  category: Hip Stability
+  name: Lying Abduction Stretch
+lying concentration cable curl:
+  category: Curl
+  name: Lying Concentration Cable Curl
+lying dumbbell pullover to extension:
+  category: Triceps Extension
+  name: Lying Dumbbell Pullover To Extension
+lying dumbbell raise:
+  category: Lateral Raise
+  name: Lying Dumbbell Raise
+lying external rotation:
+  category: Shoulder Stability
+  name: Lying External Rotation
+lying ez bar triceps extension:
+  category: Triceps Extension
+  name: Lying Ez Bar Triceps Extension
+lying internal rotation:
+  category: Shoulder Stability
+  name: Lying Internal Rotation
+lying reverse plank:
+  category: Plank
+  name: Lying Reverse Plank
+lying straight leg raise:
+  category: Leg Raise
+  name: Lying Straight Leg Raise
+lying triceps extension to close grip bench press:
+  category: Triceps Extension
+  name: Lying Triceps Extension To Close Grip Bench Press
+man makers:
+  category: Total Body
+  name: Man Makers
+marching hip raise:
+  category: Hip Raise
+  name: Marching Hip Raise
+marching hip raise with feet on a swiss ball:
+  category: Hip Raise
+  name: Marching Hip Raise With Feet On A Swiss Ball
+mcgill curl up:
+  category: Crunch
+  name: Mcgill Curl Up
+medicine ball alternating v up:
+  category: Sit Up
+  name: Medicine Ball Alternating V Up
+medicine ball chest pass:
+  category: Push Up
+  name: Medicine Ball Chest Pass
+medicine ball clean:
+  category: Olympic Lift
+  name: Medicine Ball Clean
+medicine ball deadlift to reach:
+  category: Hyperextension
+  name: Medicine Ball Deadlift To Reach
+medicine ball leg drops:
+  category: Leg Raise
+  name: Medicine Ball Leg Drops
+medicine ball mountain climber:
+  category: Plank
+  name: Medicine Ball Mountain Climber
+medicine ball overhead throws:
+  category: Plyo
+  name: Medicine Ball Overhead Throws
+medicine ball push up:
+  category: Push Up
+  name: Medicine Ball Push Up
+medicine ball side throw:
+  category: Plyo
+  name: Medicine Ball Side Throw
+medicine ball sit up:
+  category: Sit Up
+  name: Medicine Ball Sit Up
+medicine ball slam:
+  category: Plyo
+  name: Medicine Ball Slam
+medicine ball squat:
+  category: Squat
+  name: Medicine Ball Squat
+medicine ball v up:
+  category: Sit Up
+  name: Medicine Ball V Up
+medicine ball wood chops:
+  category: Chop
+  name: Medicine Ball Wood Chops
+military press:
+  category: Shoulder Press
+  name: Military Press
+mixed grip chin up:
+  category: Pull Up
+  name: Mixed Grip Chin Up
+mixed grip pull up:
+  category: Pull Up
+  name: Mixed Grip Pull Up
+modified front lever:
+  category: Core
+  name: Modified Front Lever
+modified inverted row:
+  category: Row
+  name: Modified Inverted Row
+modified mountain climber and extension:
+  category: Plank
+  name: Modified Mountain Climber And Extension
+modified pilates roll up with ball:
+  category: Crunch
+  name: Modified Pilates Roll Up With Ball
+modified sit up:
+  category: Sit Up
+  name: Modified Sit Up
+mountain climber:
+  category: Plank
+  name: Mountain Climber
+mountain climber on sliding discs:
+  category: Plank
+  name: Mountain Climber On Sliding Discs
+mountain climber with feet on bosu ball:
+  category: Plank
+  name: Mountain Climber With Feet On Bosu Ball
+mountain climber with hands on bench:
+  category: Plank
+  name: Mountain Climber With Hands On Bench
+mountain climber with hands on swiss ball:
+  category: Plank
+  name: Mountain Climber With Hands On Swiss Ball
+muscle up:
+  category: Lateral Raise
+  name: Muscle Up
+neck rotations:
+  category: Warm Up
+  name: Neck Rotations
+neck tilts:
+  category: Warm Up
+  name: Neck Tilts
+negative sit up:
+  category: Sit Up
+  name: Negative Sit Up
+neutral grip alternating dumbbell row:
+  category: Row
+  name: Neutral Grip Alternating Dumbbell Row
+neutral grip chin up:
+  category: Pull Up
+  name: Neutral Grip Chin Up
+neutral grip dumbbell bench press:
+  category: Bench Press
+  name: Neutral Grip Dumbbell Bench Press
+neutral grip dumbbell incline bench press:
+  category: Bench Press
+  name: Neutral Grip Dumbbell Incline Bench Press
+neutral grip pull up:
+  category: Pull Up
+  name: Neutral Grip Pull Up
+offset dumbbell lunge:
+  category: Lunge
+  name: Offset Dumbbell Lunge
+offset dumbbell reverse lunge:
+  category: Lunge
+  name: Offset Dumbbell Reverse Lunge
+one arm bent over row:
+  category: Row
+  name: One Arm Bent Over Row
+one arm burpee:
+  category: Total Body
+  name: One Arm Burpee
+one arm cable lateral raise:
+  category: Lateral Raise
+  name: One Arm Cable Lateral Raise
+one arm concentration curl:
+  category: Curl
+  name: One Arm Concentration Curl
+one arm floor press:
+  category: Bench Press
+  name: One Arm Floor Press
+one arm full sit up:
+  category: Sit Up
+  name: One Arm Full Sit Up
+one arm one leg deadlift:
+  category: Deadlift
+  name: One Arm One Leg Deadlift
+one arm one leg row:
+  category: Hyperextension
+  name: One Arm One Leg Row
+one arm preacher curl:
+  category: Curl
+  name: One Arm Preacher Curl
+one arm push press:
+  category: Shoulder Press
+  name: One Arm Push Press
+one arm push up:
+  category: Push Up
+  name: One Arm Push Up
+one arm row with band:
+  category: Hyperextension
+  name: One Arm Row With Band
+one arm swing:
+  category: Hip Swing
+  name: One Arm Swing
+one hand dumbbell split snatch:
+  category: Olympic Lift
+  name: One Hand Dumbbell Split Snatch
+one legged dumbbell row:
+  category: Row
+  name: One Legged Dumbbell Row
+one legged squat:
+  category: Squat
+  name: One Legged Squat
+open knee tucks:
+  category: Core
+  name: Open Knee Tucks
+opposite arm and leg balance:
+  category: Warm Up
+  name: Opposite Arm And Leg Balance
+outside circle:
+  category: Battle Rope
+  name: Outside Circle
+overhand grip rear lateral raise:
+  category: Lateral Raise
+  name: Overhand Grip Rear Lateral Raise
+overhead barbell press:
+  category: Shoulder Press
+  name: Overhead Barbell Press
+overhead barbell shrug:
+  category: Shrug
+  name: Overhead Barbell Shrug
+overhead barbell squat:
+  category: Squat
+  name: Overhead Barbell Squat
+overhead bulgarian split squat:
+  category: Lunge
+  name: Overhead Bulgarian Split Squat
+overhead carry:
+  category: Carry
+  name: Overhead Carry
+overhead dumbbell lunge:
+  category: Lunge
+  name: Overhead Dumbbell Lunge
+overhead dumbbell press:
+  category: Shoulder Press
+  name: Overhead Dumbbell Press
+overhead dumbbell reverse lunge:
+  category: Lunge
+  name: Overhead Dumbbell Reverse Lunge
+overhead dumbbell shrug:
+  category: Shrug
+  name: Overhead Dumbbell Shrug
+overhead dumbbell split squat:
+  category: Lunge
+  name: Overhead Dumbbell Split Squat
+overhead dumbbell squat:
+  category: Squat
+  name: Overhead Dumbbell Squat
+overhead dumbbell triceps extension:
+  category: Triceps Extension
+  name: Overhead Dumbbell Triceps Extension
+overhead lunge:
+  category: Lunge
+  name: Overhead Lunge
+overhead lunge with medicine ball:
+  category: Hyperextension
+  name: Overhead Lunge With Medicine Ball
+overhead lunge with rotation:
+  category: Lunge
+  name: Overhead Lunge With Rotation
+overhead press:
+  category: Sandbag
+  name: Overhead Press
+overhead squat:
+  category: Squat
+  name: Overhead Squat
+overhead walk:
+  category: Core
+  name: Overhead Walk
+parallette handstand push up:
+  category: Push Up
+  name: Parallette Handstand Push Up
+partial lockout:
+  category: Bench Press
+  name: Partial Lockout
+partial single leg squat:
+  category: Squat
+  name: Partial Single Leg Squat
+pendulum:
+  category: Suspension
+  name: Pendulum
+pike:
+  category: Suspension
+  name: Pike
+pike push up:
+  category: Push Up
+  name: Pike Push Up
+pilates crunch:
+  category: Crunch
+  name: Pilates Crunch
+pilates roll up with ball:
+  category: Crunch
+  name: Pilates Roll Up With Ball
+pistol squat:
+  category: Squat
+  name: Pistol Squat
+plank:
+  category: Banded Exercises
+  name: Plank
+plank jacks with feet on sliding discs:
+  category: Plank
+  name: Plank Jacks With Feet On Sliding Discs
+plank knee tucks:
+  category: Hyperextension
+  name: Plank Knee Tucks
+plank knee twist:
+  category: Plank
+  name: Plank Knee Twist
+plank pike jumps:
+  category: Plank
+  name: Plank Pike Jumps
+plank pikes:
+  category: Plank
+  name: Plank Pikes
+plank pull through:
+  category: Sandbag
+  name: Plank Pull Through
+plank to stand up:
+  category: Plank
+  name: Plank To Stand Up
+plank with arm raise:
+  category: Plank
+  name: Plank With Arm Raise
+plank with feet on swiss ball:
+  category: Plank
+  name: Plank With Feet On Swiss Ball
+plank with knee to elbow:
+  category: Plank
+  name: Plank With Knee To Elbow
+plank with leg lift:
+  category: Plank
+  name: Plank With Leg Lift
+plank with oblique crunch:
+  category: Plank
+  name: Plank With Oblique Crunch
+plate pinch curl:
+  category: Curl
+  name: Plate Pinch Curl
+plate raises:
+  category: Lateral Raise
+  name: Plate Raises
+plie slides:
+  category: Squat
+  name: Plie Slides
+plie squat:
+  category: Squat
+  name: Plie Squat
+plyometric side plank:
+  category: Plank
+  name: Plyometric Side Plank
+power pull:
+  category: Suspension
+  name: Power Pull
+power squat chops:
+  category: Chop
+  name: Power Squat Chops
+preacher curl with cable:
+  category: Curl
+  name: Preacher Curl With Cable
+pretzel side kick:
+  category: Hip Stability
+  name: Pretzel Side Kick
+prisoner squat:
+  category: Squat
+  name: Prisoner Squat
+prone hip internal rotation:
+  category: Hip Stability
+  name: Prone Hip Internal Rotation
+pull apart:
+  category: Banded Exercises
+  name: Pull Apart
+pull up:
+  category: Pull Up
+  name: Pull Up
+push:
+  category: Sled
+  name: Push
+push jerk:
+  category: Olympic Lift
+  name: Push Jerk
+push up:
+  category: Push Up
+  name: Push Up
+push up and row:
+  category: Push Up
+  name: Push Up And Row
+push up plus:
+  category: Push Up
+  name: Push Up Plus
+push up with feet on swiss ball:
+  category: Push Up
+  name: Push Up With Feet On Swiss Ball
+push up with one hand on medicine ball:
+  category: Push Up
+  name: Push Up With One Hand On Medicine Ball
+push ups:
+  category: Banded Exercises
+  name: Push Ups
+quadruped:
+  category: Hip Stability
+  name: Quadruped
+quadruped hip extension:
+  category: Hip Stability
+  name: Quadruped Hip Extension
+quadruped leg raise:
+  category: Leg Raise
+  name: Quadruped Leg Raise
+quadruped rocking:
+  category: Warm Up
+  name: Quadruped Rocking
+quadruped with leg lift:
+  category: Hip Stability
+  name: Quadruped With Leg Lift
+rack pull:
+  category: Deadlift
+  name: Rack Pull
+rainbow:
+  category: Battle Rope
+  name: Rainbow
+raised legs crunch:
+  category: Crunch
+  name: Raised Legs Crunch
+reach roll and lift:
+  category: Warm Up
+  name: Reach Roll And Lift
+reclining circle:
+  category: Sit Up
+  name: Reclining Circle
+reclining triceps press:
+  category: Triceps Extension
+  name: Reclining Triceps Press
+renegade row:
+  category: Row
+  name: Renegade Row
+reverse barbell box lunge:
+  category: Lunge
+  name: Reverse Barbell Box Lunge
+reverse box lunge:
+  category: Lunge
+  name: Reverse Box Lunge
+reverse crunch:
+  category: Banded Exercises
+  name: Reverse Crunch
+reverse crunch on a bench:
+  category: Crunch
+  name: Reverse Crunch On A Bench
+reverse curl and lift:
+  category: Crunch
+  name: Reverse Curl And Lift
+reverse curl up:
+  category: Sit Up
+  name: Reverse Curl Up
+reverse dumbbell box lunge:
+  category: Lunge
+  name: Reverse Dumbbell Box Lunge
+reverse dumbbell crossover lunge:
+  category: Lunge
+  name: Reverse Dumbbell Crossover Lunge
+reverse dumbbell diagonal lunge:
+  category: Lunge
+  name: Reverse Dumbbell Diagonal Lunge
+reverse ez bar curl:
+  category: Curl
+  name: Reverse Ez Bar Curl
+reverse grip barbell bench press:
+  category: Bench Press
+  name: Reverse Grip Barbell Bench Press
+reverse grip barbell biceps curl:
+  category: Curl
+  name: Reverse Grip Barbell Biceps Curl
+reverse grip barbell row:
+  category: Row
+  name: Reverse Grip Barbell Row
+reverse grip incline bench press:
+  category: Bench Press
+  name: Reverse Grip Incline Bench Press
+reverse grip pressdown:
+  category: Triceps Extension
+  name: Reverse Grip Pressdown
+reverse grip pulldown:
+  category: Pull Up
+  name: Reverse Grip Pulldown
+reverse grip triceps pressdown:
+  category: Triceps Extension
+  name: Reverse Grip Triceps Pressdown
+reverse grip wrist curl:
+  category: Curl
+  name: Reverse Grip Wrist Curl
+reverse hip raise:
+  category: Hip Raise
+  name: Reverse Hip Raise
+reverse leg raise:
+  category: Leg Raise
+  name: Reverse Leg Raise
+reverse leg raise on swiss ball:
+  category: Leg Raise
+  name: Reverse Leg Raise On Swiss Ball
+reverse lunge with reach back:
+  category: Lunge
+  name: Reverse Lunge With Reach Back
+reverse lunge with twist and overhead reach:
+  category: Lunge
+  name: Reverse Lunge With Twist And Overhead Reach
+reverse mountain climber:
+  category: Suspension
+  name: Reverse Mountain Climber
+reverse plank:
+  category: Suspension
+  name: Reverse Plank
+reverse sliding box lunge:
+  category: Lunge
+  name: Reverse Sliding Box Lunge
+reverse sliding lunge:
+  category: Lunge
+  name: Reverse Sliding Lunge
+ring dip:
+  category: Lateral Raise
+  name: Ring Dip
+ring dip kipping:
+  category: Lateral Raise
+  name: Ring Dip Kipping
+ring handstand push up:
+  category: Push Up
+  name: Ring Handstand Push Up
+ring l sit:
+  category: Core
+  name: Ring L Sit
+ring muscle up:
+  category: Lateral Raise
+  name: Ring Muscle Up
+ring plank sprawls:
+  category: Plank
+  name: Ring Plank Sprawls
+ring push up:
+  category: Push Up
+  name: Ring Push Up
+ring row:
+  category: Row
+  name: Ring Row
+rolling side plank:
+  category: Plank
+  name: Rolling Side Plank
+rollout:
+  category: Suspension
+  name: Rollout
+romanian deadlift:
+  category: Deadlift
+  name: Romanian Deadlift
+rope climb:
+  category: Lateral Raise
+  name: Rope Climb
+rope handle cable row:
+  category: Row
+  name: Rope Handle Cable Row
+rope pressdown:
+  category: Triceps Extension
+  name: Rope Pressdown
+rotational dumbbell straight leg deadlift:
+  category: Deadlift
+  name: Rotational Dumbbell Straight Leg Deadlift
+rotational lift:
+  category: Crunch
+  name: Rotational Lift
+rotational lunge:
+  category: Sandbag
+  name: Rotational Lunge
+row:
+  category: Banded Exercises
+  name: Row
+run:
+  category: Run
+  name: Run
+run or walk:
+  category: Run
+  name: Run Or Walk
+runners lunge to balance:
+  category: Lunge
+  name: Runners Lunge To Balance
+russian twist:
+  category: Core
+  name: Russian Twist
+russian twist on swiss ball:
+  category: Sit Up
+  name: Russian Twist On Swiss Ball
+scaption:
+  category: Lateral Raise
+  name: Scaption
+scaption and shrug:
+  category: Shrug
+  name: Scaption And Shrug
+scapular retraction:
+  category: Shrug
+  name: Scapular Retraction
+scissor power switch:
+  category: Lunge
+  name: Scissor Power Switch
+seated alternating dumbbell biceps curl:
+  category: Curl
+  name: Seated Alternating Dumbbell Biceps Curl
+seated alternating reverse crunch:
+  category: Crunch
+  name: Seated Alternating Reverse Crunch
+seated barbell good morning:
+  category: Leg Curl
+  name: Seated Barbell Good Morning
+seated barbell overhead triceps extension:
+  category: Triceps Extension
+  name: Seated Barbell Overhead Triceps Extension
+seated barbell shoulder press:
+  category: Shoulder Press
+  name: Seated Barbell Shoulder Press
+seated cable row:
+  category: Row
+  name: Seated Cable Row
+seated calf raise:
+  category: Calf Raise
+  name: Seated Calf Raise
+seated dumbbell biceps curl:
+  category: Curl
+  name: Seated Dumbbell Biceps Curl
+seated dumbbell external rotation:
+  category: Shoulder Stability
+  name: Seated Dumbbell External Rotation
+seated dumbbell internal rotation:
+  category: Shoulder Stability
+  name: Seated Dumbbell Internal Rotation
+seated dumbbell overhead triceps extension:
+  category: Triceps Extension
+  name: Seated Dumbbell Overhead Triceps Extension
+seated dumbbell row:
+  category: Row
+  name: Seated Dumbbell Row
+seated dumbbell shoulder press:
+  category: Shoulder Press
+  name: Seated Dumbbell Shoulder Press
+seated dumbbell toe raise:
+  category: Calf Raise
+  name: Seated Dumbbell Toe Raise
+seated ez bar overhead triceps extension:
+  category: Triceps Extension
+  name: Seated Ez Bar Overhead Triceps Extension
+seated lateral raise:
+  category: Lateral Raise
+  name: Seated Lateral Raise
+seated leg u:
+  category: Crunch
+  name: Seated Leg U
+seated rear lateral raise:
+  category: Lateral Raise
+  name: Seated Rear Lateral Raise
+seated reverse dumbbell curl:
+  category: Curl
+  name: Seated Reverse Dumbbell Curl
+seated single arm overhead dumbbell extension:
+  category: Triceps Extension
+  name: Seated Single Arm Overhead Dumbbell Extension
+seated underhand grip cable row:
+  category: Row
+  name: Seated Underhand Grip Cable Row
+serratus chair shrug:
+  category: Shrug
+  name: Serratus Chair Shrug
+serratus shrug:
+  category: Shrug
+  name: Serratus Shrug
+shifting side lunge:
+  category: Lunge
+  name: Shifting Side Lunge
+shoulder abduction:
+  category: Banded Exercises
+  name: Shoulder Abduction
+shoulder circles:
+  category: Warm Up
+  name: Shoulder Circles
+shoulder extension:
+  category: Banded Exercises
+  name: Shoulder Extension
+shoulder external rotation:
+  category: Banded Exercises
+  name: Shoulder External Rotation
+shoulder flexion to 90 degrees:
+  category: Banded Exercises
+  name: Shoulder Flexion To 90 Degrees
+shoulder push up:
+  category: Push Up
+  name: Shoulder Push Up
+shoulder stability:
+  category: Shoulder Stability
+  name: Shoulder Stability
+shoulder tapping push up:
+  category: Push Up
+  name: Shoulder Tapping Push Up
+shouldering:
+  category: Sandbag
+  name: Shouldering
+shoveling:
+  category: Sandbag
+  name: Shoveling
+shrug:
+  category: Shrug
+  name: Shrug
+side abs leg lift:
+  category: Core
+  name: Side Abs Leg Lift
+side and crossover lunge:
+  category: Lunge
+  name: Side And Crossover Lunge
+side bend:
+  category: Core
+  name: Side Bend
+side kick plank:
+  category: Plank
+  name: Side Kick Plank
+side lunge:
+  category: Lunge
+  name: Side Lunge
+side lunge and press:
+  category: Lunge
+  name: Side Lunge And Press
+side lunge jump off:
+  category: Lunge
+  name: Side Lunge Jump Off
+side lunge sweep:
+  category: Lunge
+  name: Side Lunge Sweep
+side lunge to crossover tap:
+  category: Lunge
+  name: Side Lunge To Crossover Tap
+side lying lateral raise:
+  category: Lateral Raise
+  name: Side Lying Lateral Raise
+side lying leg raise:
+  category: Hip Stability
+  name: Side Lying Leg Raise
+side plank:
+  category: Plank
+  name: Side Plank
+side plank and row:
+  category: Plank
+  name: Side Plank And Row
+side plank leg lifts:
+  category: Banded Exercises
+  name: Side Plank Leg Lifts
+side plank lift:
+  category: Plank
+  name: Side Plank Lift
+side plank to plank with reach under:
+  category: Plank
+  name: Side Plank To Plank With Reach Under
+side plank wave:
+  category: Battle Rope
+  name: Side Plank Wave
+side plank with elbow on bosu ball:
+  category: Plank
+  name: Side Plank With Elbow On Bosu Ball
+side plank with feet on bench:
+  category: Plank
+  name: Side Plank With Feet On Bench
+side plank with knee circle:
+  category: Plank
+  name: Side Plank With Knee Circle
+side plank with knee tuck:
+  category: Plank
+  name: Side Plank With Knee Tuck
+side plank with leg lift:
+  category: Plank
+  name: Side Plank With Leg Lift
+side plank with reach under:
+  category: Plank
+  name: Side Plank With Reach Under
+side step:
+  category: Hyperextension
+  name: Side Step
+side to side crunch and weave:
+  category: Crunch
+  name: Side To Side Crunch And Weave
+side to side leg swings:
+  category: Warm Up
+  name: Side To Side Leg Swings
+side to side lunge chops:
+  category: Lunge
+  name: Side To Side Lunge Chops
+side to side medicine ball throws:
+  category: Plyo
+  name: Side To Side Medicine Ball Throws
+side to side shuffle jump:
+  category: Plyo
+  name: Side To Side Shuffle Jump
+sidewinder:
+  category: Battle Rope
+  name: Sidewinder
+siff jump lunge:
+  category: Lunge
+  name: Siff Jump Lunge
+single arm cable chest press:
+  category: Bench Press
+  name: Single Arm Cable Chest Press
+single arm cable row:
+  category: Row
+  name: Single Arm Cable Row
+single arm cable row and rotation:
+  category: Row
+  name: Single Arm Cable Row And Rotation
+single arm deadlift:
+  category: Deadlift
+  name: Single Arm Deadlift
+single arm dumbbell bench press:
+  category: Bench Press
+  name: Single Arm Dumbbell Bench Press
+single arm dumbbell overhead triceps extension:
+  category: Triceps Extension
+  name: Single Arm Dumbbell Overhead Triceps Extension
+single arm dumbbell shoulder press:
+  category: Shoulder Press
+  name: Single Arm Dumbbell Shoulder Press
+single arm dumbbell snatch:
+  category: Olympic Lift
+  name: Single Arm Dumbbell Snatch
+single arm dumbbell swing:
+  category: Hip Swing
+  name: Single Arm Dumbbell Swing
+single arm hang snatch:
+  category: Olympic Lift
+  name: Single Arm Hang Snatch
+single arm inverted row:
+  category: Row
+  name: Single Arm Inverted Row
+single arm kettlebell snatch:
+  category: Olympic Lift
+  name: Single Arm Kettlebell Snatch
+single arm kettlebell swing:
+  category: Hip Swing
+  name: Single Arm Kettlebell Swing
+single arm medicine ball push up:
+  category: Push Up
+  name: Single Arm Medicine Ball Push Up
+single arm neutral grip dumbbell row:
+  category: Row
+  name: Single Arm Neutral Grip Dumbbell Row
+single arm neutral grip dumbbell row and rotation:
+  category: Row
+  name: Single Arm Neutral Grip Dumbbell Row And Rotation
+single arm reverse lunge and press:
+  category: Lunge
+  name: Single Arm Reverse Lunge And Press
+single arm standing cable reverse flye:
+  category: Flye
+  name: Single Arm Standing Cable Reverse Flye
+single arm step up and press:
+  category: Shoulder Press
+  name: Single Arm Step Up And Press
+single dumbbell seated overhead triceps extension:
+  category: Triceps Extension
+  name: Single Dumbbell Seated Overhead Triceps Extension
+single leg back extension:
+  category: Hyperextension
+  name: Single Leg Back Extension
+single leg barbell deadlift:
+  category: Deadlift
+  name: Single Leg Barbell Deadlift
+single leg barbell good morning:
+  category: Leg Curl
+  name: Single Leg Barbell Good Morning
+single leg barbell straight leg deadlift:
+  category: Deadlift
+  name: Single Leg Barbell Straight Leg Deadlift
+single leg bench dip and kick:
+  category: Triceps Extension
+  name: Single Leg Bench Dip And Kick
+single leg bench get up:
+  category: Squat
+  name: Single Leg Bench Get Up
+single leg bench squat:
+  category: Squat
+  name: Single Leg Bench Squat
+single leg bent knee calf raise:
+  category: Calf Raise
+  name: Single Leg Bent Knee Calf Raise
+single leg deadlift:
+  category: Suspension
+  name: Single Leg Deadlift
+single leg deadlift with barbell:
+  category: Deadlift
+  name: Single Leg Deadlift With Barbell
+single leg decline push up:
+  category: Calf Raise
+  name: Single Leg Decline Push Up
+single leg dip:
+  category: Triceps Extension
+  name: Single Leg Dip
+single leg donkey calf raise:
+  category: Calf Raise
+  name: Single Leg Donkey Calf Raise
+single leg elevated feet plank:
+  category: Plank
+  name: Single Leg Elevated Feet Plank
+single leg flex and extend:
+  category: Plank
+  name: Single Leg Flex And Extend
+single leg hip raise:
+  category: Hip Raise
+  name: Single Leg Hip Raise
+single leg hip raise with foot on bench:
+  category: Hip Raise
+  name: Single Leg Hip Raise With Foot On Bench
+single leg hip raise with foot on bosu ball:
+  category: Hip Raise
+  name: Single Leg Hip Raise With Foot On Bosu Ball
+single leg hip raise with foot on foam roller:
+  category: Hip Raise
+  name: Single Leg Hip Raise With Foot On Foam Roller
+single leg hip raise with foot on medicine ball:
+  category: Hip Raise
+  name: Single Leg Hip Raise With Foot On Medicine Ball
+single leg hip raise with head on bosu ball:
+  category: Hip Raise
+  name: Single Leg Hip Raise With Head On Bosu Ball
+single leg hip raise with knee hold:
+  category: Calf Raise
+  name: Single Leg Hip Raise With Knee Hold
+single leg lowering drill:
+  category: Leg Raise
+  name: Single Leg Lowering Drill
+single leg rdl circuit:
+  category: Deadlift
+  name: Single Leg Rdl Circuit
+single leg reverse crunch:
+  category: Crunch
+  name: Single Leg Reverse Crunch
+single leg romanian deadlift circuit:
+  category: Deadlift
+  name: Single Leg Romanian Deadlift Circuit
+single leg romanian deadlift with dumbbell:
+  category: Deadlift
+  name: Single Leg Romanian Deadlift With Dumbbell
+single leg side plank:
+  category: Plank
+  name: Single Leg Side Plank
+single leg sliding leg curl:
+  category: Leg Curl
+  name: Single Leg Sliding Leg Curl
+single leg squat:
+  category: Suspension
+  name: Single Leg Squat
+single leg squat on swiss ball:
+  category: Squat
+  name: Single Leg Squat On Swiss Ball
+single leg standing calf raise:
+  category: Calf Raise
+  name: Single Leg Standing Calf Raise
+single leg standing dumbbell calf raise:
+  category: Calf Raise
+  name: Single Leg Standing Dumbbell Calf Raise
+single leg swiss ball hip raise and leg curl:
+  category: Hip Raise
+  name: Single Leg Swiss Ball Hip Raise And Leg Curl
+single leg swiss ball jackknife:
+  category: Sit Up
+  name: Single Leg Swiss Ball Jackknife
+sit up:
+  category: Sit Up
+  name: Sit Up
+sit up turkish get up:
+  category: Sit Up
+  name: Sit Up Turkish Get Up
+sitting russian twist:
+  category: Battle Rope
+  name: Sitting Russian Twist
+skater crunch cross:
+  category: Crunch
+  name: Skater Crunch Cross
+ski moguls:
+  category: Cardio
+  name: Ski Moguls
+sledge hammer:
+  category: Sledge Hammer
+  name: Sledge Hammer
+sleeper stretch:
+  category: Warm Up
+  name: Sleeper Stretch
+slide out:
+  category: Warm Up
+  name: Slide Out
+sliding hip adduction:
+  category: Hip Stability
+  name: Sliding Hip Adduction
+sliding lateral lunge:
+  category: Lunge
+  name: Sliding Lateral Lunge
+sliding leg curl:
+  category: Leg Curl
+  name: Sliding Leg Curl
+smith machine bench press:
+  category: Bench Press
+  name: Smith Machine Bench Press
+smith machine overhead press:
+  category: Shoulder Press
+  name: Smith Machine Overhead Press
+snake wave:
+  category: Battle Rope
+  name: Snake Wave
+snatch:
+  category: Olympic Lift
+  name: Snatch
+speed:
+  category: Ladder
+  name: Speed
+spiderman plank:
+  category: Plank
+  name: Spiderman Plank
+spiderman push up:
+  category: Push Up
+  name: Spiderman Push Up
+spine extension:
+  category: Hyperextension
+  name: Spine Extension
+split barbell good morning:
+  category: Leg Curl
+  name: Split Barbell Good Morning
+split jack:
+  category: Battle Rope
+  name: Split Jack
+split jacks:
+  category: Cardio
+  name: Split Jacks
+split jerk:
+  category: Olympic Lift
+  name: Split Jerk
+split stance extension:
+  category: Leg Curl
+  name: Split Stance Extension
+split stance hammer curl to press:
+  category: Shoulder Press
+  name: Split Stance Hammer Curl To Press
+split stance offset pinky dumbbell curl:
+  category: Curl
+  name: Split Stance Offset Pinky Dumbbell Curl
+sprint:
+  category: Run
+  name: Sprint
+squat:
+  category: Banded Exercises
+  name: Squat
+squat american swing:
+  category: Squat
+  name: Squat American Swing
+squat and side kick:
+  category: Squat
+  name: Squat And Side Kick
+squat clean and jerk:
+  category: Olympic Lift
+  name: Squat Clean And Jerk
+squat jacks:
+  category: Cardio
+  name: Squat Jacks
+squat jump:
+  category: Suspension
+  name: Squat Jump
+squat jump onto box:
+  category: Plyo
+  name: Squat Jump Onto Box
+squat jumps in and out:
+  category: Plyo
+  name: Squat Jumps In And Out
+squat jumps in n out:
+  category: Squat
+  name: Squat Jumps In N Out
+squat plank push up:
+  category: Total Body
+  name: Squat Plank Push Up
+squat thrusts:
+  category: Total Body
+  name: Squat Thrusts
+squat to press:
+  category: Banded Exercises
+  name: Squat To Press
+squats with band:
+  category: Squat
+  name: Squats With Band
+stacked feet push up:
+  category: Push Up
+  name: Stacked Feet Push Up
+stage coach:
+  category: Battle Rope
+  name: Stage Coach
+staggered hands push up:
+  category: Push Up
+  name: Staggered Hands Push Up
+staggered squat:
+  category: Squat
+  name: Staggered Squat
+staggered stance good morning:
+  category: Leg Curl
+  name: Staggered Stance Good Morning
+stair stepper:
+  category: Stair Stepper
+  name: Stair Stepper
+standing adduction:
+  category: Hip Stability
+  name: Standing Adduction
+standing alternating dumbbell curls:
+  category: Curl
+  name: Standing Alternating Dumbbell Curls
+standing barbell calf raise:
+  category: Calf Raise
+  name: Standing Barbell Calf Raise
+standing cable crunch:
+  category: Crunch
+  name: Standing Cable Crunch
+standing cable hip abduction:
+  category: Hip Stability
+  name: Standing Cable Hip Abduction
+standing cable pullover:
+  category: Pull Up
+  name: Standing Cable Pullover
+standing calf raise:
+  category: Calf Raise
+  name: Standing Calf Raise
+standing dumbbell biceps curl:
+  category: Curl
+  name: Standing Dumbbell Biceps Curl
+standing dumbbell calf raise:
+  category: Calf Raise
+  name: Standing Dumbbell Calf Raise
+standing ez bar biceps curl:
+  category: Curl
+  name: Standing Ez Bar Biceps Curl
+standing hamstring stretch:
+  category: Warm Up
+  name: Standing Hamstring Stretch
+standing hip abduction:
+  category: Hip Stability
+  name: Standing Hip Abduction
+standing l raise:
+  category: Shoulder Stability
+  name: Standing L Raise
+standing lift:
+  category: Lateral Raise
+  name: Standing Lift
+standing rear leg raise:
+  category: Hip Stability
+  name: Standing Rear Leg Raise
+standing rotational chop:
+  category: Chop
+  name: Standing Rotational Chop
+standing side crunch:
+  category: Crunch
+  name: Standing Side Crunch
+standing split rotational chop:
+  category: Chop
+  name: Standing Split Rotational Chop
+standing split rotational reverse chop:
+  category: Chop
+  name: Standing Split Rotational Reverse Chop
+standing stability reverse chop:
+  category: Chop
+  name: Standing Stability Reverse Chop
+standing t rotation balance:
+  category: Total Body
+  name: Standing T Rotation Balance
+standing zottman biceps curl:
+  category: Curl
+  name: Standing Zottman Biceps Curl
+star jump squats:
+  category: Plyo
+  name: Star Jump Squats
+static back extension:
+  category: Hyperextension
+  name: Static Back Extension
+static curl:
+  category: Curl
+  name: Static Curl
+static lying triceps extension:
+  category: Triceps Extension
+  name: Static Lying Triceps Extension
+stationary bike:
+  category: Indoor Bike
+  name: Stationary Bike
+step climb:
+  category: Crunch
+  name: Step Climb
+step out swing:
+  category: Hip Swing
+  name: Step Out Swing
+step up:
+  category: Squat
+  name: Step Up
+straight arm plank:
+  category: Plank
+  name: Straight Arm Plank
+straight arm plank with shoulder touch:
+  category: Plank
+  name: Straight Arm Plank With Shoulder Touch
+straight arm pulldown:
+  category: Pull Up
+  name: Straight Arm Pulldown
+straight leg crunch with ball:
+  category: Crunch
+  name: Straight Leg Crunch With Ball
+straight leg deadlift:
+  category: Deadlift
+  name: Straight Leg Deadlift
+stretch 90 90:
+  category: Warm Up
+  name: Stretch 90 90
+stretch abs:
+  category: Warm Up
+  name: Stretch Abs
+stretch butterfly:
+  category: Warm Up
+  name: Stretch Butterfly
+stretch calf:
+  category: Warm Up
+  name: Stretch Calf
+stretch cat cow:
+  category: Warm Up
+  name: Stretch Cat Cow
+stretch childs pose:
+  category: Warm Up
+  name: Stretch Childs Pose
+stretch cobra:
+  category: Warm Up
+  name: Stretch Cobra
+stretch forearms:
+  category: Warm Up
+  name: Stretch Forearms
+stretch forward glutes:
+  category: Warm Up
+  name: Stretch Forward Glutes
+stretch front split:
+  category: Warm Up
+  name: Stretch Front Split
+stretch hamstring:
+  category: Warm Up
+  name: Stretch Hamstring
+stretch hip flexor and quad:
+  category: Warm Up
+  name: Stretch Hip Flexor And Quad
+stretch lat:
+  category: Warm Up
+  name: Stretch Lat
+stretch levator scapulae:
+  category: Warm Up
+  name: Stretch Levator Scapulae
+stretch lunge with spinal twist:
+  category: Warm Up
+  name: Stretch Lunge With Spinal Twist
+stretch lunging hip flexor:
+  category: Warm Up
+  name: Stretch Lunging Hip Flexor
+stretch lying abduction:
+  category: Warm Up
+  name: Stretch Lying Abduction
+stretch lying it band:
+  category: Warm Up
+  name: Stretch Lying It Band
+stretch lying knee to chest:
+  category: Warm Up
+  name: Stretch Lying Knee To Chest
+stretch lying piriformis:
+  category: Warm Up
+  name: Stretch Lying Piriformis
+stretch lying spinal twist:
+  category: Warm Up
+  name: Stretch Lying Spinal Twist
+stretch neck:
+  category: Warm Up
+  name: Stretch Neck
+stretch obliques:
+  category: Warm Up
+  name: Stretch Obliques
+stretch over under shoulder:
+  category: Warm Up
+  name: Stretch Over Under Shoulder
+stretch pectoral:
+  category: Warm Up
+  name: Stretch Pectoral
+stretch pigeon pose:
+  category: Warm Up
+  name: Stretch Pigeon Pose
+stretch piriformis:
+  category: Warm Up
+  name: Stretch Piriformis
+stretch quad:
+  category: Warm Up
+  name: Stretch Quad
+stretch scorpion:
+  category: Warm Up
+  name: Stretch Scorpion
+stretch shoulder:
+  category: Warm Up
+  name: Stretch Shoulder
+stretch side:
+  category: Warm Up
+  name: Stretch Side
+stretch side lunge:
+  category: Warm Up
+  name: Stretch Side Lunge
+stretch side split:
+  category: Warm Up
+  name: Stretch Side Split
+stretch standing it band:
+  category: Warm Up
+  name: Stretch Standing It Band
+stretch straddle:
+  category: Warm Up
+  name: Stretch Straddle
+stretch triceps:
+  category: Warm Up
+  name: Stretch Triceps
+stretch wall chest and shoulder:
+  category: Warm Up
+  name: Stretch Wall Chest And Shoulder
+strict press:
+  category: Shoulder Press
+  name: Strict Press
+suitcase squats:
+  category: Squat
+  name: Suitcase Squats
+sumo deadlift:
+  category: Deadlift
+  name: Sumo Deadlift
+sumo deadlift high pull:
+  category: Deadlift
+  name: Sumo Deadlift High Pull
+sumo squat:
+  category: Squat
+  name: Sumo Squat
+sumo squat slide in:
+  category: Squat
+  name: Sumo Squat Slide In
+sumo squat to high pull:
+  category: Squat
+  name: Sumo Squat To High Pull
+sumo squat to stand:
+  category: Squat
+  name: Sumo Squat To Stand
+sumo squat with rotation:
+  category: Squat
+  name: Sumo Squat With Rotation
+superman from floor:
+  category: Hyperextension
+  name: Superman From Floor
+superman on swiss ball:
+  category: Hyperextension
+  name: Superman On Swiss Ball
+supine hip internal rotation:
+  category: Hip Stability
+  name: Supine Hip Internal Rotation
+suspended chin up:
+  category: Pull Up
+  name: Suspended Chin Up
+suspended dip:
+  category: Triceps Extension
+  name: Suspended Dip
+suspended inverted row:
+  category: Row
+  name: Suspended Inverted Row
+suspended push up:
+  category: Push Up
+  name: Suspended Push Up
+suspended row:
+  category: Lateral Raise
+  name: Suspended Row
+swiss ball back extension:
+  category: Hyperextension
+  name: Swiss Ball Back Extension
+swiss ball body weight wall squat:
+  category: Squat
+  name: Swiss Ball Body Weight Wall Squat
+swiss ball crunch:
+  category: Crunch
+  name: Swiss Ball Crunch
+swiss ball dumbbell chest press:
+  category: Bench Press
+  name: Swiss Ball Dumbbell Chest Press
+swiss ball dumbbell flye:
+  category: Flye
+  name: Swiss Ball Dumbbell Flye
+swiss ball dumbbell lying triceps extension:
+  category: Triceps Extension
+  name: Swiss Ball Dumbbell Lying Triceps Extension
+swiss ball dumbbell overhead triceps extension:
+  category: Curl
+  name: Swiss Ball Dumbbell Overhead Triceps Extension
+swiss ball dumbbell shoulder press:
+  category: Shoulder Press
+  name: Swiss Ball Dumbbell Shoulder Press
+swiss ball ez bar lying triceps extension:
+  category: Triceps Extension
+  name: Swiss Ball Ez Bar Lying Triceps Extension
+swiss ball ez bar overhead triceps extension:
+  category: Triceps Extension
+  name: Swiss Ball Ez Bar Overhead Triceps Extension
+swiss ball ez bar preacher curl:
+  category: Curl
+  name: Swiss Ball Ez Bar Preacher Curl
+swiss ball ez bar pullover:
+  category: Pull Up
+  name: Swiss Ball Ez Bar Pullover
+swiss ball hip crossover:
+  category: Warm Up
+  name: Swiss Ball Hip Crossover
+swiss ball hip raise and leg curl:
+  category: Leg Curl
+  name: Swiss Ball Hip Raise And Leg Curl
+swiss ball hyperextension:
+  category: Hyperextension
+  name: Swiss Ball Hyperextension
+swiss ball i raise:
+  category: Shoulder Stability
+  name: Swiss Ball I Raise
+swiss ball jackknife:
+  category: Core
+  name: Swiss Ball Jackknife
+swiss ball opposite arm and leg lift:
+  category: Hyperextension
+  name: Swiss Ball Opposite Arm And Leg Lift
+swiss ball pike:
+  category: Core
+  name: Swiss Ball Pike
+swiss ball plank:
+  category: Plank
+  name: Swiss Ball Plank
+swiss ball plank leg lift:
+  category: Plank
+  name: Swiss Ball Plank Leg Lift
+swiss ball plank leg lift and hold:
+  category: Plank
+  name: Swiss Ball Plank Leg Lift And Hold
+swiss ball plank with feet on bench:
+  category: Plank
+  name: Swiss Ball Plank With Feet On Bench
+swiss ball prone jackknife:
+  category: Plank
+  name: Swiss Ball Prone Jackknife
+swiss ball push up:
+  category: Push Up
+  name: Swiss Ball Push Up
+swiss ball push up plus:
+  category: Push Up
+  name: Swiss Ball Push Up Plus
+swiss ball reach roll and lift:
+  category: Warm Up
+  name: Swiss Ball Reach Roll And Lift
+swiss ball reverse crunch:
+  category: Crunch
+  name: Swiss Ball Reverse Crunch
+swiss ball rollout:
+  category: Core
+  name: Swiss Ball Rollout
+swiss ball russian twist:
+  category: Crunch
+  name: Swiss Ball Russian Twist
+swiss ball side crunch:
+  category: Crunch
+  name: Swiss Ball Side Crunch
+swiss ball side plank:
+  category: Plank
+  name: Swiss Ball Side Plank
+swiss ball t raise:
+  category: Shoulder Stability
+  name: Swiss Ball T Raise
+swiss ball w raise:
+  category: Shoulder Stability
+  name: Swiss Ball W Raise
+swiss ball windshield wipers:
+  category: Warm Up
+  name: Swiss Ball Windshield Wipers
+swiss ball y raise:
+  category: Shoulder Stability
+  name: Swiss Ball Y Raise
+t bar row:
+  category: Row
+  name: T Bar Row
+t push up:
+  category: Push Up
+  name: T Push Up
+t stabilization:
+  category: Plank
+  name: T Stabilization
+tabletop dip:
+  category: Triceps Extension
+  name: Tabletop Dip
+the teaser:
+  category: Sit Up
+  name: The Teaser
+the teaser weighted:
+  category: Sit Up
+  name: The Teaser Weighted
+thoracic crunches on foam roller:
+  category: Crunch
+  name: Thoracic Crunches On Foam Roller
+thoracic rotation:
+  category: Warm Up
+  name: Thoracic Rotation
+three part roll down:
+  category: Sit Up
+  name: Three Part Roll Down
+three way plank:
+  category: Plank
+  name: Three Way Plank
+thrusters:
+  category: Squat
+  name: Thrusters
+tire:
+  category: Tire
+  name: Tire
+toes to bar:
+  category: Crunch
+  name: Toes To Bar
+toes to elbows:
+  category: Core
+  name: Toes To Elbows
+total body burpee over bar:
+  category: Total Body
+  name: Total Body Burpee Over Bar
+towel grip inverted row:
+  category: Row
+  name: Towel Grip Inverted Row
+towel plank and knee in:
+  category: Plank
+  name: Towel Plank And Knee In
+towel pull up:
+  category: Pull Up
+  name: Towel Pull Up
+trap bar deadlift:
+  category: Deadlift
+  name: Trap Bar Deadlift
+treadmill:
+  category: Run Indoor
+  name: Treadmill
+triangle hip press:
+  category: Core
+  name: Triangle Hip Press
+tricep extension:
+  category: Banded Exercises
+  name: Tricep Extension
+tricep kickback:
+  category: Banded Exercises
+  name: Tricep Kickback
+tricep press:
+  category: Suspension
+  name: Tricep Press
+triceps crunch:
+  category: Crunch
+  name: Triceps Crunch
+triceps extension on floor:
+  category: Triceps Extension
+  name: Triceps Extension On Floor
+triceps press:
+  category: Triceps Extension
+  name: Triceps Press
+triceps pressdown:
+  category: Triceps Extension
+  name: Triceps Pressdown
+triple stop barbell bench press:
+  category: Bench Press
+  name: Triple Stop Barbell Bench Press
+triple stop push up:
+  category: Push Up
+  name: Triple Stop Push Up
+triple under:
+  category: Cardio
+  name: Triple Under
+trx inverted row:
+  category: Row
+  name: Trx Inverted Row
+trx suspended jackknife:
+  category: Core
+  name: Trx Suspended Jackknife
+turkish get up:
+  category: Core
+  name: Turkish Get Up
+turkish get up to side plank:
+  category: Plank
+  name: Turkish Get Up To Side Plank
+twisting standing dumbbell biceps curl:
+  category: Curl
+  name: Twisting Standing Dumbbell Biceps Curl
+two point plank:
+  category: Plank
+  name: Two Point Plank
+u boat:
+  category: Core
+  name: U Boat
+ultimate warrior:
+  category: Battle Rope
+  name: Ultimate Warrior
+underhand grip cable row:
+  category: Row
+  name: Underhand Grip Cable Row
+underhand grip rear lateral raise:
+  category: Lateral Raise
+  name: Underhand Grip Rear Lateral Raise
+uneven squat:
+  category: Squat
+  name: Uneven Squat
+upper cuts:
+  category: Battle Rope
+  name: Upper Cuts
+upright row:
+  category: Banded Exercises
+  name: Upright Row
+v grip cable row:
+  category: Row
+  name: V Grip Cable Row
+v up:
+  category: Sit Up
+  name: V Up
+waist slimming squat:
+  category: Squat
+  name: Waist Slimming Squat
+walk:
+  category: Run
+  name: Walk
+walking barbell lunge:
+  category: Lunge
+  name: Walking Barbell Lunge
+walking dumbbell lunge:
+  category: Lunge
+  name: Walking Dumbbell Lunge
+walking high kicks:
+  category: Warm Up
+  name: Walking High Kicks
+walking high knees:
+  category: Warm Up
+  name: Walking High Knees
+walking knee hugs:
+  category: Warm Up
+  name: Walking Knee Hugs
+walking leg cradles:
+  category: Warm Up
+  name: Walking Leg Cradles
+walking lunge:
+  category: Lunge
+  name: Walking Lunge
+walkout:
+  category: Warm Up
+  name: Walkout
+walkout from push up position:
+  category: Warm Up
+  name: Walkout From Push Up Position
+wall ball:
+  category: Squat
+  name: Wall Ball
+wall ball squat and press:
+  category: Squat
+  name: Wall Ball Squat And Press
+wall crawl with external rotation:
+  category: Banded Exercises
+  name: Wall Crawl With External Rotation
+wall slide:
+  category: Lateral Raise
+  name: Wall Slide
+wall walk:
+  category: Lateral Raise
+  name: Wall Walk
+weight plate front raise:
+  category: Shoulder Press
+  name: Weight Plate Front Raise
+weighted 45 degree plank:
+  category: Plank
+  name: Weighted 45 Degree Plank
+weighted 90 degree static hold:
+  category: Plank
+  name: Weighted 90 Degree Static Hold
+weighted abs jabs:
+  category: Core
+  name: Weighted Abs Jabs
+weighted alternating hands medicine ball push up:
+  category: Push Up
+  name: Weighted Alternating Hands Medicine Ball Push Up
+weighted alternating jump lunge:
+  category: Plyo
+  name: Weighted Alternating Jump Lunge
+weighted alternating sit up:
+  category: Sit Up
+  name: Weighted Alternating Sit Up
+weighted alternating slide out:
+  category: Core
+  name: Weighted Alternating Slide Out
+weighted alternating staggered push up:
+  category: Push Up
+  name: Weighted Alternating Staggered Push Up
+weighted back extension with opposite arm and leg reach:
+  category: Hyperextension
+  name: Weighted Back Extension With Opposite Arm And Leg Reach
+weighted back squats:
+  category: Squat
+  name: Weighted Back Squats
+weighted balancing squat:
+  category: Squat
+  name: Weighted Balancing Squat
+weighted barbell rollout:
+  category: Core
+  name: Weighted Barbell Rollout
+weighted base rotations:
+  category: Hyperextension
+  name: Weighted Base Rotations
+weighted bear crawl:
+  category: Plank
+  name: Weighted Bear Crawl
+weighted bench dip:
+  category: Triceps Extension
+  name: Weighted Bench Dip
+weighted bench squat with rotational chop:
+  category: Squat
+  name: Weighted Bench Squat With Rotational Chop
+weighted bent knee reverse hyperextension:
+  category: Hyperextension
+  name: Weighted Bent Knee Reverse Hyperextension
+weighted bent knee swiss ball reverse hip raise:
+  category: Hip Raise
+  name: Weighted Bent Knee Swiss Ball Reverse Hip Raise
+weighted bent knee v up:
+  category: Sit Up
+  name: Weighted Bent Knee V Up
+weighted biceps push up:
+  category: Push Up
+  name: Weighted Biceps Push Up
+weighted bicycle crunch:
+  category: Crunch
+  name: Weighted Bicycle Crunch
+weighted bob and weave circle:
+  category: Cardio
+  name: Weighted Bob And Weave Circle
+weighted bosu ball push up:
+  category: Push Up
+  name: Weighted Bosu Ball Push Up
+weighted box step squat:
+  category: Squat
+  name: Weighted Box Step Squat
+weighted bridge with leg extension:
+  category: Hip Raise
+  name: Weighted Bridge With Leg Extension
+weighted burpee:
+  category: Total Body
+  name: Weighted Burpee
+weighted burpee box jump:
+  category: Total Body
+  name: Weighted Burpee Box Jump
+weighted burpee pull up:
+  category: Pull Up
+  name: Weighted Burpee Pull Up
+weighted butterfly situp:
+  category: Sit Up
+  name: Weighted Butterfly Situp
+weighted cardio core crawl:
+  category: Cardio
+  name: Weighted Cardio Core Crawl
+weighted chin up:
+  category: Pull Up
+  name: Weighted Chin Up
+weighted clam bridge:
+  category: Hip Raise
+  name: Weighted Clam Bridge
+weighted clapping push up:
+  category: Push Up
+  name: Weighted Clapping Push Up
+weighted close grip chin up:
+  category: Pull Up
+  name: Weighted Close Grip Chin Up
+weighted close grip medicine ball push up:
+  category: Push Up
+  name: Weighted Close Grip Medicine Ball Push Up
+weighted close hands push up:
+  category: Push Up
+  name: Weighted Close Hands Push Up
+weighted crescent circle:
+  category: Core
+  name: Weighted Crescent Circle
+weighted cross body mountain climber:
+  category: Plank
+  name: Weighted Cross Body Mountain Climber
+weighted cross chop to knee:
+  category: Chop
+  name: Weighted Cross Chop To Knee
+weighted cross knee strike:
+  category: Plyo
+  name: Weighted Cross Knee Strike
+weighted cross leg reverse crunch:
+  category: Crunch
+  name: Weighted Cross Leg Reverse Crunch
+weighted cross punch roll up:
+  category: Sit Up
+  name: Weighted Cross Punch Roll Up
+weighted crossed arms crunch:
+  category: Crunch
+  name: Weighted Crossed Arms Crunch
+weighted crossed arms sit up:
+  category: Sit Up
+  name: Weighted Crossed Arms Sit Up
+weighted crossover chin up:
+  category: Pull Up
+  name: Weighted Crossover Chin Up
+weighted crunch:
+  category: Crunch
+  name: Weighted Crunch
+weighted crunch chop:
+  category: Crunch
+  name: Weighted Crunch Chop
+weighted curtsy lunge:
+  category: Lunge
+  name: Weighted Curtsy Lunge
+weighted cycling russian twist:
+  category: Core
+  name: Weighted Cycling Russian Twist
+weighted dead bug:
+  category: Hip Stability
+  name: Weighted Dead Bug
+weighted decline push up:
+  category: Push Up
+  name: Weighted Decline Push Up
+weighted depth jump:
+  category: Plyo
+  name: Weighted Depth Jump
+weighted diamond push up:
+  category: Push Up
+  name: Weighted Diamond Push Up
+weighted dip:
+  category: Triceps Extension
+  name: Weighted Dip
+weighted donkey calf raise:
+  category: Calf Raise
+  name: Weighted Donkey Calf Raise
+weighted double crunch:
+  category: Crunch
+  name: Weighted Double Crunch
+weighted double under:
+  category: Cardio
+  name: Weighted Double Under
+weighted elbow plank pike jacks:
+  category: Plank
+  name: Weighted Elbow Plank Pike Jacks
+weighted elbow to knee crunch:
+  category: Crunch
+  name: Weighted Elbow To Knee Crunch
+weighted elevated feet inverted row:
+  category: Row
+  name: Weighted Elevated Feet Inverted Row
+weighted elevated feet plank:
+  category: Plank
+  name: Weighted Elevated Feet Plank
+weighted elevated feet russian twist:
+  category: Core
+  name: Weighted Elevated Feet Russian Twist
+weighted elevated single leg squat:
+  category: Squat
+  name: Weighted Elevated Single Leg Squat
+weighted elevator abs:
+  category: Plank
+  name: Weighted Elevator Abs
+weighted explosive crossover push up:
+  category: Push Up
+  name: Weighted Explosive Crossover Push Up
+weighted explosive push up:
+  category: Push Up
+  name: Weighted Explosive Push Up
+weighted extended plank:
+  category: Plank
+  name: Weighted Extended Plank
+weighted external hip raise:
+  category: Hip Stability
+  name: Weighted External Hip Raise
+weighted feet elevated side to side push up:
+  category: Push Up
+  name: Weighted Feet Elevated Side To Side Push Up
+weighted figure four squats:
+  category: Squat
+  name: Weighted Figure Four Squats
+weighted fire hydrant kicks:
+  category: Hip Stability
+  name: Weighted Fire Hydrant Kicks
+weighted floor i raise:
+  category: Shoulder Stability
+  name: Weighted Floor I Raise
+weighted floor inverted shoulder press:
+  category: Shoulder Press
+  name: Weighted Floor Inverted Shoulder Press
+weighted floor t raise:
+  category: Shoulder Stability
+  name: Weighted Floor T Raise
+weighted floor y raise:
+  category: Shoulder Stability
+  name: Weighted Floor Y Raise
+weighted flutter kicks:
+  category: Crunch
+  name: Weighted Flutter Kicks
+weighted foam roller reverse crunch on bench:
+  category: Crunch
+  name: Weighted Foam Roller Reverse Crunch On Bench
+weighted front kick tabletop:
+  category: Hip Raise
+  name: Weighted Front Kick Tabletop
+weighted front knee strike:
+  category: Plyo
+  name: Weighted Front Knee Strike
+weighted full plank passe twist:
+  category: Plank
+  name: Weighted Full Plank Passe Twist
+weighted get up sit up:
+  category: Sit Up
+  name: Weighted Get Up Sit Up
+weighted ghd back extensions:
+  category: Core
+  name: Weighted Ghd Back Extensions
+weighted half kneeling rotation:
+  category: Chop
+  name: Weighted Half Kneeling Rotation
+weighted hand release push up:
+  category: Push Up
+  name: Weighted Hand Release Push Up
+weighted handstand push up:
+  category: Push Up
+  name: Weighted Handstand Push Up
+weighted hanging hurdle:
+  category: Pull Up
+  name: Weighted Hanging Hurdle
+weighted hanging knee raise:
+  category: Leg Raise
+  name: Weighted Hanging Knee Raise
+weighted hanging knee raise oblique crunch:
+  category: Crunch
+  name: Weighted Hanging Knee Raise Oblique Crunch
+weighted hanging l sit:
+  category: Core
+  name: Weighted Hanging L Sit
+weighted hanging leg raise:
+  category: Leg Raise
+  name: Weighted Hanging Leg Raise
+weighted hanging single leg raise:
+  category: Leg Raise
+  name: Weighted Hanging Single Leg Raise
+weighted high box jump:
+  category: Plyo
+  name: Weighted High Box Jump
+weighted hindu push up:
+  category: Push Up
+  name: Weighted Hindu Push Up
+weighted hip circles:
+  category: Hip Stability
+  name: Weighted Hip Circles
+weighted hip crossover:
+  category: Crunch
+  name: Weighted Hip Crossover
+weighted hip extension and cross:
+  category: Hip Raise
+  name: Weighted Hip Extension And Cross
+weighted hip raise:
+  category: Hip Raise
+  name: Weighted Hip Raise
+weighted hip raise with feet on swiss ball:
+  category: Hip Raise
+  name: Weighted Hip Raise With Feet On Swiss Ball
+weighted hip raise with head on bosu ball:
+  category: Hip Raise
+  name: Weighted Hip Raise With Head On Bosu Ball
+weighted hip raise with head on swiss ball:
+  category: Hip Raise
+  name: Weighted Hip Raise With Head On Swiss Ball
+weighted hip raise with knee squeeze:
+  category: Hip Raise
+  name: Weighted Hip Raise With Knee Squeeze
+weighted hollow hold and roll:
+  category: Hyperextension
+  name: Weighted Hollow Hold And Roll
+weighted hollow rock:
+  category: Crunch
+  name: Weighted Hollow Rock
+weighted hovering sit up:
+  category: Sit Up
+  name: Weighted Hovering Sit Up
+weighted inching elbow plank:
+  category: Plank
+  name: Weighted Inching Elbow Plank
+weighted inchworm to side plank:
+  category: Plank
+  name: Weighted Inchworm To Side Plank
+weighted incline dip:
+  category: Triceps Extension
+  name: Weighted Incline Dip
+weighted incline i raise:
+  category: Shoulder Stability
+  name: Weighted Incline I Raise
+weighted incline l raise:
+  category: Shoulder Stability
+  name: Weighted Incline L Raise
+weighted incline push up:
+  category: Push Up
+  name: Weighted Incline Push Up
+weighted incline rear leg extension:
+  category: Hip Raise
+  name: Weighted Incline Rear Leg Extension
+weighted incline reverse crunch:
+  category: Crunch
+  name: Weighted Incline Reverse Crunch
+weighted incline t raise:
+  category: Shoulder Stability
+  name: Weighted Incline T Raise
+weighted incline w raise:
+  category: Shoulder Stability
+  name: Weighted Incline W Raise
+weighted incline y raise:
+  category: Shoulder Stability
+  name: Weighted Incline Y Raise
+weighted inner thigh lift:
+  category: Hip Stability
+  name: Weighted Inner Thigh Lift
+weighted inverted row:
+  category: Row
+  name: Weighted Inverted Row
+weighted inverted row with feet on swiss ball:
+  category: Row
+  name: Weighted Inverted Row With Feet On Swiss Ball
+weighted inverted shoulder press:
+  category: Shoulder Press
+  name: Weighted Inverted Shoulder Press
+weighted isometric explosive jump squat:
+  category: Plyo
+  name: Weighted Isometric Explosive Jump Squat
+weighted isometric explosive push up:
+  category: Push Up
+  name: Weighted Isometric Explosive Push Up
+weighted judo push up:
+  category: Push Up
+  name: Weighted Judo Push Up
+weighted jump rope:
+  category: Cardio
+  name: Weighted Jump Rope
+weighted jump rope crossover:
+  category: Cardio
+  name: Weighted Jump Rope Crossover
+weighted jump rope jog:
+  category: Cardio
+  name: Weighted Jump Rope Jog
+weighted jump squat:
+  category: Plyo
+  name: Weighted Jump Squat
+weighted jumping jacks:
+  category: Cardio
+  name: Weighted Jumping Jacks
+weighted jumping pull ups:
+  category: Pull Up
+  name: Weighted Jumping Pull Ups
+weighted kicks:
+  category: Hyperextension
+  name: Weighted Kicks
+weighted kipping pull up:
+  category: Pull Up
+  name: Weighted Kipping Pull Up
+weighted knee raises:
+  category: Hyperextension
+  name: Weighted Knee Raises
+weighted kneeling ab wheel:
+  category: Core
+  name: Weighted Kneeling Ab Wheel
+weighted kneeling cross crunch:
+  category: Crunch
+  name: Weighted Kneeling Cross Crunch
+weighted kneeling plank:
+  category: Plank
+  name: Weighted Kneeling Plank
+weighted kneeling push up:
+  category: Push Up
+  name: Weighted Kneeling Push Up
+weighted kneeling side plank with leg lift:
+  category: Plank
+  name: Weighted Kneeling Side Plank With Leg Lift
+weighted kneeling superman:
+  category: Hyperextension
+  name: Weighted Kneeling Superman
+weighted l pull up:
+  category: Pull Up
+  name: Weighted L Pull Up
+weighted l sit:
+  category: Core
+  name: Weighted L Sit
+weighted lateral leap and hop:
+  category: Plyo
+  name: Weighted Lateral Leap And Hop
+weighted lateral plyo squats:
+  category: Plyo
+  name: Weighted Lateral Plyo Squats
+weighted lateral roll:
+  category: Plank
+  name: Weighted Lateral Roll
+weighted lateral slide:
+  category: Plyo
+  name: Weighted Lateral Slide
+weighted lateral stepover:
+  category: Leg Raise
+  name: Weighted Lateral Stepover
+weighted leg curl:
+  category: Leg Curl
+  name: Weighted Leg Curl
+weighted leg extensions:
+  category: Crunch
+  name: Weighted Leg Extensions
+weighted leg lowering drill:
+  category: Leg Raise
+  name: Weighted Leg Lowering Drill
+weighted lunge:
+  category: Lunge
+  name: Weighted Lunge
+weighted lunge matrix:
+  category: Lunge
+  name: Weighted Lunge Matrix
+weighted lying reverse plank:
+  category: Plank
+  name: Weighted Lying Reverse Plank
+weighted lying straight leg raise:
+  category: Leg Raise
+  name: Weighted Lying Straight Leg Raise
+weighted marching hip raise:
+  category: Hip Raise
+  name: Weighted Marching Hip Raise
+weighted marching hip raise with feet on a swiss ball:
+  category: Hip Raise
+  name: Weighted Marching Hip Raise With Feet On A Swiss Ball
+weighted mcgill curl up:
+  category: Crunch
+  name: Weighted Mcgill Curl Up
+weighted medicine ball mountain climber:
+  category: Plank
+  name: Weighted Medicine Ball Mountain Climber
+weighted medicine ball push up:
+  category: Push Up
+  name: Weighted Medicine Ball Push Up
+weighted mixed grip chin up:
+  category: Pull Up
+  name: Weighted Mixed Grip Chin Up
+weighted mixed grip pull up:
+  category: Pull Up
+  name: Weighted Mixed Grip Pull Up
+weighted modified front lever:
+  category: Core
+  name: Weighted Modified Front Lever
+weighted modified inverted row:
+  category: Row
+  name: Weighted Modified Inverted Row
+weighted modified mountain climber and extension:
+  category: Plank
+  name: Weighted Modified Mountain Climber And Extension
+weighted modified pilates roll up with ball:
+  category: Crunch
+  name: Weighted Modified Pilates Roll Up With Ball
+weighted mountain climber:
+  category: Plank
+  name: Weighted Mountain Climber
+weighted mountain climber on sliding discs:
+  category: Plank
+  name: Weighted Mountain Climber On Sliding Discs
+weighted mountain climber with feet on bosu ball:
+  category: Plank
+  name: Weighted Mountain Climber With Feet On Bosu Ball
+weighted mountain climber with hands on bench:
+  category: Plank
+  name: Weighted Mountain Climber With Hands On Bench
+weighted mountain climber with hands on swiss ball:
+  category: Plank
+  name: Weighted Mountain Climber With Hands On Swiss Ball
+weighted neutral grip chin up:
+  category: Pull Up
+  name: Weighted Neutral Grip Chin Up
+weighted neutral grip pull up:
+  category: Pull Up
+  name: Weighted Neutral Grip Pull Up
+weighted one arm floor press:
+  category: Bench Press
+  name: Weighted One Arm Floor Press
+weighted one arm push up:
+  category: Push Up
+  name: Weighted One Arm Push Up
+weighted open knee tucks:
+  category: Core
+  name: Weighted Open Knee Tucks
+weighted parallette handstand push up:
+  category: Push Up
+  name: Weighted Parallette Handstand Push Up
+weighted partial single leg squat:
+  category: Squat
+  name: Weighted Partial Single Leg Squat
+weighted pike push up:
+  category: Push Up
+  name: Weighted Pike Push Up
+weighted pilates crunch:
+  category: Crunch
+  name: Weighted Pilates Crunch
+weighted pilates roll up with ball:
+  category: Crunch
+  name: Weighted Pilates Roll Up With Ball
+weighted pistol squat:
+  category: Squat
+  name: Weighted Pistol Squat
+weighted plank:
+  category: Plank
+  name: Weighted Plank
+weighted plank jacks with feet on sliding discs:
+  category: Plank
+  name: Weighted Plank Jacks With Feet On Sliding Discs
+weighted plank knee tucks:
+  category: Hyperextension
+  name: Weighted Plank Knee Tucks
+weighted plank knee twist:
+  category: Plank
+  name: Weighted Plank Knee Twist
+weighted plank pike jumps:
+  category: Plank
+  name: Weighted Plank Pike Jumps
+weighted plank pikes:
+  category: Plank
+  name: Weighted Plank Pikes
+weighted plank to stand up:
+  category: Plank
+  name: Weighted Plank To Stand Up
+weighted plank with arm raise:
+  category: Plank
+  name: Weighted Plank With Arm Raise
+weighted plank with knee to elbow:
+  category: Plank
+  name: Weighted Plank With Knee To Elbow
+weighted plank with oblique crunch:
+  category: Plank
+  name: Weighted Plank With Oblique Crunch
+weighted plie slides:
+  category: Squat
+  name: Weighted Plie Slides
+weighted plie squat:
+  category: Squat
+  name: Weighted Plie Squat
+weighted plyometric side plank:
+  category: Plank
+  name: Weighted Plyometric Side Plank
+weighted power squat chops:
+  category: Chop
+  name: Weighted Power Squat Chops
+weighted pretzel side kick:
+  category: Hip Stability
+  name: Weighted Pretzel Side Kick
+weighted prisoner squat:
+  category: Squat
+  name: Weighted Prisoner Squat
+weighted prone hip internal rotation:
+  category: Hip Stability
+  name: Weighted Prone Hip Internal Rotation
+weighted pull up:
+  category: Pull Up
+  name: Weighted Pull Up
+weighted push up:
+  category: Push Up
+  name: Weighted Push Up
+weighted push up and row:
+  category: Push Up
+  name: Weighted Push Up And Row
+weighted push up plus:
+  category: Push Up
+  name: Weighted Push Up Plus
+weighted push up with feet on swiss ball:
+  category: Push Up
+  name: Weighted Push Up With Feet On Swiss Ball
+weighted push up with one hand on medicine ball:
+  category: Push Up
+  name: Weighted Push Up With One Hand On Medicine Ball
+weighted quadruped hip extension:
+  category: Hip Stability
+  name: Weighted Quadruped Hip Extension
+weighted quadruped leg raise:
+  category: Leg Raise
+  name: Weighted Quadruped Leg Raise
+weighted quadruped with leg lift:
+  category: Hip Stability
+  name: Weighted Quadruped With Leg Lift
+weighted raised legs crunch:
+  category: Crunch
+  name: Weighted Raised Legs Crunch
+weighted reclining circle:
+  category: Sit Up
+  name: Weighted Reclining Circle
+weighted reverse crunch:
+  category: Crunch
+  name: Weighted Reverse Crunch
+weighted reverse crunch on a bench:
+  category: Crunch
+  name: Weighted Reverse Crunch On A Bench
+weighted reverse curl and lift:
+  category: Crunch
+  name: Weighted Reverse Curl And Lift
+weighted reverse curl up:
+  category: Sit Up
+  name: Weighted Reverse Curl Up
+weighted reverse hip raise:
+  category: Hip Raise
+  name: Weighted Reverse Hip Raise
+weighted reverse leg raise:
+  category: Leg Raise
+  name: Weighted Reverse Leg Raise
+weighted reverse leg raise on swiss ball:
+  category: Leg Raise
+  name: Weighted Reverse Leg Raise On Swiss Ball
+weighted reverse lunge with reach back:
+  category: Lunge
+  name: Weighted Reverse Lunge With Reach Back
+weighted reverse lunge with twist and overhead reach:
+  category: Lunge
+  name: Weighted Reverse Lunge With Twist And Overhead Reach
+weighted reverse sliding box lunge:
+  category: Lunge
+  name: Weighted Reverse Sliding Box Lunge
+weighted reverse sliding lunge:
+  category: Lunge
+  name: Weighted Reverse Sliding Lunge
+weighted ring dip:
+  category: Lateral Raise
+  name: Weighted Ring Dip
+weighted ring handstand push up:
+  category: Push Up
+  name: Weighted Ring Handstand Push Up
+weighted ring l sit:
+  category: Core
+  name: Weighted Ring L Sit
+weighted ring muscle up:
+  category: Lateral Raise
+  name: Weighted Ring Muscle Up
+weighted ring push up:
+  category: Push Up
+  name: Weighted Ring Push Up
+weighted rolling side plank:
+  category: Plank
+  name: Weighted Rolling Side Plank
+weighted rope climb:
+  category: Lateral Raise
+  name: Weighted Rope Climb
+weighted rotational lift:
+  category: Crunch
+  name: Weighted Rotational Lift
+weighted row:
+  category: Row
+  name: Weighted Row
+weighted runners lunge to balance:
+  category: Lunge
+  name: Weighted Runners Lunge To Balance
+weighted russian twist on swiss ball:
+  category: Sit Up
+  name: Weighted Russian Twist On Swiss Ball
+weighted seated alternating reverse crunch:
+  category: Crunch
+  name: Weighted Seated Alternating Reverse Crunch
+weighted seated calf raise:
+  category: Calf Raise
+  name: Weighted Seated Calf Raise
+weighted seated leg u:
+  category: Crunch
+  name: Weighted Seated Leg U
+weighted serratus chair shrug:
+  category: Shrug
+  name: Weighted Serratus Chair Shrug
+weighted serratus shrug:
+  category: Shrug
+  name: Weighted Serratus Shrug
+weighted shifting side lunge:
+  category: Lunge
+  name: Weighted Shifting Side Lunge
+weighted shoulder push up:
+  category: Push Up
+  name: Weighted Shoulder Push Up
+weighted side abs leg lift:
+  category: Core
+  name: Weighted Side Abs Leg Lift
+weighted side and crossover lunge:
+  category: Lunge
+  name: Weighted Side And Crossover Lunge
+weighted side bend:
+  category: Core
+  name: Weighted Side Bend
+weighted side kick plank:
+  category: Plank
+  name: Weighted Side Kick Plank
+weighted side lunge:
+  category: Lunge
+  name: Weighted Side Lunge
+weighted side lunge and press:
+  category: Lunge
+  name: Weighted Side Lunge And Press
+weighted side lunge jump off:
+  category: Lunge
+  name: Weighted Side Lunge Jump Off
+weighted side lunge sweep:
+  category: Lunge
+  name: Weighted Side Lunge Sweep
+weighted side lunge to crossover tap:
+  category: Lunge
+  name: Weighted Side Lunge To Crossover Tap
+weighted side lying leg raise:
+  category: Hip Stability
+  name: Weighted Side Lying Leg Raise
+weighted side plank:
+  category: Plank
+  name: Weighted Side Plank
+weighted side plank and row:
+  category: Plank
+  name: Weighted Side Plank And Row
+weighted side plank lift:
+  category: Plank
+  name: Weighted Side Plank Lift
+weighted side plank with elbow on bosu ball:
+  category: Plank
+  name: Weighted Side Plank With Elbow On Bosu Ball
+weighted side plank with feet on bench:
+  category: Plank
+  name: Weighted Side Plank With Feet On Bench
+weighted side plank with knee circle:
+  category: Plank
+  name: Weighted Side Plank With Knee Circle
+weighted side plank with knee tuck:
+  category: Plank
+  name: Weighted Side Plank With Knee Tuck
+weighted side plank with leg lift:
+  category: Plank
+  name: Weighted Side Plank With Leg Lift
+weighted side plank with reach under:
+  category: Plank
+  name: Weighted Side Plank With Reach Under
+weighted side step:
+  category: Hyperextension
+  name: Weighted Side Step
+weighted side to side crunch and weave:
+  category: Crunch
+  name: Weighted Side To Side Crunch And Weave
+weighted side to side lunge chops:
+  category: Lunge
+  name: Weighted Side To Side Lunge Chops
+weighted side to side shuffle jump:
+  category: Plyo
+  name: Weighted Side To Side Shuffle Jump
+weighted siff jump lunge:
+  category: Lunge
+  name: Weighted Siff Jump Lunge
+weighted single arm inverted row:
+  category: Row
+  name: Weighted Single Arm Inverted Row
+weighted single arm medicine ball push up:
+  category: Push Up
+  name: Weighted Single Arm Medicine Ball Push Up
+weighted single leg back extension:
+  category: Hyperextension
+  name: Weighted Single Leg Back Extension
+weighted single leg bench dip and kick:
+  category: Triceps Extension
+  name: Weighted Single Leg Bench Dip And Kick
+weighted single leg bench get up:
+  category: Squat
+  name: Weighted Single Leg Bench Get Up
+weighted single leg bench squat:
+  category: Squat
+  name: Weighted Single Leg Bench Squat
+weighted single leg bent knee calf raise:
+  category: Calf Raise
+  name: Weighted Single Leg Bent Knee Calf Raise
+weighted single leg dip:
+  category: Triceps Extension
+  name: Weighted Single Leg Dip
+weighted single leg donkey calf raise:
+  category: Calf Raise
+  name: Weighted Single Leg Donkey Calf Raise
+weighted single leg elevated feet plank:
+  category: Plank
+  name: Weighted Single Leg Elevated Feet Plank
+weighted single leg flex and extend:
+  category: Plank
+  name: Weighted Single Leg Flex And Extend
+weighted single leg hip raise:
+  category: Hip Raise
+  name: Weighted Single Leg Hip Raise
+weighted single leg hip raise with foot on bench:
+  category: Hip Raise
+  name: Weighted Single Leg Hip Raise With Foot On Bench
+weighted single leg hip raise with foot on bosu ball:
+  category: Hip Raise
+  name: Weighted Single Leg Hip Raise With Foot On Bosu Ball
+weighted single leg hip raise with foot on foam roller:
+  category: Hip Raise
+  name: Weighted Single Leg Hip Raise With Foot On Foam Roller
+weighted single leg hip raise with foot on medicine ball:
+  category: Hip Raise
+  name: Weighted Single Leg Hip Raise With Foot On Medicine Ball
+weighted single leg hip raise with head on bosu ball:
+  category: Hip Raise
+  name: Weighted Single Leg Hip Raise With Head On Bosu Ball
+weighted single leg lowering drill:
+  category: Leg Raise
+  name: Weighted Single Leg Lowering Drill
+weighted single leg reverse crunch:
+  category: Crunch
+  name: Weighted Single Leg Reverse Crunch
+weighted single leg side plank:
+  category: Plank
+  name: Weighted Single Leg Side Plank
+weighted single leg squat on swiss ball:
+  category: Squat
+  name: Weighted Single Leg Squat On Swiss Ball
+weighted single leg swiss ball jackknife:
+  category: Sit Up
+  name: Weighted Single Leg Swiss Ball Jackknife
+weighted sit up:
+  category: Sit Up
+  name: Weighted Sit Up
+weighted skater crunch cross:
+  category: Crunch
+  name: Weighted Skater Crunch Cross
+weighted ski moguls:
+  category: Cardio
+  name: Weighted Ski Moguls
+weighted sliding hip adduction:
+  category: Hip Stability
+  name: Weighted Sliding Hip Adduction
+weighted sliding lateral lunge:
+  category: Lunge
+  name: Weighted Sliding Lateral Lunge
+weighted spiderman plank:
+  category: Plank
+  name: Weighted Spiderman Plank
+weighted spiderman push up:
+  category: Push Up
+  name: Weighted Spiderman Push Up
+weighted spine extension:
+  category: Hyperextension
+  name: Weighted Spine Extension
+weighted split jacks:
+  category: Cardio
+  name: Weighted Split Jacks
+weighted squat:
+  category: Squat
+  name: Weighted Squat
+weighted squat jacks:
+  category: Cardio
+  name: Weighted Squat Jacks
+weighted squat jump onto box:
+  category: Plyo
+  name: Weighted Squat Jump Onto Box
+weighted squat jumps in and out:
+  category: Plyo
+  name: Weighted Squat Jumps In And Out
+weighted squat plank push up:
+  category: Total Body
+  name: Weighted Squat Plank Push Up
+weighted squat thrusts:
+  category: Total Body
+  name: Weighted Squat Thrusts
+weighted stacked feet push up:
+  category: Push Up
+  name: Weighted Stacked Feet Push Up
+weighted staggered hands push up:
+  category: Push Up
+  name: Weighted Staggered Hands Push Up
+weighted staggered squat:
+  category: Squat
+  name: Weighted Staggered Squat
+weighted standing adduction:
+  category: Hip Stability
+  name: Weighted Standing Adduction
+weighted standing calf raise:
+  category: Calf Raise
+  name: Weighted Standing Calf Raise
+weighted standing hip abduction:
+  category: Hip Stability
+  name: Weighted Standing Hip Abduction
+weighted standing rear leg raise:
+  category: Hip Stability
+  name: Weighted Standing Rear Leg Raise
+weighted standing t rotation balance:
+  category: Total Body
+  name: Weighted Standing T Rotation Balance
+weighted static back extension:
+  category: Hyperextension
+  name: Weighted Static Back Extension
+weighted step climb:
+  category: Crunch
+  name: Weighted Step Climb
+weighted step up:
+  category: Squat
+  name: Weighted Step Up
+weighted straight arm plank:
+  category: Plank
+  name: Weighted Straight Arm Plank
+weighted straight arm plank with shoulder touch:
+  category: Plank
+  name: Weighted Straight Arm Plank With Shoulder Touch
+weighted sumo squat slide in:
+  category: Squat
+  name: Weighted Sumo Squat Slide In
+weighted sumo squat to stand:
+  category: Squat
+  name: Weighted Sumo Squat To Stand
+weighted sumo squat with rotation:
+  category: Squat
+  name: Weighted Sumo Squat With Rotation
+weighted superman from floor:
+  category: Hyperextension
+  name: Weighted Superman From Floor
+weighted supine hip internal rotation:
+  category: Hip Stability
+  name: Weighted Supine Hip Internal Rotation
+weighted suspended chin up:
+  category: Pull Up
+  name: Weighted Suspended Chin Up
+weighted suspended dip:
+  category: Triceps Extension
+  name: Weighted Suspended Dip
+weighted suspended inverted row:
+  category: Row
+  name: Weighted Suspended Inverted Row
+weighted suspended push up:
+  category: Push Up
+  name: Weighted Suspended Push Up
+weighted swiss ball back extension:
+  category: Hyperextension
+  name: Weighted Swiss Ball Back Extension
+weighted swiss ball crunch:
+  category: Crunch
+  name: Weighted Swiss Ball Crunch
+weighted swiss ball hyperextension:
+  category: Hyperextension
+  name: Weighted Swiss Ball Hyperextension
+weighted swiss ball i raise:
+  category: Shoulder Stability
+  name: Weighted Swiss Ball I Raise
+weighted swiss ball jackknife:
+  category: Core
+  name: Weighted Swiss Ball Jackknife
+weighted swiss ball opposite arm and leg lift:
+  category: Hyperextension
+  name: Weighted Swiss Ball Opposite Arm And Leg Lift
+weighted swiss ball pike:
+  category: Core
+  name: Weighted Swiss Ball Pike
+weighted swiss ball plank:
+  category: Plank
+  name: Weighted Swiss Ball Plank
+weighted swiss ball plank leg lift:
+  category: Plank
+  name: Weighted Swiss Ball Plank Leg Lift
+weighted swiss ball plank leg lift and hold:
+  category: Plank
+  name: Weighted Swiss Ball Plank Leg Lift And Hold
+weighted swiss ball plank with feet on bench:
+  category: Plank
+  name: Weighted Swiss Ball Plank With Feet On Bench
+weighted swiss ball prone jackknife:
+  category: Plank
+  name: Weighted Swiss Ball Prone Jackknife
+weighted swiss ball push up:
+  category: Push Up
+  name: Weighted Swiss Ball Push Up
+weighted swiss ball push up plus:
+  category: Push Up
+  name: Weighted Swiss Ball Push Up Plus
+weighted swiss ball reverse crunch:
+  category: Crunch
+  name: Weighted Swiss Ball Reverse Crunch
+weighted swiss ball rollout:
+  category: Core
+  name: Weighted Swiss Ball Rollout
+weighted swiss ball russian twist:
+  category: Crunch
+  name: Weighted Swiss Ball Russian Twist
+weighted swiss ball side crunch:
+  category: Crunch
+  name: Weighted Swiss Ball Side Crunch
+weighted swiss ball side plank:
+  category: Plank
+  name: Weighted Swiss Ball Side Plank
+weighted swiss ball t raise:
+  category: Shoulder Stability
+  name: Weighted Swiss Ball T Raise
+weighted swiss ball w raise:
+  category: Shoulder Stability
+  name: Weighted Swiss Ball W Raise
+weighted swiss ball wall squat:
+  category: Squat
+  name: Weighted Swiss Ball Wall Squat
+weighted swiss ball y raise:
+  category: Shoulder Stability
+  name: Weighted Swiss Ball Y Raise
+weighted t push up:
+  category: Push Up
+  name: Weighted T Push Up
+weighted t stabilization:
+  category: Plank
+  name: Weighted T Stabilization
+weighted tabletop dip:
+  category: Triceps Extension
+  name: Weighted Tabletop Dip
+weighted thoracic crunches on foam roller:
+  category: Crunch
+  name: Weighted Thoracic Crunches On Foam Roller
+weighted three part roll down:
+  category: Sit Up
+  name: Weighted Three Part Roll Down
+weighted three way plank:
+  category: Plank
+  name: Weighted Three Way Plank
+weighted toes to bar:
+  category: Crunch
+  name: Weighted Toes To Bar
+weighted towel grip inverted row:
+  category: Row
+  name: Weighted Towel Grip Inverted Row
+weighted towel plank and knee in:
+  category: Plank
+  name: Weighted Towel Plank And Knee In
+weighted towel pull up:
+  category: Pull Up
+  name: Weighted Towel Pull Up
+weighted triangle hip press:
+  category: Core
+  name: Weighted Triangle Hip Press
+weighted triple stop push up:
+  category: Push Up
+  name: Weighted Triple Stop Push Up
+weighted triple under:
+  category: Cardio
+  name: Weighted Triple Under
+weighted trx inverted row:
+  category: Row
+  name: Weighted Trx Inverted Row
+weighted trx suspended jackknife:
+  category: Core
+  name: Weighted Trx Suspended Jackknife
+weighted turkish get up to side plank:
+  category: Plank
+  name: Weighted Turkish Get Up To Side Plank
+weighted two point plank:
+  category: Plank
+  name: Weighted Two Point Plank
+weighted u boat:
+  category: Core
+  name: Weighted U Boat
+weighted uneven squat:
+  category: Squat
+  name: Weighted Uneven Squat
+weighted v up:
+  category: Sit Up
+  name: Weighted V Up
+weighted walking lunge:
+  category: Lunge
+  name: Weighted Walking Lunge
+weighted wall slide:
+  category: Lateral Raise
+  name: Weighted Wall Slide
+weighted wall squat:
+  category: Squat
+  name: Weighted Wall Squat
+weighted wide grip pull up:
+  category: Pull Up
+  name: Weighted Wide Grip Pull Up
+weighted wide hands push up:
+  category: Push Up
+  name: Weighted Wide Hands Push Up
+weighted wide stance plank with diagonal arm lift:
+  category: Plank
+  name: Weighted Wide Stance Plank With Diagonal Arm Lift
+weighted wide stance plank with diagonal leg lift:
+  category: Plank
+  name: Weighted Wide Stance Plank With Diagonal Leg Lift
+weighted wide stance plank with leg lift:
+  category: Plank
+  name: Weighted Wide Stance Plank With Leg Lift
+weighted windmill switches:
+  category: Core
+  name: Weighted Windmill Switches
+weighted x abs:
+  category: Sit Up
+  name: Weighted X Abs
+wide grip barbell bench press:
+  category: Bench Press
+  name: Wide Grip Barbell Bench Press
+wide grip barbell deadlift:
+  category: Deadlift
+  name: Wide Grip Barbell Deadlift
+wide grip barbell shrug:
+  category: Shrug
+  name: Wide Grip Barbell Shrug
+wide grip ez bar biceps curl:
+  category: Curl
+  name: Wide Grip Ez Bar Biceps Curl
+wide grip jump shrug:
+  category: Shrug
+  name: Wide Grip Jump Shrug
+wide grip lat pulldown:
+  category: Pull Up
+  name: Wide Grip Lat Pulldown
+wide grip overhead barbell split squat:
+  category: Lunge
+  name: Wide Grip Overhead Barbell Split Squat
+wide grip pull up:
+  category: Pull Up
+  name: Wide Grip Pull Up
+wide grip push up:
+  category: Push Up
+  name: Wide Grip Push Up
+wide grip seated cable row:
+  category: Row
+  name: Wide Grip Seated Cable Row
+wide hands push up:
+  category: Push Up
+  name: Wide Hands Push Up
+wide stance barbell squat:
+  category: Squat
+  name: Wide Stance Barbell Squat
+wide stance goblet squat:
+  category: Squat
+  name: Wide Stance Goblet Squat
+wide stance plank with diagonal arm lift:
+  category: Plank
+  name: Wide Stance Plank With Diagonal Arm Lift
+wide stance plank with diagonal leg lift:
+  category: Plank
+  name: Wide Stance Plank With Diagonal Leg Lift
+wide stance plank with leg lift:
+  category: Plank
+  name: Wide Stance Plank With Leg Lift
+wide stance plank with opposite arm and leg lift:
+  category: Plank
+  name: Wide Stance Plank With Opposite Arm And Leg Lift
+windmill switches:
+  category: Core
+  name: Windmill Switches
+x abs:
+  category: Sit Up
+  name: X Abs
+y fly:
+  category: Suspension
+  name: Y Fly
+zercher good morning:
+  category: Leg Curl
+  name: Zercher Good Morning
+zercher squat:
+  category: Sandbag
+  name: Zercher Squat

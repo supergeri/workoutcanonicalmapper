@@ -1,0 +1,192 @@
+{
+  "title": "Week 5 Of 12",
+  "source": "image:workout.png",
+  "blocks": [
+    {
+      "label": "Primer",
+      "structure": "3 rounds",
+      "rest_between_sec": null,
+      "time_work_sec": null,
+      "default_reps_range": null,
+      "default_sets": 3,
+      "exercises": [],
+      "supersets": [
+        {
+          "exercises": [
+            {
+              "name": "A1; CABLE/BAND STRAIGHT ARM PULL DOWN X10",
+              "sets": 3,
+              "reps": 10,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "strength"
+            },
+            {
+              "name": "A2: KB ROL INTO GOBLET SQUAT X10",
+              "sets": 3,
+              "reps": 10,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "strength"
+            },
+            {
+              "name": "A3: KB BOTTOMS UP PRESS X 8 EACH SIDE",
+              "sets": 3,
+              "reps": 8,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "strength"
+            }
+          ],
+          "rest_between_sec": null
+        }
+      ]
+    },
+    {
+      "label": "Strength / Power",
+      "structure": "3 rounds",
+      "rest_between_sec": 15,
+      "time_work_sec": null,
+      "default_reps_range": null,
+      "default_sets": 3,
+      "exercises": [],
+      "supersets": [
+        {
+          "exercises": [
+            {
+              "name": "B1: DB INCLINE BENCH PRESS X8",
+              "sets": 3,
+              "reps": 8,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "strength"
+            },
+            {
+              "name": "B2: OB SINGLE ARM PUSH JERK X6 EACH SIDE",
+              "sets": 3,
+              "reps": 6,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "strength"
+            },
+            {
+              "name": "B3: BULGARIAN SPLIT SQUAT X8",
+              "sets": 3,
+              "reps": 8,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "strength"
+            }
+          ],
+          "rest_between_sec": null
+        }
+      ]
+    },
+    {
+      "label": "Muscle Building",
+      "structure": "3 rounds",
+      "rest_between_sec": 30,
+      "time_work_sec": null,
+      "default_reps_range": null,
+      "default_sets": 3,
+      "exercises": [],
+      "supersets": [
+        {
+          "exercises": [
+            {
+              "name": "C1: INCLINE BACK EXTENSION/ GOODMORINGS Xi2",
+              "sets": 3,
+              "reps": null,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "interval"
+            },
+            {
+              "name": "C2: TRX ROWS X 12",
+              "sets": 3,
+              "reps": 12,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "strength"
+            }
+          ],
+          "rest_between_sec": null
+        }
+      ]
+    },
+    {
+      "label": "Finisher",
+      "structure": null,
+      "rest_between_sec": null,
+      "time_work_sec": null,
+      "default_reps_range": null,
+      "default_sets": null,
+      "exercises": [],
+      "supersets": [
+        {
+          "exercises": [
+            {
+              "name": "D1: KNEELING MEDBALL SLAMS X8",
+              "sets": null,
+              "reps": 8,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "strength"
+            },
+            {
+              "name": "D2: 200M SKI",
+              "sets": null,
+              "reps": null,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": 200,
+              "distance_range": null,
+              "type": "strength"
+            },
+            {
+              "name": "D3: PLANK INTO PIKE X 8",
+              "sets": null,
+              "reps": 8,
+              "reps_range": null,
+              "duration_sec": null,
+              "rest_sec": null,
+              "distance_m": null,
+              "distance_range": null,
+              "type": "strength"
+            }
+          ],
+          "rest_between_sec": null
+        }
+      ]
+    }
+  ]
+}
+

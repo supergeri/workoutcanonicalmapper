@@ -1,0 +1,29 @@
+settings:
+  deleteSameNameWorkout: true
+workouts:
+  importedworkout:
+  - warmup:
+    - cardio: lap
+  - repeat(3):
+    - Bar Good Morning: lap | Goodmornings x10
+    - Plank Drag: lap | Kb Alternating Plank Drag x12
+    - Sled Drag: 20m
+    - rest: lap
+  - repeat(4):
+    - Front Squat: lap | Dual KB Front Squat x5
+    - Burpee Broad Jump: lap | Burpee Max Broad Jumps X4 Wb 4 reps
+    - Single Arm Kettlebell Swing: lap
+    - rest: lap
+  - repeat(3):
+    - Farmers Carry: 60m
+    - Dumbbell Push Press: lap | Db Push Press X 25 S 25 reps
+    - rest: lap
+  - repeat(3):
+    - Sled Push: lap
+    - Hand Release Push Up: lap
+    - rest: lap
+  - Ski Moguls: 60s
+schedulePlan:
+  start_from: '2025-11-08'
+  workouts:
+  - importedworkout
