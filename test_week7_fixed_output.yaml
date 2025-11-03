@@ -18,8 +18,7 @@ workouts:
     - 'Farmer''s Carry [category: CARRY]': lap
     - 'Dumbbell Push Press [category: SHOULDER_PRESS]': lap | Db Push Press X 25 S
         25 reps
-    - rest: lap
-  - repeat(3):
+    - rest: 45s
     - 'Sled Push [category: SLED]': lap
     - 'Hand Release Push Up [category: PUSH_UP]': lap
     - rest: lap

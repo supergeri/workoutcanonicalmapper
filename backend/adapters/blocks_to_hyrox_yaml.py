@@ -390,8 +390,11 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                 ex_entry[garmin_name_with_category] = "lap"
                 exercises_list.append(ex_entry)
         
-        # Process supersets
-        for superset in block.get("supersets", []):
+        # Process supersets - combine all supersets in a block into one repeat
+        all_block_exercises = []
+        rest_between_sec = block.get("rest_between_sec")
+        
+        for superset_idx, superset in enumerate(block.get("supersets", [])):
             exercises = []
             
             for ex in superset.get("exercises", []):
@@ -421,16 +424,27 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                 
                 exercises.append(ex_entry)
             
-            # Add rest after exercises
-            if exercises:
-                exercises.append({"rest": "lap"})
+            # Add exercises from this superset to the block
+            all_block_exercises.extend(exercises)
             
-            # Create repeat block if rounds > 1, otherwise just add exercises
-            if rounds > 1:
-                repeat_block = {f"repeat({rounds})": exercises}
-                workout_steps.append(repeat_block)
-            else:
-                workout_steps.extend(exercises)
+            # Add rest between supersets (use block's rest_between_sec)
+            # Don't add rest after the last superset
+            if superset_idx < len(block.get("supersets", [])) - 1:
+                if rest_between_sec:
+                    all_block_exercises.append({"rest": f"{rest_between_sec}s"})
+                else:
+                    all_block_exercises.append({"rest": "lap"})
+        
+        # Add final rest after all supersets in the block
+        if all_block_exercises:
+            all_block_exercises.append({"rest": "lap"})
+        
+        # Create repeat block if rounds > 1, otherwise just add exercises
+        if rounds > 1 and all_block_exercises:
+            repeat_block = {f"repeat({rounds})": all_block_exercises}
+            workout_steps.append(repeat_block)
+        elif all_block_exercises:
+            workout_steps.extend(all_block_exercises)
         
         # Add standalone exercises if any
         if exercises_list:
