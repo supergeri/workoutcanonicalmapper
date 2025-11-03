@@ -1,10 +1,33 @@
 import yaml
 import re
+import pathlib
 from datetime import datetime, timedelta
 from backend.core.normalize import normalize
 from backend.core.match import classify
 from backend.core.garmin_matcher import fuzzy_match_garmin
+from backend.core.user_mappings import get_user_mapping
+from backend.core.exercise_categories import add_category_to_exercise_name
 from backend.adapters.cir_to_garmin_yaml import GARMIN
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+USER_DEFAULTS_FILE = ROOT / "shared/settings/user_defaults.yaml"
+
+
+def load_user_defaults():
+    """Load user default settings."""
+    if USER_DEFAULTS_FILE.exists():
+        try:
+            with open(USER_DEFAULTS_FILE, 'r') as f:
+                data = yaml.safe_load(f) or {}
+                return data.get("defaults", {})
+        except Exception:
+            pass
+    # Return defaults
+    return {
+        "distance_handling": "lap",
+        "default_exercise_value": "lap",
+        "ignore_distance": True
+    }
 
 
 def parse_exercise_name(ex_name: str) -> tuple[str, str, str]:
@@ -106,7 +129,7 @@ def clean_exercise_name(ex_name: str) -> str:
     return ex_name.strip()
 
 
-def map_exercise_to_garmin(ex_name: str, ex_reps=None, ex_distance_m=None) -> tuple[str, str]:
+def map_exercise_to_garmin(ex_name: str, ex_reps=None, ex_distance_m=None, use_user_mappings: bool = True) -> tuple[str, str]:
     """
     Map exercise name to Garmin exercise name and description.
     Returns (garmin_name, description)
@@ -142,31 +165,41 @@ def map_exercise_to_garmin(ex_name: str, ex_reps=None, ex_distance_m=None) -> tu
         "ski": "Ski Moguls",
         "plank into pike": "Pike Push-up",
         # Additional mappings for better specificity
-        "kb alternating plank drag": "Plank Drag",
-        "alternating plank drag": "Plank Drag",
-        "plank drag": "Plank Drag",
-        "backward sled drag": "Sled Drag",
-        "sled drag": "Sled Drag",
-        "backward drag": "Backward Drag",
-        "burpee max broad jumps": "Burpee Broad Jump",
-        "farmer carry": "Farmers Carry",
-        "farmers carry": "Farmers Carry",
+        "kb alternating plank drag": "Plank",
+        "alternating plank drag": "Plank",
+        "plank drag": "Plank",
+        "backward sled drag": "Sled Backward Drag",
+        "sled drag": "Sled Backward Drag",
+        "backward drag": "Sled Backward Drag",
+        "burpee max broad jumps": "Burpee",
+        "burpee broad jump": "Burpee",
+        "farmer carry": "Farmer's Carry",
+        "farmers carry": "Farmer's Carry",
         "sled push": "Sled Push",
         "hand release push ups": "Hand Release Push Up",
         "hand release push up": "Hand Release Push Up",
         # More specific mappings
         "db push press": "Dumbbell Push Press",
         "push press": "Dumbbell Push Press",
-        "dual kb front squat": "Front Squat",
-        "dual kettlebell front squat": "Front Squat",
-        "kb front squat": "Front Squat",
-        "front squat": "Front Squat",
+        "dual kb front squat": "Dumbbell Front Squat",
+        "dual kettlebell front squat": "Dumbbell Front Squat",
+        "kb front squat": "Dumbbell Front Squat",
+        "kettlebell front squat": "Dumbbell Front Squat",
+        "front squat": "Dumbbell Front Squat",
     }
     
     normalized = normalize(clean_name).lower()
     garmin_name = None
     
-    # Try exact or substring matches in mappings
+    # 1. Check user mappings first (highest priority)
+    if use_user_mappings:
+        user_mapped = get_user_mapping(clean_name)
+        if user_mapped:
+            garmin_name = user_mapped
+            # User mapping found - skip to description building
+            # (will build description below)
+    
+    # 2. Try exact or substring matches in mappings
     # Sort by length (longest first) for better matches - longest matches first
     sorted_mappings = sorted(mappings.items(), key=lambda x: len(x[0]), reverse=True)
     
@@ -323,23 +356,39 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
             reps = ex.get("reps")
             distance_m = ex.get("distance_m")
             duration_sec = ex.get("duration_sec")
+            rest_sec = ex.get("rest_sec")
             
-            garmin_name, description = map_exercise_to_garmin(ex_name, ex_reps=reps, ex_distance_m=distance_m)
+            garmin_name, description = map_exercise_to_garmin(ex_name, ex_reps=reps, ex_distance_m=None)  # Ignore distance
+            
+            # Add category to exercise name
+            garmin_name_with_category = add_category_to_exercise_name(garmin_name)
             
             ex_entry = {}
-            if distance_m:
-                ex_entry[garmin_name] = f"{distance_m}m"
+            # Handle time-based exercises with sets (interval training)
+            if duration_sec and sets:
+                # Create repeat structure for interval exercises
+                interval_exercises = []
+                interval_exercises.append({garmin_name_with_category: f"{duration_sec}s"})
+                if rest_sec:
+                    interval_exercises.append({"rest": f"{rest_sec}s"})
+                # Wrap in repeat
+                repeat_block = {f"repeat({sets})": interval_exercises}
+                exercises_list.append(repeat_block)
             elif duration_sec:
-                # Handle time-based exercises
-                ex_entry[garmin_name] = f"{duration_sec}s"
+                # Single time-based exercise
+                ex_entry[garmin_name_with_category] = f"{duration_sec}s"
+                exercises_list.append(ex_entry)
             elif description:
-                ex_entry[garmin_name] = description
+                # Use description with "lap |" prefix
+                ex_entry[garmin_name_with_category] = description
+                exercises_list.append(ex_entry)
             elif reps is not None:
-                ex_entry[garmin_name] = f"{reps} reps"
+                ex_entry[garmin_name_with_category] = f"{reps} reps"
+                exercises_list.append(ex_entry)
             else:
-                ex_entry[garmin_name] = "lap"
-            
-            exercises_list.append(ex_entry)
+                # Default to "lap" (ignore distance)
+                ex_entry[garmin_name_with_category] = "lap"
+                exercises_list.append(ex_entry)
         
         # Process supersets
         for superset in block.get("supersets", []):
@@ -351,23 +400,24 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                 reps = ex.get("reps")
                 distance_m = ex.get("distance_m")
                 
-                garmin_name, description = map_exercise_to_garmin(ex_name, ex_reps=reps, ex_distance_m=distance_m)
+                garmin_name, description = map_exercise_to_garmin(ex_name, ex_reps=reps, ex_distance_m=None)  # Ignore distance
                 
-                # Build exercise entry
+                # Add category to exercise name
+                garmin_name_with_category = add_category_to_exercise_name(garmin_name)
+                
+                # Build exercise entry - always default to "lap" instead of distance
                 ex_entry = {}
                 
-                # Determine the value based on expected output format
-                if distance_m:
-                    # For distance, use just the distance (no "lap |")
-                    ex_entry[garmin_name] = f"{distance_m}m"
-                elif description:
+                # Determine the value based on expected output format (ignore distance)
+                if description:
                     # Use the description with "lap |" prefix
-                    ex_entry[garmin_name] = description
+                    ex_entry[garmin_name_with_category] = description
                 elif reps is not None:
                     # Just reps, no description
-                    ex_entry[garmin_name] = f"{reps} reps"
+                    ex_entry[garmin_name_with_category] = f"{reps} reps"
                 else:
-                    ex_entry[garmin_name] = "lap"
+                    # Default to "lap" (ignore distance_m)
+                    ex_entry[garmin_name_with_category] = "lap"
                 
                 exercises.append(ex_entry)
             

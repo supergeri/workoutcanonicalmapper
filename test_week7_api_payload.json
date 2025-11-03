@@ -1,0 +1,193 @@
+{
+  "blocks_json": {
+    "title": "Imported Workout",
+    "source": "image:week7.png",
+    "blocks": [
+      {
+        "label": "Primer",
+        "structure": "3 rounds",
+        "rest_between_sec": null,
+        "time_work_sec": null,
+        "default_reps_range": null,
+        "default_sets": 3,
+        "exercises": [],
+        "supersets": [
+          {
+            "exercises": [
+              {
+                "name": "A1: GOODMORNINGS X10",
+                "sets": 3,
+                "reps": 10,
+                "reps_range": null,
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": null,
+                "distance_range": null,
+                "type": "strength"
+              },
+              {
+                "name": "A2: KB ALTERNATING PLANK DRAG X12",
+                "sets": 3,
+                "reps": 12,
+                "reps_range": null,
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": null,
+                "distance_range": null,
+                "type": "strength"
+              },
+              {
+                "name": "A3: BACKWARD SLED DRAG X20M",
+                "sets": 3,
+                "reps": null,
+                "reps_range": null,
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": 20,
+                "distance_range": null,
+                "type": "strength"
+              }
+            ],
+            "rest_between_sec": null
+          }
+        ]
+      },
+      {
+        "label": "Strength / Power",
+        "structure": "4 rounds",
+        "rest_between_sec": 15,
+        "time_work_sec": null,
+        "default_reps_range": null,
+        "default_sets": 4,
+        "exercises": [],
+        "supersets": [
+          {
+            "exercises": [
+              {
+                "name": "B1: DUAL KB FRONT SQUAT X5",
+                "sets": 4,
+                "reps": 5,
+                "reps_range": null,
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": null,
+                "distance_range": null,
+                "type": "strength"
+              },
+              {
+                "name": "B2: BURPEE MAX BROAD JUMPS X4 wb",
+                "sets": 4,
+                "reps": 4,
+                "reps_range": null,
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": null,
+                "distance_range": null,
+                "type": "strength"
+              },
+              {
+                "name": "B3: KB SINGLE ARM SWING X \u00a7 EACH SIDE",
+                "sets": 4,
+                "reps": null,
+                "reps_range": null,
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": null,
+                "distance_range": null,
+                "type": "interval"
+              }
+            ],
+            "rest_between_sec": null
+          }
+        ]
+      },
+      {
+        "label": "Muscular Endurance",
+        "structure": "3 rounds",
+        "rest_between_sec": 45,
+        "time_work_sec": null,
+        "default_reps_range": null,
+        "default_sets": 3,
+        "exercises": [],
+        "supersets": [
+          {
+            "exercises": [
+              {
+                "name": "C1: FARMER CARRY X 60M",
+                "sets": 3,
+                "reps": null,
+                "reps_range": null,
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": 60,
+                "distance_range": null,
+                "type": "strength"
+              },
+              {
+                "name": "C2: DB PUSH PRESS X 25 S",
+                "sets": 3,
+                "reps": 25,
+                "reps_range": null,
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": null,
+                "distance_range": null,
+                "type": "strength"
+              }
+            ],
+            "rest_between_sec": null
+          },
+          {
+            "exercises": [
+              {
+                "name": "D1: SLED PUSH X25-30M",
+                "sets": 3,
+                "reps": null,
+                "reps_range": null,
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": null,
+                "distance_range": "25-30m",
+                "type": "strength"
+              },
+              {
+                "name": "D2: HAND RELEASE PUSH UPS X6-10 0",
+                "sets": 3,
+                "reps": null,
+                "reps_range": "6-10",
+                "duration_sec": null,
+                "rest_sec": null,
+                "distance_m": null,
+                "distance_range": null,
+                "type": "strength"
+              }
+            ],
+            "rest_between_sec": null
+          }
+        ]
+      },
+      {
+        "label": "Metabolic Conditioning",
+        "structure": null,
+        "rest_between_sec": 90,
+        "time_work_sec": 60,
+        "default_reps_range": null,
+        "default_sets": null,
+        "exercises": [
+          {
+            "name": "E: SKIER 60S ON 90S OFF X3",
+            "sets": 3,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": 60,
+            "rest_sec": 90,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          }
+        ],
+        "supersets": []
+      }
+    ]
+  }
+}

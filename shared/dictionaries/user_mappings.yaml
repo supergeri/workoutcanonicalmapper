@@ -1,0 +1,4 @@
+mappings:
+  test exercise: Test Garmin Name
+  my custom exercise: My Saved Exercise
+note: 'User-defined exercise mappings. Format: normalized_exercise_name -> garmin_exercise_name'

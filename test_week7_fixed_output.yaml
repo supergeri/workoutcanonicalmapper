@@ -1,0 +1,32 @@
+settings:
+  deleteSameNameWorkout: true
+workouts:
+  importedworkout:
+  - warmup:
+    - cardio: lap
+  - repeat(3):
+    - 'Bar Good Morning [category: LEG_CURL]': lap | Goodmornings x10
+    - 'Plank [category: PLANK]': lap | Kb Alternating Plank Drag x12
+    - 'Sled Backward Drag [category: SLED]': lap
+    - rest: lap
+  - repeat(4):
+    - 'Dumbbell Front Squat [category: SQUAT]': lap | Dual KB Front Squat x5
+    - 'Burpee [category: TOTAL_BODY]': lap | Burpee Max Broad Jumps X4 Wb 4 reps
+    - 'Single Arm Kettlebell Swing [category: HIP_SWING]': lap
+    - rest: lap
+  - repeat(3):
+    - 'Farmer''s Carry [category: CARRY]': lap
+    - 'Dumbbell Push Press [category: SHOULDER_PRESS]': lap | Db Push Press X 25 S
+        25 reps
+    - rest: lap
+  - repeat(3):
+    - 'Sled Push [category: SLED]': lap
+    - 'Hand Release Push Up [category: PUSH_UP]': lap
+    - rest: lap
+  - repeat(3):
+    - 'Ski Moguls [category: CARDIO]': 60s
+    - rest: 90s
+schedulePlan:
+  start_from: '2025-11-09'
+  workouts:
+  - importedworkout

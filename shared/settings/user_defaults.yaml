@@ -1,0 +1,15 @@
+# User default settings
+# These settings control default behavior for workout conversion
+
+defaults:
+  # What to use when distance is present (but user wants to ignore distance)
+  # Options: "lap", "distance"
+  distance_handling: "lap"  # Always use "lap" instead of distance
+  
+  # What to use when no other value is specified
+  # Options: "lap", "button" (press button in Garmin)
+  default_exercise_value: "lap"
+  
+  # Whether to use distance values or convert to "lap"
+  ignore_distance: true
+
