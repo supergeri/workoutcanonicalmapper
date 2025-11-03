@@ -1,0 +1,7 @@
+popular_mappings:
+  romanian deadlift:
+    Romanian Deadlift: 4
+    Deadlift: 1
+  front squat:
+    Dumbbell Front Squat: 3
+note: Global exercise mapping popularity. Tracks how many users have chosen each mapping.

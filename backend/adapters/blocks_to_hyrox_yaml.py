@@ -246,7 +246,18 @@ def map_exercise_to_garmin(ex_name: str, ex_reps=None, ex_distance_m=None, use_u
             # User mapping found - skip to description building
             # (will build description below)
     
-    # 2. Try exact or substring matches in mappings
+    # 2. Check global popular mappings (crowd-sourced choices)
+    if not garmin_name:
+        from backend.core.global_mappings import get_most_popular_mapping
+        popular = get_most_popular_mapping(clean_name)
+        if popular:
+            garmin_name, popularity_count = popular
+            mapping_info["source"] = "popular_mapping"
+            mapping_info["confidence"] = min(0.95, 0.7 + (popularity_count * 0.05))  # Boost confidence based on popularity
+            mapping_info["method"] = f"popular_choice_{popularity_count}_users"
+            mapping_info["popularity_count"] = popularity_count  # Store for easier access
+    
+    # 3. Try exact or substring matches in mappings
     if not garmin_name:
         # Sort by length (longest first) for better matches - longest matches first
         sorted_mappings = sorted(mappings.items(), key=lambda x: len(x[0]), reverse=True)
@@ -367,8 +378,22 @@ def map_exercise_to_garmin(ex_name: str, ex_reps=None, ex_distance_m=None, use_u
     
     # Generate simple mapping reason for notes
     source = mapping_info.get("source")
+    method = mapping_info.get("method", "")
+    
     if source == "user_mapping":
         mapping_reason = "chosen from your saved preferences"
+    elif source == "popular_mapping":
+        # Get popularity count from mapping_info if available, otherwise parse from method
+        popularity_count = mapping_info.get("popularity_count", 1)
+        if popularity_count == 1 and "popular_choice_" in method:
+            try:
+                popularity_count = int(method.split("_")[-1].replace("users", ""))
+            except:
+                popularity_count = 1
+        if popularity_count == 1:
+            mapping_reason = "chosen as popular choice by users"
+        else:
+            mapping_reason = f"chosen as popular choice by {popularity_count} users"
     elif source == "manual_mapping":
         mapping_reason = "chosen as exact match"
     elif source == "garmin_database":
