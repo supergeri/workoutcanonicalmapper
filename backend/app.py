@@ -21,6 +21,11 @@ from backend.core.user_mappings import (
     get_all_user_mappings,
     clear_all_user_mappings
 )
+from backend.core.global_mappings import (
+    record_mapping_choice,
+    get_popular_mappings,
+    get_popularity_stats
+)
 
 from backend.adapters.blocks_to_hyrox_yaml import load_user_defaults
 
@@ -161,10 +166,15 @@ class UserMappingRequest(BaseModel):
 
 def save_mapping(p: UserMappingRequest):
 
-    """Save a user-defined mapping: exercise_name -> garmin_name."""
+    """Save a user-defined mapping: exercise_name -> garmin_name. Also records global popularity."""
+    # Save user's personal mapping
     result = add_user_mapping(p.exercise_name, p.garmin_name)
+    
+    # Also record in global popularity (crowd-sourced)
+    record_mapping_choice(p.exercise_name, p.garmin_name)
+    
     return {
-        "message": "Mapping saved successfully",
+        "message": "Mapping saved successfully (also recorded for global popularity)",
         "mapping": result
     }
 
@@ -220,6 +230,40 @@ def clear_mappings():
     """Clear all user mappings."""
     clear_all_user_mappings()
     return {"message": "All user mappings cleared successfully"}
+
+
+@app.get("/mappings/popularity/stats")
+
+def get_popularity_stats_endpoint():
+
+    """Get statistics about global mapping popularity (crowd-sourced choices)."""
+    stats = get_popularity_stats()
+    return stats
+
+
+@app.get("/mappings/popularity/{exercise_name}")
+
+def get_exercise_popularity(exercise_name: str):
+
+    """Get popular mappings for a specific exercise."""
+    popular = get_popular_mappings(exercise_name, limit=10)
+    return {
+        "exercise_name": exercise_name,
+        "popular_mappings": [{"garmin_name": garmin, "count": count} for garmin, count in popular]
+    }
+
+
+@app.post("/mappings/popularity/record")
+
+def record_mapping_choice_endpoint(p: UserMappingRequest):
+
+    """Record a mapping choice for global popularity (without saving as personal mapping)."""
+    record_mapping_choice(p.exercise_name, p.garmin_name)
+    return {
+        "message": "Mapping choice recorded for global popularity",
+        "exercise_name": p.exercise_name,
+        "garmin_name": p.garmin_name
+    }
 
 
 class UserDefaultsRequest(BaseModel):
