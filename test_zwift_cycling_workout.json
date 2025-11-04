@@ -1,0 +1,218 @@
+{
+  "blocks_json": {
+    "title": "Zwift Workout — 60 min: Aerobic Clearance + Over FTP",
+    "source": "ai_generated",
+    "blocks": [
+      {
+        "label": "Goal",
+        "structure": null,
+        "rest_between_sec": null,
+        "time_work_sec": null,
+        "default_reps_range": null,
+        "default_sets": null,
+        "exercises": [
+          {
+            "name": "Improve recovery while riding slightly above FTP",
+            "sets": null,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": null,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          }
+        ],
+        "supersets": []
+      },
+      {
+        "label": "Warm-Up",
+        "structure": null,
+        "rest_between_sec": null,
+        "time_work_sec": 600,
+        "default_reps_range": null,
+        "default_sets": null,
+        "exercises": [
+          {
+            "name": "0:00–3:00 @ 50% FTP",
+            "sets": null,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": 180,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          },
+          {
+            "name": "3:00–6:00 @ 60% FTP",
+            "sets": null,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": 180,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          },
+          {
+            "name": "6:00–8:00 @ 70% FTP",
+            "sets": null,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": 120,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          },
+          {
+            "name": "8:00–10:00 @ 75% FTP (+ include 2×15-second fast spins)",
+            "sets": null,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": 120,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          }
+        ],
+        "supersets": []
+      },
+      {
+        "label": "Set 1 — Threshold + Tempo",
+        "structure": "3 rounds",
+        "rest_between_sec": null,
+        "time_work_sec": 900,
+        "default_reps_range": null,
+        "default_sets": 3,
+        "exercises": [
+          {
+            "name": "3:00 @ 103% FTP (steady, controlled, seated)",
+            "sets": 3,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": 180,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          },
+          {
+            "name": "2:00 @ 85% FTP (smooth tempo \"recovery\")",
+            "sets": 3,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": 120,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          }
+        ],
+        "supersets": []
+      },
+      {
+        "label": "Recovery",
+        "structure": null,
+        "rest_between_sec": null,
+        "time_work_sec": 180,
+        "default_reps_range": null,
+        "default_sets": null,
+        "exercises": [
+          {
+            "name": "60% FTP easy spin",
+            "sets": null,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": null,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          }
+        ],
+        "supersets": []
+      },
+      {
+        "label": "Set 2 — Threshold + Tempo",
+        "structure": "3 rounds",
+        "rest_between_sec": null,
+        "time_work_sec": 900,
+        "default_reps_range": null,
+        "default_sets": 3,
+        "exercises": [
+          {
+            "name": "3:00 @ 105% FTP (push slightly harder than first block)",
+            "sets": 3,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": 180,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          },
+          {
+            "name": "2:00 @ 85% FTP (tempo reset)",
+            "sets": 3,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": 120,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          }
+        ],
+        "supersets": []
+      },
+      {
+        "label": "Cool Down",
+        "structure": null,
+        "rest_between_sec": null,
+        "time_work_sec": 420,
+        "default_reps_range": null,
+        "default_sets": null,
+        "exercises": [
+          {
+            "name": "50% → 40% → 30% FTP gradually",
+            "sets": null,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": null,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          },
+          {
+            "name": "Threshold intervals: 88–95 RPM",
+            "sets": null,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": null,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          },
+          {
+            "name": "Tempo recoveries: 85–90 RPM",
+            "sets": null,
+            "reps": null,
+            "reps_range": null,
+            "duration_sec": null,
+            "rest_sec": null,
+            "distance_m": null,
+            "distance_range": null,
+            "type": "interval"
+          }
+        ],
+        "supersets": []
+      }
+    ]
+  }
+}
+

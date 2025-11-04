@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query, Response
 
 from pydantic import BaseModel
 
@@ -10,6 +10,7 @@ from backend.adapters.cir_to_garmin_yaml import to_garmin_yaml
 
 from backend.adapters.blocks_to_hyrox_yaml import to_hyrox_yaml
 from backend.adapters.blocks_to_workoutkit import to_workoutkit
+from backend.adapters.blocks_to_zwo import to_zwo
 
 from backend.core.exercise_suggestions import suggest_alternatives, find_similar_exercises, find_exercises_by_type, categorize_exercise
 
@@ -83,6 +84,42 @@ def map_to_workoutkit(p: BlocksPayload):
     workoutkit_dto = to_workoutkit(p.blocks_json)
     
     return workoutkit_dto.model_dump()
+
+
+@app.post("/map/to-zwo")
+
+def map_to_zwo(p: BlocksPayload, sport: str = Query(None, description="Sport type: 'run' or 'ride'. Auto-detected if not provided."), format: str = Query("zwo", description="File format: 'zwo' for Zwift, 'xml' for generic XML (TrainingPeaks may accept .xml extension)")):
+
+    """Convert blocks JSON to Zwift ZWO XML format for running or cycling workouts.
+    
+    Args:
+        p: Blocks JSON payload
+        sport: Optional sport type ("run" or "ride"). If not provided, will auto-detect from workout content.
+        format: File extension - 'zwo' for Zwift, 'xml' for generic XML (some systems prefer .xml)
+    
+    Returns:
+        ZWO XML file download that can be imported into Zwift or TrainingPeaks
+    """
+    zwo_xml = to_zwo(p.blocks_json, sport=sport)
+    
+    # Extract workout name for filename
+    workout_name = p.blocks_json.get("title", "workout")
+    # Sanitize filename: remove invalid characters and limit length
+    import re
+    safe_name = re.sub(r'[^\w\s-]', '', workout_name).strip()
+    safe_name = re.sub(r'[-\s]+', '-', safe_name)[:50]  # Limit to 50 chars
+    
+    # Use format parameter for file extension
+    file_ext = format.lower() if format.lower() in ["zwo", "xml"] else "zwo"
+    
+    # Return as file download
+    return Response(
+        content=zwo_xml,
+        media_type="application/xml",
+        headers={
+            "Content-Disposition": f'attachment; filename="{safe_name}.{file_ext}"'
+        }
+    )
 
 
 # Deprecated endpoints - use /map/auto-map instead
