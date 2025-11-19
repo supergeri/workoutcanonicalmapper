@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Query, Response
+from fastapi.middleware.cors import CORSMiddleware
 
 from pydantic import BaseModel
 
@@ -35,6 +36,15 @@ from backend.adapters.blocks_to_hyrox_yaml import load_user_defaults
 
 
 app = FastAPI()
+
+# Configure CORS to allow requests from the UI
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://localhost:3001"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 
