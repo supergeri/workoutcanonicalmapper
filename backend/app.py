@@ -1,7 +1,11 @@
 from fastapi import FastAPI, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
+import logging
+import httpx
 
 from pydantic import BaseModel
+
+logger = logging.getLogger(__name__)
 
 from backend.adapters.ingest_to_cir import to_cir
 
@@ -39,15 +43,22 @@ from backend.database import (
     update_workout_export_status,
     delete_workout
 )
+from backend.follow_along_database import (
+    save_follow_along_workout,
+    get_follow_along_workouts,
+    get_follow_along_workout,
+    update_follow_along_garmin_sync,
+    update_follow_along_apple_watch_sync
+)
 
 
 
 app = FastAPI()
 
-# Configure CORS to allow requests from the UI
+# Configure CORS to allow requests from the UI and iOS app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001"],
+    allow_origins=["http://localhost:3000", "http://localhost:3001", "*"],  # Allow all for iOS
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -525,4 +536,219 @@ def delete_workout_endpoint(
             "success": False,
             "message": "Failed to delete workout"
         }
+
+
+# ============================================================================
+# Follow-Along Workout Endpoints
+# ============================================================================
+
+class IngestFollowAlongRequest(BaseModel):
+    instagramUrl: str
+    userId: str
+
+
+class PushToGarminRequest(BaseModel):
+    userId: str
+
+
+class PushToAppleWatchRequest(BaseModel):
+    userId: str
+
+
+@app.post("/follow-along/ingest")
+def ingest_follow_along_endpoint(request: IngestFollowAlongRequest):
+    """
+    Ingest a follow-along workout from Instagram URL.
+    Calls workout-ingestor-api to extract workout data, then stores in Supabase.
+    """
+    import httpx
+    import os
+    
+    ingestor_url = os.getenv("INGESTOR_URL", "http://workout-ingestor-api:8004")
+    
+    try:
+        # Call workout-ingestor-api
+        with httpx.Client(timeout=60.0) as client:
+            response = client.post(
+                f"{ingestor_url}/ingest/instagram_test",
+                json={
+                    "url": request.instagramUrl,
+                    "use_vision": True,
+                    "vision_provider": "openai",
+                    "vision_model": "gpt-4o-mini",
+                }
+            )
+            response.raise_for_status()
+            ingestor_data = response.json()
+        
+        # Save to Supabase
+        workout = save_follow_along_workout(
+            user_id=request.userId,
+            source="instagram",
+            source_url=request.instagramUrl,
+            title=ingestor_data.get("title", "Instagram Workout"),
+            description=ingestor_data.get("description"),
+            video_duration_sec=ingestor_data.get("videoDuration"),
+            thumbnail_url=ingestor_data.get("thumbnail"),
+            video_proxy_url=ingestor_data.get("videoUrl"),
+            steps=ingestor_data.get("steps", [])
+        )
+        
+        if workout:
+            return {
+                "success": True,
+                "followAlongWorkout": workout
+            }
+        else:
+            return {
+                "success": False,
+                "message": "Failed to save workout to database"
+            }
+    except Exception as e:
+        logger.error(f"Failed to ingest follow-along workout: {e}")
+        return {
+            "success": False,
+            "message": str(e)
+        }
+
+
+@app.get("/follow-along")
+def list_follow_along_endpoint(
+    userId: str = Query(..., description="User ID")
+):
+    """List all follow-along workouts for a user."""
+    workouts = get_follow_along_workouts(user_id=userId)
+    
+    return {
+        "success": True,
+        "items": workouts
+    }
+
+
+@app.get("/follow-along/{workout_id}")
+def get_follow_along_endpoint(
+    workout_id: str,
+    userId: str = Query(..., description="User ID")
+):
+    """Get a single follow-along workout by ID."""
+    workout = get_follow_along_workout(workout_id, userId)
+    
+    if workout:
+        return {
+            "success": True,
+            "followAlongWorkout": workout
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Workout not found"
+        }
+
+
+@app.post("/follow-along/{workout_id}/push/garmin")
+def push_to_garmin_endpoint(workout_id: str, request: PushToGarminRequest):
+    """
+    Push follow-along workout to Garmin.
+    Maps workout steps to Garmin format and syncs via garmin-sync-api.
+    """
+    import httpx
+    import os
+    
+    # Get workout
+    workout = get_follow_along_workout(workout_id, request.userId)
+    if not workout:
+        return {
+            "success": False,
+            "status": "error",
+            "message": "Workout not found"
+        }
+    
+    # Map to Garmin format
+    garmin_payload = {
+        "name": workout["title"],
+        "steps": [
+            {
+                "type": "time",
+                "durationSec": step.get("duration_sec", 0),
+                "notes": step.get("label", "")
+            }
+            for step in workout.get("steps", [])
+        ]
+    }
+    
+    # Call Garmin sync API
+    garmin_url = os.getenv("GARMIN_SERVICE_URL", "http://garmin-sync-api:8002")
+    
+    try:
+        with httpx.Client(timeout=30.0) as client:
+            response = client.post(
+                f"{garmin_url}/workouts",
+                json=garmin_payload
+            )
+            response.raise_for_status()
+            garmin_data = response.json()
+        
+        # Update sync status
+        update_follow_along_garmin_sync(
+            workout_id=workout_id,
+            user_id=request.userId,
+            garmin_workout_id=garmin_data.get("id", workout_id)
+        )
+        
+        return {
+            "success": True,
+            "status": "success",
+            "garminWorkoutId": garmin_data.get("id")
+        }
+    except Exception as e:
+        logger.error(f"Failed to push to Garmin: {e}")
+        return {
+            "success": False,
+            "status": "error",
+            "message": str(e)
+        }
+
+
+@app.post("/follow-along/{workout_id}/push/apple-watch")
+def push_to_apple_watch_endpoint(workout_id: str, request: PushToAppleWatchRequest):
+    """
+    Push follow-along workout to Apple Watch.
+    Returns payload that can be sent via WatchConnectivity.
+    """
+    # Get workout
+    workout = get_follow_along_workout(workout_id, request.userId)
+    if not workout:
+        return {
+            "success": False,
+            "status": "error",
+            "message": "Workout not found"
+        }
+    
+    # Create payload for Apple Watch
+    payload = {
+        "id": workout["id"],
+        "title": workout["title"],
+        "steps": [
+            {
+                "order": step.get("order", 0),
+                "label": step.get("label", ""),
+                "durationSec": step.get("duration_sec", 0)
+            }
+            for step in workout.get("steps", [])
+        ]
+    }
+    
+    # Update sync status
+    update_follow_along_apple_watch_sync(
+        workout_id=workout_id,
+        user_id=request.userId,
+        apple_watch_workout_id=workout_id
+    )
+    
+    return {
+        "success": True,
+        "status": "success",
+        "appleWatchWorkoutId": workout_id,
+        "payload": payload
+    }
 
