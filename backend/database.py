@@ -209,12 +209,53 @@ def delete_workout(workout_id: str, profile_id: str) -> bool:
     """
     supabase = get_supabase_client()
     if not supabase:
+        logger.error("Supabase client not available")
+        return False
+    
+    try:
+        logger.info(f"Attempting to delete workout {workout_id} for profile {profile_id}")
+        result = supabase.table("workouts").delete().eq("id", workout_id).eq("profile_id", profile_id).execute()
+        
+        # Check if any rows were actually deleted
+        # Supabase delete() returns result.data with the deleted rows
+        deleted_count = len(result.data) if result.data else 0
+        
+        if deleted_count > 0:
+            logger.info(f"Workout {workout_id} deleted successfully ({deleted_count} row(s))")
+            return True
+        else:
+            logger.warning(f"No workout found with id {workout_id} for profile {profile_id} (0 rows deleted)")
+            # Check if workout exists with different profile_id (for debugging)
+            check_result = supabase.table("workouts").select("id, profile_id").eq("id", workout_id).execute()
+            if check_result.data and len(check_result.data) > 0:
+                logger.warning(f"Workout {workout_id} exists but belongs to different profile: {check_result.data[0].get('profile_id')}")
+            return False
+    except Exception as e:
+        logger.error(f"Failed to delete workout {workout_id}: {e}")
         return False
     
     try:
         result = supabase.table("workouts").delete().eq("id", workout_id).eq("profile_id", profile_id).execute()
-        return True
+        # Check if any rows were actually deleted
+        if result.data and len(result.data) > 0:
+            logger.info(f"Workout {workout_id} deleted successfully")
+            return True
+        else:
+            logger.warning(f"No workout found with id {workout_id} for profile {profile_id}")
+            return False
     except Exception as e:
         logger.error(f"Failed to delete workout: {e}")
         return False
-
+    
+    try:
+        result = supabase.table("workouts").delete().eq("id", workout_id).eq("profile_id", profile_id).execute()
+        # Check if any rows were actually deleted
+        if result.data and len(result.data) > 0:
+            logger.info(f"Workout {workout_id} deleted successfully")
+            return True
+        else:
+            logger.warning(f"No workout found with id {workout_id} for profile {profile_id}")
+            return False
+    except Exception as e:
+        logger.error(f"Failed to delete workout: {e}")
+        return False
