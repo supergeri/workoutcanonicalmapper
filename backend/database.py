@@ -233,29 +233,4 @@ def delete_workout(workout_id: str, profile_id: str) -> bool:
     except Exception as e:
         logger.error(f"Failed to delete workout {workout_id}: {e}")
         return False
-    
-    try:
-        result = supabase.table("workouts").delete().eq("id", workout_id).eq("profile_id", profile_id).execute()
-        # Check if any rows were actually deleted
-        if result.data and len(result.data) > 0:
-            logger.info(f"Workout {workout_id} deleted successfully")
-            return True
-        else:
-            logger.warning(f"No workout found with id {workout_id} for profile {profile_id}")
-            return False
-    except Exception as e:
-        logger.error(f"Failed to delete workout: {e}")
-        return False
-    
-    try:
-        result = supabase.table("workouts").delete().eq("id", workout_id).eq("profile_id", profile_id).execute()
-        # Check if any rows were actually deleted
-        if result.data and len(result.data) > 0:
-            logger.info(f"Workout {workout_id} deleted successfully")
-            return True
-        else:
-            logger.warning(f"No workout found with id {workout_id} for profile {profile_id}")
-            return False
-    except Exception as e:
-        logger.error(f"Failed to delete workout: {e}")
-        return False
+

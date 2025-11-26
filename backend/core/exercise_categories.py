@@ -103,8 +103,21 @@ def add_category_to_exercise_name(exercise_name: str, category: str = None) -> s
     if not category:
         category = detect_exercise_category(exercise_name)
     
-    if category:
-        return f"{exercise_name} [category: {category}]"
-    else:
-        return exercise_name
+    garmin_name_before = exercise_name
+    assigned_category = category
+    garmin_name_after = f"{exercise_name} [category: {category}]" if category else exercise_name
+    
+    # Debug logging for category assignment
+    import os
+    GARMIN_EXPORT_DEBUG = os.getenv("GARMIN_EXPORT_DEBUG", "false").lower() == "true"
+    if GARMIN_EXPORT_DEBUG:
+        import json
+        print("=== GARMIN_CATEGORY_ASSIGN ===")
+        print(json.dumps({
+            "garmin_name_before": garmin_name_before,
+            "assigned_category": assigned_category,
+            "garmin_name_after": garmin_name_after
+        }, indent=2))
+    
+    return garmin_name_after
 
