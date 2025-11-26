@@ -10,14 +10,6 @@ from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
-# Garmin export debug flag
-GARMIN_EXPORT_DEBUG = os.getenv("GARMIN_EXPORT_DEBUG", "false").lower() == "true"
-
-if GARMIN_EXPORT_DEBUG:
-    logger.warning("=== GARMIN_EXPORT_DEBUG ACTIVE (mapper-api) ===")
-else:
-    logger.info("GARMIN_EXPORT_DEBUG is disabled (mapper-api)")
-
 from backend.adapters.ingest_to_cir import to_cir
 
 from backend.core.canonicalize import canonicalize
@@ -1062,12 +1054,13 @@ def sync_workout_to_garmin(request: dict):
         candidate_names.append(ex_name)
 
         # Reuse the same mapping pipeline as blocks_to_hyrox_yaml
+        # Note: map_exercise_to_garmin signature: (ex_name, ex_reps=None, ex_distance_m=None, use_user_mappings=True)
+        # Use mapped_name as the primary name if available
+        exercise_name_to_map = mapped_name if mapped_name else ex_name
         garmin_name, _description, mapping_info = map_exercise_to_garmin(
-            ex_name,
+            exercise_name_to_map,
             ex_reps=reps,
             ex_distance_m=distance_m,
-            mapped_name=mapped_name,
-            candidate_names=candidate_names if len(candidate_names) > 1 else None,
         )
 
         garmin_name_with_category = add_category_to_exercise_name(garmin_name)

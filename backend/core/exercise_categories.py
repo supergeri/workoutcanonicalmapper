@@ -1,123 +1,178 @@
-"""
-Exercise category detection and mapping for Garmin workouts.
-"""
-from backend.core.normalize import normalize
+# =====================================================================================
+# FILE: mapper-api/backend/core/exercise_categories.py
+# (REPLACE ENTIRE FILE WITH THIS VERSION)
+# =====================================================================================
+from __future__ import annotations
 
 
-def detect_exercise_category(exercise_name: str) -> str:
-    """
-    Automatically detect exercise category based on exercise name.
-    Returns category name or None if not detected.
-    """
-    normalized = normalize(exercise_name).lower()
-    
-    # Category detection rules (in order of specificity - most specific first)
-    # Based on the Strength Workout Guide categories
-    category_rules = [
-        # Most specific exercises first
-        ("bulgarian split squat", "LUNGE"),
-        ("good morning", "LEG_CURL"),
-        ("clean and jerk", "OLYMPIC_LIFT"),
-        ("medicine ball slam", "PLYO"),
-        ("ski moguls", "CARDIO"),
-        ("pike push", "PUSH_UP"),
-        ("pike push-up", "PUSH_UP"),
-        ("pike pushup", "PUSH_UP"),
-        ("plank", "PLANK"),
-        ("burpee", "TOTAL_BODY"),
-        ("inverted row", "ROW"),
-        ("trx inverted row", "ROW"),
-        ("trx row", "ROW"),
-        ("kettlebell floor to shelf", "DEADLIFT"),
-        ("kettlebell swing", "HIP_SWING"),
-        ("single arm kettlebell swing", "HIP_SWING"),
-        ("romanian deadlift", "DEADLIFT"),
-        ("rdl", "DEADLIFT"),
-        ("rdls", "DEADLIFT"),
-        ("push up", "PUSH_UP"),
-        ("push-up", "PUSH_UP"),
-        ("pushup", "PUSH_UP"),
-        ("hand release push up", "PUSH_UP"),
-        ("hand release push-up", "PUSH_UP"),
-        ("band-resisted push-up", "PUSH_UP"),
-        ("band resisted push-up", "PUSH_UP"),
-        ("band push-up", "PUSH_UP"),
-        ("band push up", "PUSH_UP"),
-        ("sled push", "SLED"),
-        ("sled drag", "SLED"),
-        ("backward drag", "SLED"),
-        ("forward drag", "SLED"),
-        ("sled", "SLED"),
-        ("farmer carry", "CARRY"),
-        ("farmer's carry", "CARRY"),
-        ("farmers carry", "CARRY"),
-        ("carry", "CARRY"),
-        # X Abs -> SIT_UP (per Strength Workout Guide)
-        ("x abs", "SIT_UP"),
-        ("x-abs", "SIT_UP"),
-        ("pure torque device", "SIT_UP"),
-        ("torque device", "SIT_UP"),
-        # GHD Back Extensions -> CORE (per Strength Workout Guide)
-        ("ghd back extensions", "CORE"),
-        ("ghd back extension", "CORE"),
-        ("back extensions", "CORE"),
-        ("back extension", "CORE"),
-        ("freak athlete back extensions", "CORE"),
-        ("freak athlete hyper", "CORE"),
-        # Row exercises
-        ("chest-supported dumbbell row", "ROW"),
-        ("chest supported dumbbell row", "ROW"),
-        ("seal row", "ROW"),
-        
-        # Pattern-based detection (order matters - more specific first)
-        ("squat", "SQUAT"),
-        ("push press", "SHOULDER_PRESS"),  # Before generic "press"
-        ("press", "BENCH_PRESS"),
-        ("deadlift", "DEADLIFT"),
-        ("rdl", "DEADLIFT"),
-        ("romanian deadlift", "DEADLIFT"),
-        ("lat", "PULL_UP"),
-        ("pull", "PULL_UP"),
-        ("row", "ROW"),
-        ("lunge", "LUNGE"),
-        ("swing", "HIP_SWING"),  # Generic swing -> HIP_SWING
-        ("drag", "SLED"),  # Generic drag -> SLED
-        ("ski", "CARDIO"),
-        ("push", "BENCH_PRESS"),  # Generic push (fallback after specific checks)
-    ]
-    
-    # Check rules (most specific first)
-    for pattern, category in category_rules:
-        if pattern in normalized:
-            return category
-    
-    # Default fallback
-    return None
+import json
+import logging
+import pathlib
+from typing import Optional, Dict
 
 
-def add_category_to_exercise_name(exercise_name: str, category: str = None) -> str:
+import yaml
+
+
+logger = logging.getLogger(__name__)
+
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+RAW_FILE = ROOT / "shared" / "dictionaries" / "garmin_exercises_raw.yaml"
+
+
+# ---------------------------------------------------------------------------
+# Manual category overrides for known problematic names
+# ---------------------------------------------------------------------------
+# These are used *before* looking into the GarminExercisesCollector dataset.
+# They let us fix cases where names differ slightly or Garmin doesn't expose
+# a category as expected.
+MANUAL_CATEGORY_OVERRIDES: Dict[str, str] = {
+    # Chest / fly variations
+    "Chest Fly": "FLYE",
+
+
+    # Shoulders
+    "Alternating Lateral Raise With Static Hold": "LATERAL_RAISE",
+
+
+    # Arms
+    "Cable Overhead Triceps Extension": "TRICEPS_EXTENSION",
+    "Alternating Dumbbell Biceps Curl": "CURL",
+}
+
+
+
+
+def _load_raw() -> Dict[str, dict]:
+    """Load GarminExercisesCollector-derived YAML with official categories."""
+    try:
+        if not RAW_FILE.exists():
+            logger.error("garmin_exercises_raw.yaml missing at %s", RAW_FILE)
+            return {}
+        data = yaml.safe_load(RAW_FILE.read_text()) or {}
+        if not isinstance(data, dict):
+            logger.error(
+                "garmin_exercises_raw.yaml has unexpected format (expected dict, got %s)",
+                type(data),
+            )
+            return {}
+        return {str(k).lower(): v for k, v in data.items()}
+    except Exception as e:
+        logger.error("Failed to load raw Garmin dataset: %s", e)
+        return {}
+
+
+
+
+RAW: Dict[str, dict] = _load_raw()
+
+
+
+
+def _official_category(name: str) -> Optional[str]:
     """
-    Add category to exercise name in Garmin format.
-    Format: "Exercise Name [category: CATEGORY]"
+    Lookup category from GarminExercisesCollector data.
+
+
+    RAW entries look like:
+        key (lowercased name): { "name": "Barbell Bench Press",
+                                  "category": "BENCH_PRESS" }
     """
+    if not name:
+        return None
+
+
+    key = name.strip().lower()
+    ex = RAW.get(key)
+    if not ex:
+        return None
+
+
+    cat = ex.get("category")
+    if not cat:
+        return None
+
+
+    # Most collector categories are already in enum form (e.g. BENCH_PRESS),
+    # but we normalize anyway.
+    return str(cat).strip().upper().replace(" ", "_") or None
+
+
+
+
+def add_category_to_exercise_name(garmin_name: str) -> str:
+    """
+    Append Garmin category to an exercise name.
+
+
+    Priority:
+      1) MANUAL_CATEGORY_OVERRIDES (for tricky / mismatched names)
+      2) GarminExercisesCollector dataset (garmin_exercises_raw.yaml)
+      3) If both fail, leave name unchanged.
+
+
+    Output example:
+        "Barbell Bench Press [category: BENCH_PRESS]"
+    """
+    if not garmin_name:
+        return garmin_name
+
+
+    # 1) Manual overrides first
+    category = MANUAL_CATEGORY_OVERRIDES.get(garmin_name)
+
+
+    # 2) If no manual override, use official dataset
     if not category:
-        category = detect_exercise_category(exercise_name)
-    
-    garmin_name_before = exercise_name
-    assigned_category = category
-    garmin_name_after = f"{exercise_name} [category: {category}]" if category else exercise_name
-    
-    # Debug logging for category assignment
-    import os
-    GARMIN_EXPORT_DEBUG = os.getenv("GARMIN_EXPORT_DEBUG", "false").lower() == "true"
-    if GARMIN_EXPORT_DEBUG:
-        import json
-        print("=== GARMIN_CATEGORY_ASSIGN ===")
-        print(json.dumps({
-            "garmin_name_before": garmin_name_before,
-            "assigned_category": assigned_category,
-            "garmin_name_after": garmin_name_after
-        }, indent=2))
-    
-    return garmin_name_after
+        category = _official_category(garmin_name)
 
+
+    # 3) No category at all → return name unchanged but log
+    if not category:
+        print("=== GARMIN_CATEGORY_ASSIGN ===")
+        print(
+            json.dumps(
+                {
+                    "garmin_name_before": garmin_name,
+                    "assigned_category": None,
+                    "garmin_name_after": garmin_name,
+                },
+                indent=2,
+            )
+        )
+        return garmin_name
+
+
+    name_with_category = f"{garmin_name} [category: {category}]"
+
+
+    # Debug logging (keeps your existing log format)
+    print("=== GARMIN_CATEGORY_ASSIGN ===")
+    print(
+        json.dumps(
+            {
+                "garmin_name_before": garmin_name,
+                "assigned_category": category,
+                "garmin_name_after": name_with_category,
+            },
+            indent=2,
+        )
+    )
+
+
+    return name_with_category
+
+
+
+
+def detect_exercise_category(name: str) -> Optional[str]:
+    """
+    Legacy function kept for compatibility.
+
+
+    We now rely entirely on:
+      - MANUAL_CATEGORY_OVERRIDES
+      - GarminExercisesCollector data via _official_category()
+    """
+    return None
