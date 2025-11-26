@@ -371,18 +371,30 @@ def map_exercise_to_garmin(ex_name: str, ex_reps=None, ex_distance_m=None, use_u
             desc_name = re.sub(r'\s+', ' ', desc_name).strip()
             
             # Combine with reps
-            if reps_desc:
-                # Fix spacing: "x 8" -> "x8" or keep "x 8" based on style
-                reps_formatted = reps_desc.replace('x ', 'x') if 'each side' in reps_desc else reps_desc.replace(' ', '')
-                description = f"{desc_name} {reps_formatted}"
-            elif ex_reps is not None:
-                description = f"{desc_name} x{ex_reps}"
-            else:
-                description = desc_name
-    else:
-        desc_parts = []
-        # Use the original base_name (cleaned) for description
-        name_part = base_name.replace('/', ' ').title()
+    
+    # Final fallback - check confidence threshold
+    final_confidence = mapping_info.get("confidence", 0.0)
+    if not garmin_name or final_confidence < 0.40:
+        # Try one more time with the effective_name (mapped_name if available)
+        if effective_name != ex_name and not garmin_name:
+            garmin_name, confidence = find_garmin_exercise(effective_name, threshold=40)
+            if garmin_name:
+                mapping_info["source"] = "garmin_database"
+                mapping_info["confidence"] = confidence
+                mapping_info["method"] = "fuzzy_match_mapped_name"
+                final_confidence = confidence
+        
+        # If still no match or confidence too low, use generic fallback with warning
+        if not garmin_name or final_confidence < 0.40:
+            garmin_name = clean_name.replace('/', ' ').title()
+            mapping_info["source"] = "fallback"
+            mapping_info["confidence"] = 0.0
+            mapping_info["method"] = "title_case_fallback"
+            logger.warning(
+                "GARMIN_EXPORT_FALLBACK generic step used for %r (original=%r mapped=%r candidates=%r conf=%r)",
+                ex_name, ex_name, mapped_name, candidate_names, final_confidence
+            )
+    
         
         if ex_distance_m:
             desc_parts.append(f"{ex_distance_m}m")

@@ -235,3 +235,43 @@ The project uses:
 
 [Add your license here]
 
+
+## Garmin Mapping & Threshold Rules
+
+### Mapping Priority
+
+1. **User Mappings** (highest priority) - Custom user-defined mappings
+2. **Popular Mappings** - Crowd-sourced popular choices
+3. **Manual Mappings** - Hard-coded mappings in `blocks_to_hyrox_yaml.py`
+4. **Fuzzy Match** - Uses `exercise_name_matcher` with rapidfuzz
+5. **Canonical Match** - Classification-based matching
+6. **Fallback** - Generic title-case (with warning log)
+
+### IMPORTANT: mapped_name Precedence
+
+The `mapped_name` field from the validation step is **authoritative**. When present:
+- It is used as the primary candidate for matching
+- Fuzzy matching is NOT recomputed if `mapped_name` exists
+- Multiple candidates (mapped_name + original names) are tried using `best_from_candidates()`
+
+### Confidence Thresholds
+
+- **>= 0.88 (88%)**: Status = "valid" - High confidence match
+- **0.40 - 0.88 (40-88%)**: Status = "needs_review" - Medium confidence, user should review
+- **< 0.40 (40%)**: Status = "unmapped" - Low confidence, requires user input
+
+### Fallback Behavior
+
+If final confidence < 0.40:
+- A generic exercise name is used (title-case of original)
+- A **warning** is logged: `GARMIN_EXPORT_FALLBACK`
+- The exercise is still exported but may not match correctly in Garmin Connect
+
+### Logging
+
+All Garmin export steps are logged with:
+- `GARMIN_EXPORT_STEP`: Logged in `map_exercise_to_garmin()` with full details
+- `GARMIN_SYNC_STEP`: Logged in sync endpoint before sending to Garmin API
+- `GARMIN_EXPORT_FALLBACK`: Warning when generic fallback is used
+
+Compare `GARMIN_EXPORT_STEP` and `GARMIN_SYNC_STEP` logs to ensure mapping consistency.
