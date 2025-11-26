@@ -834,6 +834,13 @@ def push_to_garmin_endpoint(workout_id: str, request: PushToGarminRequest):
         - label: exercise label/name
         - target_reps: optional reps
         - duration_sec: optional duration in seconds
+
+        We ALSO inject a human-friendly note into the step detail, using:
+        - Any explicit `step["note"]` or `step["description"]` (future-proof)
+        - Otherwise the description returned by map_exercise_to_garmin
+
+        Final detail format (shown as Garmin Notes field):
+            "10 reps | Some description text"
         """
         ex_name = step.get("label", "") or ""
         if not ex_name:
@@ -846,7 +853,7 @@ def push_to_garmin_endpoint(workout_id: str, request: PushToGarminRequest):
         mapped_name = None
         candidate_names = [ex_name]
 
-        garmin_name, _description, mapping_info = map_exercise_to_garmin(
+        garmin_name, description, mapping_info = map_exercise_to_garmin(
             ex_name,
             ex_reps=reps,
             ex_distance_m=None,
@@ -856,22 +863,36 @@ def push_to_garmin_endpoint(workout_id: str, request: PushToGarminRequest):
 
         garmin_name_with_category = add_category_to_exercise_name(garmin_name)
 
+        # Base target text
         if reps:
-            step_detail = f"{reps} reps"
+            base_detail = f"{reps} reps"
         elif duration:
-            step_detail = f"{duration}s"
+            base_detail = f"{duration}s"
         else:
-            step_detail = "10 reps"
+            base_detail = "10 reps"
+
+        # Clean note text that we can also reuse for iPhone follow-along later
+        note = (
+            (step.get("note") or "").strip()
+            or (step.get("description") or "").strip()
+            or (description or "").strip()
+        )
+
+        if note:
+            step_detail = f"{base_detail} | {note}"
+        else:
+            step_detail = base_detail
 
         step_obj = {garmin_name_with_category: step_detail}
 
         logger.info(
-            "GARMIN_SYNC_FOLLOW_STEP original=%r garmin=%r detail=%r source=%s conf=%s",
+            "GARMIN_SYNC_FOLLOW_STEP original=%r garmin=%r detail=%r source=%s conf=%s note=%r",
             ex_name,
             garmin_name_with_category,
             step_detail,
             mapping_info.get("source"),
             mapping_info.get("confidence"),
+            note,
         )
 
         return step_obj
@@ -1036,7 +1057,18 @@ def sync_workout_to_garmin(request: dict):
     steps: list[dict[str, str]] = []
 
     def build_step_from_exercise(exercise: dict):
-        """Build a single Garmin step (garmin_name_with_category -> '10 reps' / '60s')."""
+        """
+        Build a single Garmin step (garmin_name_with_category -> '10 reps | note').
+
+        We keep the existing target encoding but ALSO append a clean note
+        derived from:
+          - exercise["note"] (if present)
+          - exercise["description"] (if present)
+          - the description returned by map_exercise_to_garmin
+
+        This note is what Garmin shows in the Notes field and can later be
+        reused for an iPhone follow-along view.
+        """
         ex_name = exercise.get("name", "") or ""
         if not ex_name:
             return None
@@ -1057,7 +1089,7 @@ def sync_workout_to_garmin(request: dict):
         # Note: map_exercise_to_garmin signature: (ex_name, ex_reps=None, ex_distance_m=None, use_user_mappings=True)
         # Use mapped_name as the primary name if available
         exercise_name_to_map = mapped_name if mapped_name else ex_name
-        garmin_name, _description, mapping_info = map_exercise_to_garmin(
+        garmin_name, description, mapping_info = map_exercise_to_garmin(
             exercise_name_to_map,
             ex_reps=reps,
             ex_distance_m=distance_m,
@@ -1065,28 +1097,41 @@ def sync_workout_to_garmin(request: dict):
 
         garmin_name_with_category = add_category_to_exercise_name(garmin_name)
 
-        # End condition: keep it simple for the sync API (no "lap |" decorations here)
+        # Base target text
         if reps:
-            step_detail = f"{reps} reps"
+            base_detail = f"{reps} reps"
         elif reps_range:
-            step_detail = f"{reps_range} reps"
+            base_detail = f"{reps_range} reps"
         elif duration:
-            step_detail = f"{duration}s"
+            base_detail = f"{duration}s"
         elif distance_m:
-            step_detail = f"{distance_m}m"
+            base_detail = f"{distance_m}m"
         else:
-            step_detail = "10 reps"
+            base_detail = "10 reps"
+
+        # Clean note text
+        note = (
+            (exercise.get("note") or "").strip()
+            or (exercise.get("description") or "").strip()
+            or (description or "").strip()
+        )
+
+        if note:
+            step_detail = f"{base_detail} | {note}"
+        else:
+            step_detail = base_detail
 
         step = {garmin_name_with_category: step_detail}
 
         logger.info(
-            "GARMIN_SYNC_STEP original=%r mapped_name=%r garmin=%r detail=%r source=%s conf=%s",
+            "GARMIN_SYNC_STEP original=%r mapped_name=%r garmin=%r detail=%r source=%s conf=%s note=%r",
             ex_name,
             mapped_name,
             garmin_name_with_category,
             step_detail,
             mapping_info.get("source"),
             mapping_info.get("confidence"),
+            note,
         )
 
         return step

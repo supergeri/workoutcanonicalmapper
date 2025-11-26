@@ -483,10 +483,10 @@ def map_exercise_to_garmin(ex_name: str, ex_reps=None, ex_distance_m=None, use_u
     # Format as "lap | original name (reason)"
     # Always include description for rep-based exercises
     if original_with_details:
-        final_description = f"lap | {original_with_details} ({mapping_reason})"
+        final_description = f"{original_with_details} ({mapping_reason})"
     else:
         # Fallback if we don't have original name - use garmin name
-        final_description = f"lap ({mapping_reason})"
+        final_description = mapping_reason
     
     return garmin_name, final_description, mapping_info
 
@@ -583,11 +583,11 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                 elif reps is not None:
                     # Build a minimal description if we don't have one
                     original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
-                    ex_entry[garmin_name_with_category] = f"lap | {original_clean} x{reps} ({mapping_info.get('reason', 'chosen automatically')})"
+                    ex_entry[garmin_name_with_category] = f"{original_clean} x{reps} ({mapping_info.get('reason', 'chosen automatically')})"
                 else:
                     # Default fallback
                     original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
-                    ex_entry[garmin_name_with_category] = f"lap | {original_clean} ({mapping_info.get('reason', 'chosen automatically')})"
+                    ex_entry[garmin_name_with_category] = f"{original_clean} ({mapping_info.get('reason', 'chosen automatically')})"
                 exercises_list.append(ex_entry)
         
         # Process supersets - combine all supersets in a block into one repeat
@@ -626,9 +626,9 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                     # Fallback: create description from original name
                     original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
                     if reps is not None:
-                        ex_entry[garmin_name_with_category] = f"lap | {original_clean} x{reps} ({mapping_info.get('reason', 'chosen automatically')})"
+                        ex_entry[garmin_name_with_category] = f"{original_clean} x{reps} ({mapping_info.get('reason', 'chosen automatically')})"
                     else:
-                        ex_entry[garmin_name_with_category] = f"lap | {original_clean} ({mapping_info.get('reason', 'chosen automatically')})"
+                        ex_entry[garmin_name_with_category] = f"{original_clean} ({mapping_info.get('reason', 'chosen automatically')})"
                 
                 exercises.append(ex_entry)
             
