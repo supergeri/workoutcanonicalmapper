@@ -1249,3 +1249,9 @@ def push_to_apple_watch_endpoint(workout_id: str, request: PushToAppleWatchReque
         "payload": payload
     }
 
+@app.get("/health")
+def health():
+    """
+    Simple liveness endpoint for mapper-api.
+    """
+    return {"status": "ok"}

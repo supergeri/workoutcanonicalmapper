@@ -2,12 +2,22 @@ import sys
 from pathlib import Path
 
 import pytest
+from fastapi.testclient import TestClient
+from backend.app import app
 
 # Ensure mapper-api root is on sys.path so `import backend` and `import shared` work
 ROOT = Path(__file__).resolve().parents[1]
 root_str = str(ROOT)
 if root_str not in sys.path:
     sys.path.insert(0, root_str)
+
+
+@pytest.fixture(scope="session")
+def api_client() -> TestClient:
+    """
+    Shared FastAPI TestClient for mapper-api endpoints.
+    """
+    return TestClient(app)
 
 
 # --- Temporary fixtures for legacy integration tests ------------------------
