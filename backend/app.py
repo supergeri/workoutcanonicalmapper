@@ -5,6 +5,10 @@ import logging
 import httpx
 import os
 import json
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from pydantic import BaseModel
 
@@ -654,8 +658,12 @@ def delete_workout_endpoint(
         }
 
 
+class PushWorkoutToIOSCompanionRequest(BaseModel):
+    userId: str
+
+
 @app.post("/workouts/{workout_id}/push/ios-companion")
-def push_workout_to_ios_companion_endpoint(workout_id: str, request: PushToIOSCompanionRequest):
+def push_workout_to_ios_companion_endpoint(workout_id: str, request: PushWorkoutToIOSCompanionRequest):
     """
     Push a regular (blocks-based) workout to iOS Companion App.
     Transforms the workout structure into the iOS app's interval format.
@@ -815,9 +823,6 @@ def convert_exercise_to_interval(exercise: dict) -> dict:
         }
 
 
-class PushWorkoutToIOSCompanionRequest(BaseModel):
-    userId: str
-
 
 # ============================================================================
 # Follow-Along Workout Endpoints
@@ -844,21 +849,41 @@ class PushToIOSCompanionRequest(BaseModel):
 @app.post("/follow-along/ingest")
 def ingest_follow_along_endpoint(request: IngestFollowAlongRequest):
     """
-    Ingest a follow-along workout from Instagram URL.
+    Ingest a follow-along workout from video URL (Instagram, YouTube, TikTok, Vimeo).
     Calls workout-ingestor-api to extract workout data, then stores in Supabase.
     """
     import httpx
     import os
     
     ingestor_url = os.getenv("INGESTOR_URL", "http://workout-ingestor-api:8004")
+    video_url = request.instagramUrl  # Field name kept for backwards compatibility
+    
+    # Detect platform and choose endpoint
+    if "youtube.com" in video_url or "youtu.be" in video_url:
+        endpoint = "/ingest/youtube"
+        source = "youtube"
+        default_title = "YouTube Workout"
+    elif "tiktok.com" in video_url:
+        endpoint = "/ingest/url"  # Use generic URL ingest for TikTok
+        source = "tiktok"
+        default_title = "TikTok Workout"
+    elif "vimeo.com" in video_url:
+        endpoint = "/ingest/url"  # Use generic URL ingest for Vimeo
+        source = "vimeo"
+        default_title = "Vimeo Workout"
+    else:
+        # Default to Instagram
+        endpoint = "/ingest/instagram_test"
+        source = "instagram"
+        default_title = "Instagram Workout"
     
     try:
         # Call workout-ingestor-api
-        with httpx.Client(timeout=60.0) as client:
+        with httpx.Client(timeout=120.0) as client:
             response = client.post(
-                f"{ingestor_url}/ingest/instagram_test",
+                f"{ingestor_url}{endpoint}",
                 json={
-                    "url": request.instagramUrl,
+                    "url": video_url,
                     "use_vision": True,
                     "vision_provider": "openai",
                     "vision_model": "gpt-4o-mini",
@@ -867,17 +892,38 @@ def ingest_follow_along_endpoint(request: IngestFollowAlongRequest):
             response.raise_for_status()
             ingestor_data = response.json()
         
+        # Convert blocks/exercises format to steps format
+        # YouTube returns: { blocks: [{ exercises: [...] }] }
+        # Instagram returns: { steps: [...] }
+        steps = ingestor_data.get("steps", [])
+        
+        if not steps and "blocks" in ingestor_data:
+            # Convert blocks format to steps
+            step_order = 1
+            for block in ingestor_data.get("blocks", []):
+                for exercise in block.get("exercises", []):
+                    steps.append({
+                        "order": step_order,
+                        "label": exercise.get("name", f"Exercise {step_order}"),
+                        "name": exercise.get("name"),
+                        "targetReps": exercise.get("reps"),
+                        "targetDurationSec": exercise.get("duration_sec"),
+                        "notes": exercise.get("notes"),
+                        "sets": exercise.get("sets"),
+                    })
+                    step_order += 1
+        
         # Save to Supabase
         workout = save_follow_along_workout(
             user_id=request.userId,
-            source="instagram",
-            source_url=request.instagramUrl,
-            title=ingestor_data.get("title", "Instagram Workout"),
+            source=source,
+            source_url=video_url,
+            title=ingestor_data.get("title", default_title),
             description=ingestor_data.get("description"),
             video_duration_sec=ingestor_data.get("videoDuration"),
             thumbnail_url=ingestor_data.get("thumbnail"),
             video_proxy_url=ingestor_data.get("videoUrl"),
-            steps=ingestor_data.get("steps", [])
+            steps=steps
         )
         
         if workout:
