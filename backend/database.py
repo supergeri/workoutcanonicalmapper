@@ -34,11 +34,15 @@ def save_workout(
     exports: Optional[Dict[str, Any]] = None,
     validation: Optional[Dict[str, Any]] = None,
     title: Optional[str] = None,
-    description: Optional[str] = None
+    description: Optional[str] = None,
+    workout_id: Optional[str] = None
 ) -> Optional[Dict[str, Any]]:
     """
-    Save a workout to Supabase.
-    
+    Save a workout to Supabase with deduplication.
+
+    If a workout with the same profile_id, title, and device already exists,
+    it will be updated instead of creating a duplicate.
+
     Args:
         profile_id: User profile ID
         workout_data: Full workout structure
@@ -48,15 +52,35 @@ def save_workout(
         validation: Validation response if available
         title: Optional workout title
         description: Optional workout description
-        
+        workout_id: Optional existing workout ID (for explicit updates)
+
     Returns:
         Saved workout data or None if failed
     """
     supabase = get_supabase_client()
     if not supabase:
         return None
-    
+
     try:
+        # Extract title from workout_data if not provided
+        effective_title = title or workout_data.get("title")
+
+        # Check for existing workout with same profile_id, title, and device
+        # This prevents duplicates from multiple save calls in the workflow
+        existing_workout = None
+
+        if workout_id:
+            # Explicit update - check if workout exists
+            check_result = supabase.table("workouts").select("id").eq("id", workout_id).eq("profile_id", profile_id).execute()
+            if check_result.data and len(check_result.data) > 0:
+                existing_workout = check_result.data[0]
+        elif effective_title:
+            # Check for duplicate by title + device + profile_id
+            check_result = supabase.table("workouts").select("id, created_at").eq("profile_id", profile_id).eq("title", effective_title).eq("device", device).order("created_at", desc=True).limit(1).execute()
+            if check_result.data and len(check_result.data) > 0:
+                existing_workout = check_result.data[0]
+                logger.info(f"Found existing workout with same title/device: {existing_workout['id']}")
+
         data = {
             "profile_id": profile_id,
             "workout_data": workout_data,
@@ -64,22 +88,35 @@ def save_workout(
             "device": device,
             "is_exported": False,
         }
-        
+
         if exports:
             data["exports"] = exports
         if validation:
             data["validation"] = validation
-        if title:
-            data["title"] = title
+        if effective_title:
+            data["title"] = effective_title
         if description:
             data["description"] = description
-        
-        result = supabase.table("workouts").insert(data).execute()
-        
-        if result.data and len(result.data) > 0:
-            logger.info(f"Workout saved for profile {profile_id}")
-            return result.data[0]
-        return None
+
+        if existing_workout:
+            # Update existing workout instead of creating duplicate
+            from datetime import datetime, timezone
+            data["updated_at"] = datetime.now(timezone.utc).isoformat()
+
+            result = supabase.table("workouts").update(data).eq("id", existing_workout["id"]).eq("profile_id", profile_id).execute()
+
+            if result.data and len(result.data) > 0:
+                logger.info(f"Workout updated (dedup) for profile {profile_id}, id: {existing_workout['id']}")
+                return result.data[0]
+            return None
+        else:
+            # Insert new workout
+            result = supabase.table("workouts").insert(data).execute()
+
+            if result.data and len(result.data) > 0:
+                logger.info(f"Workout saved for profile {profile_id}")
+                return result.data[0]
+            return None
     except Exception as e:
         error_msg = str(e)
         logger.error(f"Failed to save workout: {e}")

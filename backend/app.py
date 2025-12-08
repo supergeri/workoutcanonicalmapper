@@ -540,6 +540,7 @@ class SaveWorkoutRequest(BaseModel):
     validation: dict = None
     title: str = None
     description: str = None
+    workout_id: str = None  # Optional: for explicit updates to existing workouts
 
 
 class UpdateWorkoutExportRequest(BaseModel):
@@ -550,7 +551,11 @@ class UpdateWorkoutExportRequest(BaseModel):
 
 @app.post("/workouts/save")
 def save_workout_endpoint(request: SaveWorkoutRequest):
-    """Save a workout to Supabase before syncing to device."""
+    """Save a workout to Supabase before syncing to device.
+
+    With deduplication: if a workout with the same profile_id, title, and device
+    already exists, it will be updated instead of creating a duplicate.
+    """
     result = save_workout(
         profile_id=request.profile_id,
         workout_data=request.workout_data,
@@ -559,9 +564,10 @@ def save_workout_endpoint(request: SaveWorkoutRequest):
         exports=request.exports,
         validation=request.validation,
         title=request.title,
-        description=request.description
+        description=request.description,
+        workout_id=request.workout_id
     )
-    
+
     if result:
         return {
             "success": True,
