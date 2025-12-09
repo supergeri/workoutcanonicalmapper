@@ -853,6 +853,81 @@ class PushToIOSCompanionRequest(BaseModel):
     userId: str
 
 
+class CreateFollowAlongManualRequest(BaseModel):
+    """Request to create a follow-along workout with manually entered data (no AI extraction)"""
+    sourceUrl: str
+    userId: str
+    title: str
+    description: Optional[str] = None
+    steps: List[Dict[str, Any]]
+    source: Optional[str] = None  # 'instagram', 'youtube', 'tiktok', 'vimeo', 'other'
+    thumbnailUrl: Optional[str] = None
+
+
+@app.post("/follow-along/create")
+def create_follow_along_manual_endpoint(request: CreateFollowAlongManualRequest):
+    """
+    Create a follow-along workout with manually entered data.
+    This is for Instagram and other platforms where we can't auto-extract exercises.
+    """
+    # Detect source platform if not provided
+    source = request.source
+    if not source:
+        video_url = request.sourceUrl.lower()
+        if "instagram.com" in video_url:
+            source = "instagram"
+        elif "youtube.com" in video_url or "youtu.be" in video_url:
+            source = "youtube"
+        elif "tiktok.com" in video_url:
+            source = "tiktok"
+        elif "vimeo.com" in video_url:
+            source = "vimeo"
+        else:
+            source = "other"
+
+    # Convert steps to the expected format
+    formatted_steps = []
+    for i, step in enumerate(request.steps):
+        formatted_steps.append({
+            "order": step.get("order", i),
+            "label": step.get("label", f"Exercise {i + 1}"),
+            "duration_sec": step.get("duration_sec"),
+            "target_reps": step.get("target_reps"),
+            "notes": step.get("notes"),
+        })
+
+    try:
+        # Save to Supabase
+        workout = save_follow_along_workout(
+            user_id=request.userId,
+            source=source,
+            source_url=request.sourceUrl,
+            title=request.title,
+            description=request.description,
+            video_duration_sec=None,
+            thumbnail_url=request.thumbnailUrl,
+            video_proxy_url=None,
+            steps=formatted_steps
+        )
+
+        if workout:
+            return {
+                "success": True,
+                "followAlongWorkout": workout
+            }
+        else:
+            return {
+                "success": False,
+                "message": "Failed to save workout to database"
+            }
+    except Exception as e:
+        logger.error(f"Failed to create manual follow-along workout: {e}")
+        return {
+            "success": False,
+            "message": str(e)
+        }
+
+
 @app.post("/follow-along/ingest")
 def ingest_follow_along_endpoint(request: IngestFollowAlongRequest):
     """
