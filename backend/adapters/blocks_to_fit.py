@@ -168,7 +168,7 @@ def blocks_to_steps(blocks_json, use_lap_button=False):
 
         for exercise in all_exercises:
             name = exercise.get('name', 'Exercise')
-            reps_raw = exercise.get('reps') or 10
+            reps_raw = exercise.get('reps')  # Don't default - None means no reps specified
             sets = exercise.get('sets') or rounds
             duration_sec = exercise.get('duration_sec')
             distance_m = exercise.get('distance_m')  # Numeric distance in meters from ingestor
@@ -227,8 +227,8 @@ def blocks_to_steps(blocks_json, use_lap_button=False):
                     # Use time type (0) with value in milliseconds
                     duration_type = 0
                     duration_value = int(duration_sec * 1000)
-                else:
-                    # Use reps type (29)
+                elif reps_raw is not None:
+                    # Reps were explicitly specified - use reps type (29)
                     duration_type = 29
                     if isinstance(reps_raw, str):
                         try:
@@ -237,6 +237,11 @@ def blocks_to_steps(blocks_json, use_lap_button=False):
                             duration_value = 10
                     else:
                         duration_value = int(reps_raw) if reps_raw else 10
+                else:
+                    # No reps, no distance, no time - use lap button
+                    # This is standard for cardio/running exercises like "Indoor Track Run"
+                    duration_type = 1  # lap_button / until_lap_pressed
+                    duration_value = 0
 
             start_index = len(steps)
 
