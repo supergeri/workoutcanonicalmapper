@@ -99,7 +99,30 @@ class GarminExerciseLookup:
         """
         normalized = self.normalize(exercise_name)
 
-        # 1. Check builtin keywords FIRST (these override exact matches for compatibility)
+        # 1. Try exact match in exercises FIRST
+        # This ensures specific exercise names like "Ski Moguls" return their correct display_name
+        # before builtin keywords can match via substring (e.g., "ski mogul" matching "ski moguls")
+        if normalized in self.exercises:
+            result = self.exercises[normalized].copy()
+            result["match_type"] = "exact"
+            result["input"] = exercise_name
+            result["normalized"] = normalized
+
+            # Special case: if exact match returns category 32 (Run), check if we should
+            # override with builtin keyword for compatibility (Run category only works with sport type 1)
+            if result.get("category_id") == 32:
+                for keyword, info in self.builtin_keywords.items():
+                    if keyword in normalized:
+                        # Use builtin keyword's category but keep original display_name
+                        result["category_id"] = info["category_id"]
+                        result["category_key"] = info["category_key"]
+                        result["category_name"] = info["category_name"]
+                        result["match_type"] = "exact_with_category_override"
+                        break
+
+            return result
+
+        # 2. Check builtin keywords (for generic terms like "run", "ski" that don't have exact matches)
         # This ensures "run" maps to Cardio (2) for mixed workouts, not Run (32)
         for keyword, info in self.builtin_keywords.items():
             if keyword in normalized:
@@ -114,14 +137,6 @@ class GarminExerciseLookup:
                     "input": exercise_name,
                     "normalized": normalized
                 }
-
-        # 2. Try exact match in exercises
-        if normalized in self.exercises:
-            result = self.exercises[normalized].copy()
-            result["match_type"] = "exact"
-            result["input"] = exercise_name
-            result["normalized"] = normalized
-            return result
 
         # 3. Try JSON keyword matching
         keywords = self.keywords if lang == "en" else {}
