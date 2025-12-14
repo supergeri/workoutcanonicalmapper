@@ -439,7 +439,7 @@ def to_fit(blocks_json, force_sport_type=None, use_lap_button=False):
     #   254 = message_index
     #   1 = duration_type
     #   2 = duration_value
-    #   5 = target_type  
+    #   3 = target_type (not 5!)
     #   7 = intensity
     #   10 = exercise_category
     #   11 = exercise_name
@@ -447,7 +447,7 @@ def to_fit(blocks_json, force_sport_type=None, use_lap_button=False):
     data += struct.pack('<BBB', 254, 2, 0x84)  # message_index
     data += struct.pack('<BBB', 2, 4, 0x86)    # duration_value (FIELD 2!)
     data += struct.pack('<BBB', 1, 1, 0x00)    # duration_type
-    data += struct.pack('<BBB', 5, 1, 0x00)    # target_type (FIELD 5!)
+    data += struct.pack('<BBB', 3, 1, 0x00)    # target_type (FIELD 3 per FIT SDK)
     data += struct.pack('<BBB', 7, 1, 0x00)    # intensity
     data += struct.pack('<BBB', 10, 2, 0x84)   # exercise_category
     data += struct.pack('<BBB', 11, 2, 0x84)   # exercise_name
