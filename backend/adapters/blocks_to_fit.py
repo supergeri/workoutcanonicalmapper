@@ -287,10 +287,13 @@ def detect_sport_type(category_ids):
 
     Returns tuple of (sport_id, sub_sport_id, sport_name, warnings)
 
-    Sport types:
-    - 1 = running (for run-only workouts)
-    - 4 = fitness_equipment (for mixed cardio/strength, rowing, skiing)
-    - 10 = training (for pure strength)
+    Sport types (valid combinations for Garmin):
+    - 1/0 = running/generic (for run-only workouts)
+    - 10/20 = training/strength_training (for strength or mixed workouts)
+    - 10/26 = training/cardio_training (for cardio-only workouts)
+
+    NOTE: fitness_equipment (4) does NOT work on most Garmin watches!
+    Always use training (10) for custom workouts.
 
     Category IDs that indicate specific sports:
     - 32 = Run
@@ -315,17 +318,20 @@ def detect_sport_type(category_ids):
         # Pure running workout
         return 1, 0, "running", warnings
 
-    if has_running or has_cardio_machines:
-        # Mixed workout with runs or cardio machines - use fitness_equipment
-        # This is the most flexible option for conditioning workouts
-        if has_strength:
+    if has_strength:
+        # Any workout with strength exercises -> training/strength_training
+        if has_running or has_cardio_machines:
             warnings.append(
                 "This workout has both cardio (running/rowing/ski) and strength exercises. "
-                "Exported as 'Cardio' type for best Garmin compatibility."
+                "Exported as 'Strength Training' type for best Garmin compatibility."
             )
-        return 4, 0, "cardio", warnings
+        return 10, 20, "strength", warnings
 
-    # Pure strength workout
+    if has_running or has_cardio_machines:
+        # Cardio-only workout (no strength) -> training/cardio_training
+        return 10, 26, "cardio", warnings
+
+    # Default to strength training
     return 10, 20, "strength", warnings
 
 
@@ -349,12 +355,13 @@ def to_fit(blocks_json, force_sport_type=None, use_lap_button=False):
         raise ValueError("No exercises found")
 
     # Auto-detect or use forced sport type
+    # NOTE: fitness_equipment (4) does NOT work on Garmin watches!
     if force_sport_type == "strength":
-        sport_id, sub_sport_id = 10, 20
+        sport_id, sub_sport_id = 10, 20  # training/strength_training
     elif force_sport_type == "cardio":
-        sport_id, sub_sport_id = 4, 0
+        sport_id, sub_sport_id = 10, 26  # training/cardio_training
     elif force_sport_type == "running":
-        sport_id, sub_sport_id = 1, 0
+        sport_id, sub_sport_id = 1, 0    # running/generic
     else:
         sport_id, sub_sport_id, _, _ = detect_sport_type(category_ids)
 
