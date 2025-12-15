@@ -555,21 +555,55 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
     
     workout_name = workout_name_from_title(blocks_json.get("title", "Workout"))
     workout_steps = []
-    
+
     # Initialize mapping notes tracker
     to_hyrox_yaml._mapping_notes = []
-    
-    # Add warmup
-    workout_steps.append({
-        "warmup": [{"cardio": "lap"}]
-    })
-    
+
+    blocks = blocks_json.get("blocks", [])
+
+    # Check if first block has explicit warmup configured
+    # If not, add a default warmup step at the beginning
+    first_block = blocks[0] if blocks else None
+    if not first_block or not first_block.get('warmup_enabled'):
+        # Default warmup: lap button press
+        workout_steps.append({
+            "warmup": [{"cardio": "lap"}]
+        })
+
+    # Warmup activity mapping to YAML activity names
+    WARMUP_ACTIVITY_YAML = {
+        'stretching': 'stretching',
+        'jump_rope': 'cardio',  # No specific jump rope in YAML
+        'air_bike': 'cardio',
+        'treadmill': 'cardio',
+        'stairmaster': 'cardio',
+        'rowing': 'cardio',
+        'custom': 'cardio',
+    }
+
     # Process blocks
-    for block in blocks_json.get("blocks", []):
+    for block in blocks:
+        # Per-block warmup: add warmup step before this block if enabled
+        if block.get('warmup_enabled'):
+            warmup_activity = block.get('warmup_activity', 'cardio')
+            warmup_duration = block.get('warmup_duration_sec')
+            yaml_activity = WARMUP_ACTIVITY_YAML.get(warmup_activity, 'cardio')
+
+            if warmup_duration and warmup_duration > 0:
+                # Timed warmup
+                workout_steps.append({
+                    "warmup": [{yaml_activity: f"{warmup_duration}s"}]
+                })
+            else:
+                # Lap button warmup
+                workout_steps.append({
+                    "warmup": [{yaml_activity: "lap"}]
+                })
+
         label = block.get("label", "")
         structure = block.get("structure", "")
         rounds = extract_rounds(structure) if structure else 1
-        
+
         # Process standalone exercises (not in supersets)
         exercises_list = []
         for ex in block.get("exercises", []):
