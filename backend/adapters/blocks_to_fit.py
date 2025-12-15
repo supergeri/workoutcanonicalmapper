@@ -193,14 +193,18 @@ def blocks_to_steps(blocks_json, use_lap_button=False):
                 display_name = match.get('display_name') or match['category_name']
 
             # Determine duration type and value
-            # FIT duration types: 0=time(ms), 1=lap_button, 3=distance(cm), 29=reps
+            # FIT SDK WorkoutStepDuration values:
+            #   0 = TIME (ms)
+            #   1 = DISTANCE (cm)
+            #   5 = OPEN (no end condition - user presses lap when done)
+            #   29 = REPS
             duration_type = 29  # default: reps
             duration_value = 10  # default
 
             if use_lap_button:
-                # Use lap button press - user presses lap when done with exercise
-                duration_type = 1  # lap_button / until_lap_pressed
-                duration_value = 0  # not used for lap button
+                # Use OPEN = 5 (no end condition) - user presses lap when done
+                duration_type = 5  # OPEN
+                duration_value = 0  # not used for OPEN
             else:
                 # Check for distance - first from distance_m field, then from reps string
                 distance_meters = None
@@ -220,8 +224,8 @@ def blocks_to_steps(blocks_json, use_lap_button=False):
                         distance_meters = float(m_match.group(1))
 
                 if distance_meters is not None:
-                    # Use distance type (3) with value in centimeters
-                    duration_type = 3
+                    # FIT SDK: DISTANCE = 1, value in centimeters
+                    duration_type = 1
                     duration_value = int(distance_meters * 100)  # convert to cm
                 elif duration_sec:
                     # Use time type (0) with value in milliseconds
@@ -238,9 +242,9 @@ def blocks_to_steps(blocks_json, use_lap_button=False):
                     else:
                         duration_value = int(reps_raw) if reps_raw else 10
                 else:
-                    # No reps, no distance, no time - use lap button
+                    # No reps, no distance, no time - use OPEN (press lap when done)
                     # This is standard for cardio/running exercises like "Indoor Track Run"
-                    duration_type = 1  # lap_button / until_lap_pressed
+                    duration_type = 5  # OPEN (no end condition)
                     duration_value = 0
 
             start_index = len(steps)
