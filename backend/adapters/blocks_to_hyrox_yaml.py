@@ -610,6 +610,7 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
             ex_name = ex.get("name", "")
             sets = ex.get("sets")
             reps = ex.get("reps")
+            reps_range = ex.get("reps_range")  # e.g., "6-8", "8-10"
             distance_m = ex.get("distance_m")
             duration_sec = ex.get("duration_sec")
             rest_sec = ex.get("rest_sec")
@@ -657,6 +658,18 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                         # Build description with mapping reason
                         original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
                         ex_entry[garmin_name_with_category] = f"{original_clean} x{reps} ({reason})"
+                elif reps_range:
+                    # reps_range specified (e.g., "6-8") - use upper bound for YAML
+                    try:
+                        parts = reps_range.replace('-', ' ').split()
+                        upper_reps = int(parts[-1]) if parts else 10
+                    except:
+                        upper_reps = 10
+                    if not reason:
+                        ex_entry[garmin_name_with_category] = f"x{upper_reps}"
+                    else:
+                        original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
+                        ex_entry[garmin_name_with_category] = f"{original_clean} x{upper_reps} ({reason})"
                 else:
                     # Default fallback - use "lap" (lap button press) when no reps available
                     # This is standard for cardio/running exercises like "Indoor Track Run"
@@ -708,6 +721,7 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                 ex_name = ex.get("name", "")
                 sets = ex.get("sets")
                 reps = ex.get("reps")
+                reps_range = ex.get("reps_range")  # e.g., "6-8", "8-10"
                 distance_m = ex.get("distance_m")
                 
                 garmin_name, description, mapping_info = map_exercise_to_garmin(ex_name, ex_reps=reps, ex_distance_m=None)  # Ignore distance
@@ -736,6 +750,18 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                         # Build description with mapping reason
                         original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
                         ex_entry[garmin_name_with_category] = f"{original_clean} x{reps} ({reason})"
+                elif reps_range:
+                    # reps_range specified (e.g., "6-8") - use upper bound for YAML
+                    try:
+                        parts = reps_range.replace('-', ' ').split()
+                        upper_reps = int(parts[-1]) if parts else 10
+                    except:
+                        upper_reps = 10
+                    if not reason:
+                        ex_entry[garmin_name_with_category] = f"x{upper_reps}"
+                    else:
+                        original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
+                        ex_entry[garmin_name_with_category] = f"{original_clean} x{upper_reps} ({reason})"
                 else:
                     # Default fallback
                     if not reason:
