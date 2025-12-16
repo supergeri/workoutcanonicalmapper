@@ -425,11 +425,13 @@ def blocks_to_steps(blocks_json, use_lap_button=False):
                         steps.append(_create_rest_step(rest_between_sets, rest_type_block))
 
                 # Repeat step for warmup sets (if warmup_sets > 1)
+                # NOTE: repeat_count is the TOTAL number of sets, not additional repeats
+                # Confirmed by analyzing Garmin activity FIT files where repeat_steps=3 means 3 total sets
                 if warmup_sets > 1:
                     steps.append({
                         'type': 'repeat',
                         'duration_step': warmup_start_index,
-                        'repeat_count': warmup_sets - 1,
+                        'repeat_count': warmup_sets,
                     })
 
                 # Rest between warmup and working sets
@@ -471,11 +473,13 @@ def blocks_to_steps(blocks_json, use_lap_button=False):
                     steps.append(_create_rest_step(rest_between_sets, rest_type_block))
 
             # Repeat step for working sets (if sets > 1)
+            # NOTE: repeat_count is the TOTAL number of sets, not additional repeats
+            # Confirmed by analyzing Garmin activity FIT files where repeat_steps=3 means 3 total sets
             if sets > 1:
                 steps.append({
                     'type': 'repeat',
                     'duration_step': start_index,
-                    'repeat_count': sets - 1,
+                    'repeat_count': sets,
                 })
 
             # Check if this is the last exercise overall in the block
