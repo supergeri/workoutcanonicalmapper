@@ -63,6 +63,16 @@ from backend.follow_along_database import (
     update_follow_along_apple_watch_sync,
     update_follow_along_ios_companion_sync
 )
+from backend.mobile_pairing import (
+    GeneratePairingResponse,
+    PairDeviceRequest,
+    PairDeviceResponse,
+    PairingStatusResponse,
+    create_pairing_token,
+    validate_and_use_token,
+    get_pairing_status,
+    revoke_user_tokens,
+)
 
 # Feature flag for unofficial Garmin sync
 GARMIN_UNOFFICIAL_SYNC_ENABLED = os.getenv("GARMIN_UNOFFICIAL_SYNC_ENABLED", "false").lower() == "true"
@@ -1822,6 +1832,107 @@ def health():
     Simple liveness endpoint for mapper-api.
     """
     return {"status": "ok"}
+
+
+# ============================================================================
+# Mobile Pairing Endpoints (AMA-61: iOS Companion App Authentication)
+# ============================================================================
+
+from fastapi import Header, HTTPException
+
+@app.post("/mobile/pairing/generate", response_model=GeneratePairingResponse)
+async def generate_pairing_token_endpoint(
+    x_user_id: str = Header(..., alias="X-User-Id", description="Clerk user ID")
+):
+    """
+    Generate a new pairing token for iOS Companion App authentication.
+
+    Returns a secure token (for QR code) and human-readable short code (for manual entry).
+    Both expire after 5 minutes.
+
+    Requires X-User-Id header with the authenticated Clerk user ID.
+    """
+    try:
+        result = await create_pairing_token(x_user_id)
+        return result
+    except Exception as e:
+        logger.error(f"Failed to generate pairing token: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/mobile/pairing/pair", response_model=PairDeviceResponse)
+async def pair_device_endpoint(request: PairDeviceRequest):
+    """
+    Exchange a pairing token for a JWT (called by iOS app).
+
+    This endpoint is public - the iOS app calls it after scanning a QR code
+    or entering a short code. The token proves the user authorized the pairing.
+
+    Returns a JWT that the iOS app stores and uses for authenticated API calls.
+    """
+    try:
+        result = await validate_and_use_token(
+            token=request.token,
+            short_code=request.short_code,
+            device_info=request.device_info
+        )
+
+        if result is None:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid, expired, or already used pairing token"
+            )
+
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to pair device: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/mobile/pairing/status/{token}", response_model=PairingStatusResponse)
+async def check_pairing_status_endpoint(token: str):
+    """
+    Check if a pairing token has been used (web app polling endpoint).
+
+    The web app polls this endpoint after displaying the QR code to detect
+    when the iOS app has successfully completed pairing.
+
+    Returns:
+    - paired: true if token was used, false otherwise
+    - expired: true if token has expired
+    - paired_at: timestamp when pairing occurred (if paired)
+    """
+    try:
+        result = await get_pairing_status(token)
+        return result
+    except Exception as e:
+        logger.error(f"Failed to check pairing status: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.delete("/mobile/pairing/revoke")
+async def revoke_pairing_tokens_endpoint(
+    x_user_id: str = Header(..., alias="X-User-Id", description="Clerk user ID")
+):
+    """
+    Revoke all active pairing tokens for the authenticated user.
+
+    Call this if the user wants to cancel pairing or generate a fresh token.
+    Also useful as a security measure if tokens may have been compromised.
+    """
+    try:
+        count = await revoke_user_tokens(x_user_id)
+        return {
+            "success": True,
+            "message": f"Revoked {count} pairing token(s)",
+            "revoked_count": count
+        }
+    except Exception as e:
+        logger.error(f"Failed to revoke pairing tokens: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.post("/map/to-fit")
 def map_to_fit(
