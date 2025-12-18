@@ -2025,3 +2025,154 @@ def map_preview_steps(
         from backend.adapters.blocks_to_fit import blocks_to_steps
         steps, _ = blocks_to_steps(p.blocks_json, use_lap_button=use_lap_button)
         return {"steps": steps}
+
+
+# ============================================================================
+# Bulk Import Endpoints (AMA-100: Bulk Import Controller)
+# ============================================================================
+
+from backend.bulk_import import (
+    bulk_import_service,
+    BulkDetectRequest,
+    BulkDetectResponse,
+    BulkMapRequest,
+    BulkMapResponse,
+    BulkMatchRequest,
+    BulkMatchResponse,
+    BulkPreviewRequest,
+    BulkPreviewResponse,
+    BulkExecuteRequest,
+    BulkExecuteResponse,
+    BulkStatusResponse,
+    ColumnMapping,
+)
+
+
+@app.post("/import/detect", response_model=BulkDetectResponse)
+async def bulk_import_detect(request: BulkDetectRequest):
+    """
+    Detect and parse workout items from sources.
+
+    Step 1 of the bulk import workflow.
+
+    Accepts:
+    - file: Base64-encoded file content (Excel, CSV, JSON, Text)
+    - urls: List of URLs (YouTube, Instagram, TikTok)
+    - images: Base64-encoded image data for OCR
+
+    Returns detected items with confidence scores and any parsing errors.
+    """
+    return await bulk_import_service.detect_items(
+        profile_id=request.profile_id,
+        source_type=request.source_type,
+        sources=request.sources,
+    )
+
+
+@app.post("/import/map", response_model=BulkMapResponse)
+async def bulk_import_map(request: BulkMapRequest):
+    """
+    Apply column mappings to detected file data.
+
+    Step 2 of the bulk import workflow (only for file imports).
+
+    Transforms raw CSV/Excel data into structured workout data
+    based on user-provided column mappings.
+    """
+    column_mappings = [ColumnMapping(**m) if isinstance(m, dict) else m for m in request.column_mappings]
+    return await bulk_import_service.apply_column_mappings(
+        job_id=request.job_id,
+        profile_id=request.profile_id,
+        column_mappings=column_mappings,
+    )
+
+
+@app.post("/import/match", response_model=BulkMatchResponse)
+async def bulk_import_match(request: BulkMatchRequest):
+    """
+    Match exercises to Garmin exercise database.
+
+    Step 3 of the bulk import workflow.
+
+    Uses fuzzy matching to find Garmin equivalents for exercise names.
+    Returns confidence scores and suggestions for ambiguous matches.
+    """
+    return await bulk_import_service.match_exercises(
+        job_id=request.job_id,
+        profile_id=request.profile_id,
+        user_mappings=request.user_mappings,
+    )
+
+
+@app.post("/import/preview", response_model=BulkPreviewResponse)
+async def bulk_import_preview(request: BulkPreviewRequest):
+    """
+    Generate preview of workouts to be imported.
+
+    Step 4 of the bulk import workflow.
+
+    Shows final workout structures, validation issues,
+    and statistics before committing the import.
+    """
+    return await bulk_import_service.generate_preview(
+        job_id=request.job_id,
+        profile_id=request.profile_id,
+        selected_ids=request.selected_ids,
+    )
+
+
+@app.post("/import/execute", response_model=BulkExecuteResponse)
+async def bulk_import_execute(request: BulkExecuteRequest):
+    """
+    Execute the bulk import of workouts.
+
+    Step 5 of the bulk import workflow.
+
+    In async_mode (default), starts a background job and returns immediately.
+    Use GET /import/status/{job_id} to track progress.
+    """
+    return await bulk_import_service.execute_import(
+        job_id=request.job_id,
+        profile_id=request.profile_id,
+        workout_ids=request.workout_ids,
+        device=request.device,
+        async_mode=request.async_mode,
+    )
+
+
+@app.get("/import/status/{job_id}", response_model=BulkStatusResponse)
+async def bulk_import_status(
+    job_id: str,
+    profile_id: str = Query(..., description="User profile ID")
+):
+    """
+    Get status of a bulk import job.
+
+    Returns progress percentage, current item being processed,
+    and results for completed items.
+    """
+    return await bulk_import_service.get_import_status(
+        job_id=job_id,
+        profile_id=profile_id,
+    )
+
+
+@app.post("/import/cancel/{job_id}")
+async def bulk_import_cancel(
+    job_id: str,
+    profile_id: str = Query(..., description="User profile ID")
+):
+    """
+    Cancel a running bulk import job.
+
+    Only works for jobs with status 'running'.
+    Completed imports cannot be cancelled.
+    """
+    success = await bulk_import_service.cancel_import(
+        job_id=job_id,
+        profile_id=profile_id,
+    )
+    return {
+        "success": success,
+        "message": "Import cancelled" if success else "Failed to cancel import",
+    }
