@@ -23,7 +23,14 @@ from typing import List, Dict, Any, Optional, Literal
 from datetime import datetime, timezone
 from pydantic import BaseModel, Field
 
-from backend.parsers import FileParserFactory, FileInfo, ParseResult, ParsedWorkout
+from backend.parsers import (
+    FileParserFactory,
+    FileInfo,
+    ParseResult,
+    ParsedWorkout,
+    URLParser,
+    fetch_url_metadata_batch,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -474,7 +481,7 @@ class BulkImportService:
         Detect and parse workout items from sources.
 
         For files: Parse Excel/CSV/JSON/Text content
-        For URLs: Fetch metadata and queue for processing
+        For URLs: Fetch metadata and queue for processing (batched, max 5 concurrent)
         For images: Run OCR and extract workout data
         """
         job_id = self._create_job(profile_id, source_type, len(sources))
@@ -483,32 +490,39 @@ class BulkImportService:
         success_count = 0
         error_count = 0
 
-        for idx, source in enumerate(sources):
-            try:
-                item = await self._detect_single_source(
-                    source_type=source_type,
-                    source=source,
-                    index=idx
-                )
-                detected_items.append(item)
+        # Use optimized batch processing for URLs
+        if source_type == "urls":
+            detected_items, success_count, error_count = await self._detect_urls_batch(
+                sources, max_concurrent=5
+            )
+        else:
+            # Process other sources sequentially
+            for idx, source in enumerate(sources):
+                try:
+                    item = await self._detect_single_source(
+                        source_type=source_type,
+                        source=source,
+                        index=idx
+                    )
+                    detected_items.append(item)
 
-                if item.get("errors"):
+                    if item.get("errors"):
+                        error_count += 1
+                    else:
+                        success_count += 1
+
+                except Exception as e:
+                    logger.error(f"Error detecting source {idx}: {e}")
+                    detected_items.append({
+                        "id": str(uuid.uuid4()),
+                        "source_index": idx,
+                        "source_type": source_type,
+                        "source_ref": source[:100] if source else "",
+                        "raw_data": {},
+                        "confidence": 0,
+                        "errors": [str(e)],
+                    })
                     error_count += 1
-                else:
-                    success_count += 1
-
-            except Exception as e:
-                logger.error(f"Error detecting source {idx}: {e}")
-                detected_items.append({
-                    "id": str(uuid.uuid4()),
-                    "source_index": idx,
-                    "source_type": source_type,
-                    "source_ref": source[:100] if source else "",
-                    "raw_data": {},
-                    "confidence": 0,
-                    "errors": [str(e)],
-                })
-                error_count += 1
 
         # Store in database
         self._store_detected_items(job_id, profile_id, detected_items)
@@ -528,6 +542,81 @@ class BulkImportService:
             success_count=success_count,
             error_count=error_count,
         )
+
+    async def _detect_urls_batch(
+        self,
+        urls: List[str],
+        max_concurrent: int = 5
+    ) -> tuple:
+        """
+        Batch process URLs with concurrency limit.
+
+        Uses optimized batch fetching from URL parser.
+
+        Returns:
+            Tuple of (detected_items, success_count, error_count)
+        """
+        detected_items = []
+        success_count = 0
+        error_count = 0
+
+        # Fetch metadata for all URLs in batch (with concurrency limit)
+        metadata_list = await fetch_url_metadata_batch(urls, max_concurrent)
+
+        for idx, metadata in enumerate(metadata_list):
+            item_id = str(uuid.uuid4())
+
+            if metadata.error:
+                detected_items.append({
+                    "id": item_id,
+                    "source_index": idx,
+                    "source_type": "urls",
+                    "source_ref": metadata.url,
+                    "raw_data": {
+                        "url": metadata.url,
+                        "platform": metadata.platform,
+                        "video_id": metadata.video_id,
+                    },
+                    "parsed_title": f"{metadata.platform.title()} Video",
+                    "parsed_exercise_count": 0,
+                    "parsed_block_count": 0,
+                    "confidence": 30,
+                    "errors": [metadata.error],
+                })
+                error_count += 1
+            else:
+                # Build title
+                title = metadata.title
+                if not title:
+                    title = f"{metadata.platform.title()} Video"
+                    if metadata.video_id:
+                        title += f" ({metadata.video_id[:8]}...)"
+
+                detected_items.append({
+                    "id": item_id,
+                    "source_index": idx,
+                    "source_type": "urls",
+                    "source_ref": metadata.url,
+                    "raw_data": {
+                        "url": metadata.url,
+                        "platform": metadata.platform,
+                        "video_id": metadata.video_id,
+                        "title": metadata.title,
+                        "author": metadata.author,
+                        "thumbnail_url": metadata.thumbnail_url,
+                        "duration_seconds": metadata.duration_seconds,
+                    },
+                    "parsed_title": title,
+                    "parsed_exercise_count": 0,
+                    "parsed_block_count": 0,
+                    "confidence": 70,
+                    "thumbnail_url": metadata.thumbnail_url,
+                    "author": metadata.author,
+                    "platform": metadata.platform,
+                })
+                success_count += 1
+
+        return detected_items, success_count, error_count
 
     async def _detect_single_source(
         self,
@@ -667,20 +756,77 @@ class BulkImportService:
         source: str,
         index: int
     ) -> Dict[str, Any]:
-        """Detect workout from URL"""
-        # TODO: Implement URL processing (YouTube, Instagram, TikTok)
-        # This will be implemented in AMA-102 (Bulk URL Processor)
-        return {
-            "id": item_id,
-            "source_index": index,
-            "source_type": "urls",
-            "source_ref": source,
-            "raw_data": {"url": source},
-            "parsed_title": f"Video Workout {index + 1}",
-            "parsed_exercise_count": 0,
-            "confidence": 50,
-            "warnings": ["URL processing not yet implemented"],
-        }
+        """
+        Detect workout from URL (YouTube, Instagram, TikTok).
+
+        Fetches metadata using oEmbed APIs for quick preview.
+        Full workout extraction is done during the import step.
+        """
+        try:
+            # Fetch metadata using URL parser
+            metadata = await URLParser.fetch_metadata(source)
+
+            if metadata.error:
+                return {
+                    "id": item_id,
+                    "source_index": index,
+                    "source_type": "urls",
+                    "source_ref": source,
+                    "raw_data": {
+                        "url": source,
+                        "platform": metadata.platform,
+                        "video_id": metadata.video_id,
+                    },
+                    "parsed_title": f"{metadata.platform.title()} Video",
+                    "parsed_exercise_count": 0,
+                    "parsed_block_count": 0,
+                    "confidence": 30,
+                    "errors": [metadata.error],
+                }
+
+            # Build title
+            title = metadata.title
+            if not title:
+                title = f"{metadata.platform.title()} Video"
+                if metadata.video_id:
+                    title += f" ({metadata.video_id[:8]}...)"
+
+            return {
+                "id": item_id,
+                "source_index": index,
+                "source_type": "urls",
+                "source_ref": source,
+                "raw_data": {
+                    "url": source,
+                    "platform": metadata.platform,
+                    "video_id": metadata.video_id,
+                    "title": metadata.title,
+                    "author": metadata.author,
+                    "thumbnail_url": metadata.thumbnail_url,
+                    "duration_seconds": metadata.duration_seconds,
+                },
+                "parsed_title": title,
+                "parsed_exercise_count": 0,  # Will be populated after ingestion
+                "parsed_block_count": 0,
+                "confidence": 70,  # Metadata fetched successfully
+                "thumbnail_url": metadata.thumbnail_url,
+                "author": metadata.author,
+                "platform": metadata.platform,
+            }
+
+        except Exception as e:
+            logger.exception(f"Error detecting URL: {e}")
+            return {
+                "id": item_id,
+                "source_index": index,
+                "source_type": "urls",
+                "source_ref": source,
+                "raw_data": {"url": source},
+                "parsed_title": f"Video Workout {index + 1}",
+                "parsed_exercise_count": 0,
+                "confidence": 20,
+                "errors": [f"Failed to fetch URL metadata: {str(e)}"],
+            }
 
     async def _detect_from_image(
         self,

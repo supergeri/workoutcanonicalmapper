@@ -2105,6 +2105,51 @@ async def bulk_import_detect_file(
     )
 
 
+@app.post("/import/detect/urls", response_model=BulkDetectResponse)
+async def bulk_import_detect_urls(
+    profile_id: str = Form(..., description="User profile ID"),
+    urls: str = Form(..., description="Newline or comma-separated URLs"),
+):
+    """
+    Detect and parse workout items from URLs.
+
+    Step 1 of the bulk import workflow (URL variant).
+
+    Accepts URLs via form data (newline or comma-separated):
+    - YouTube (youtube.com, youtu.be)
+    - Instagram (instagram.com/p/, /reel/, /tv/)
+    - TikTok (tiktok.com, vm.tiktok.com)
+
+    Fetches metadata using oEmbed APIs for quick preview.
+    Full workout extraction happens during the import step.
+
+    Processing uses batch requests with max 5 concurrent connections.
+    """
+    # Parse URLs from form input (newline or comma-separated)
+    url_list = []
+    for line in urls.replace(",", "\n").split("\n"):
+        url = line.strip()
+        if url:
+            url_list.append(url)
+
+    if not url_list:
+        return BulkDetectResponse(
+            success=False,
+            job_id="",
+            items=[],
+            metadata={"error": "No URLs provided"},
+            total=0,
+            success_count=0,
+            error_count=0,
+        )
+
+    return await bulk_import_service.detect_items(
+        profile_id=profile_id,
+        source_type="urls",
+        sources=url_list,
+    )
+
+
 @app.post("/import/map", response_model=BulkMapResponse)
 async def bulk_import_map(request: BulkMapRequest):
     """

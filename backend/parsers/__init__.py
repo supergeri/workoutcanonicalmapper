@@ -7,11 +7,20 @@ Provides parsers for various file formats:
 - JSON (.json)
 - Text (.txt) with LLM fallback
 
+Also provides URL parsing for video platforms:
+- YouTube (youtube.com, youtu.be)
+- Instagram (instagram.com/p/, /reel/, /tv/)
+- TikTok (tiktok.com, vm.tiktok.com)
+
 Usage:
     from parsers import FileParserFactory, FileInfo
 
     parser = FileParserFactory.get_parser(file_info)
     result = await parser.parse(content, file_info)
+
+    # For URLs
+    from parsers import URLParser, fetch_url_metadata
+    metadata = await fetch_url_metadata(url)
 """
 
 import base64
@@ -33,6 +42,14 @@ from .excel_parser import ExcelParser
 from .csv_parser import CSVParser
 from .json_parser import JSONParser
 from .text_parser import TextParser
+from .url_parser import (
+    URLParser,
+    URLMetadata,
+    identify_platform,
+    is_valid_url,
+    fetch_url_metadata,
+    fetch_url_metadata_batch,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -159,12 +176,19 @@ __all__ = [
     'ColumnInfo',
     'FileInfo',
     'ExerciseFlag',
-    # Parsers
+    # File Parsers
     'BaseParser',
     'ExcelParser',
     'CSVParser',
     'JSONParser',
     'TextParser',
+    # URL Parser
+    'URLParser',
+    'URLMetadata',
+    'identify_platform',
+    'is_valid_url',
+    'fetch_url_metadata',
+    'fetch_url_metadata_batch',
     # Factory
     'FileParserFactory',
     # Convenience
