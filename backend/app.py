@@ -2319,3 +2319,150 @@ async def bulk_import_cancel(
         "success": success,
         "message": "Import cancelled" if success else "Failed to cancel import",
     }
+
+
+# ============================================================================
+# Standalone Exercise Matching (AMA-104)
+# ============================================================================
+
+class ExerciseMatchRequest(BaseModel):
+    """Request for single exercise matching"""
+    name: str
+    limit: int = 5
+
+
+class ExerciseMatchBatchRequest(BaseModel):
+    """Request for batch exercise matching"""
+    names: List[str]
+    limit: int = 5
+
+
+class ExerciseMatchResult(BaseModel):
+    """Result of exercise matching"""
+    original_name: str
+    matched_name: Optional[str] = None
+    confidence: float = 0
+    status: str = "unmapped"  # matched, needs_review, unmapped
+    suggestions: List[Dict[str, Any]] = []
+
+
+class ExerciseMatchBatchResponse(BaseModel):
+    """Response for batch exercise matching"""
+    results: List[ExerciseMatchResult]
+    total: int
+    matched: int
+    needs_review: int
+    unmapped: int
+
+
+@app.post("/exercises/match", response_model=ExerciseMatchResult)
+async def match_exercise_single(request: ExerciseMatchRequest):
+    """
+    Match a single exercise name to Garmin exercise database.
+
+    Returns the best match with confidence score and suggestions.
+
+    Confidence thresholds:
+    - 90%+ = "matched" (high confidence)
+    - 50-90% = "needs_review" (medium confidence)
+    - <50% = "unmapped" (low confidence, may be new exercise)
+    """
+    from backend.core.garmin_matcher import find_garmin_exercise, get_garmin_suggestions
+
+    name = request.name.strip()
+    if not name:
+        return ExerciseMatchResult(
+            original_name=name,
+            status="unmapped",
+        )
+
+    # Get best match
+    matched_name, confidence = find_garmin_exercise(name, threshold=30)
+
+    # Get suggestions
+    suggestions_list = get_garmin_suggestions(name, limit=request.limit, score_cutoff=0.3)
+    suggestions = [
+        {"name": sugg_name, "confidence": round(sugg_conf, 2)}
+        for sugg_name, sugg_conf in suggestions_list
+    ]
+
+    # Determine status
+    if matched_name and confidence >= 0.90:
+        status = "matched"
+    elif matched_name and confidence >= 0.50:
+        status = "needs_review"
+    else:
+        status = "unmapped"
+        if suggestions and not matched_name:
+            matched_name = suggestions[0]["name"]
+            confidence = suggestions[0]["confidence"]
+
+    return ExerciseMatchResult(
+        original_name=name,
+        matched_name=matched_name,
+        confidence=round(confidence, 2) if confidence else 0,
+        status=status,
+        suggestions=suggestions,
+    )
+
+
+@app.post("/exercises/match/batch", response_model=ExerciseMatchBatchResponse)
+async def match_exercises_batch(request: ExerciseMatchBatchRequest):
+    """
+    Match multiple exercise names to Garmin exercise database.
+
+    Deduplicates names for efficiency and returns results for each unique name.
+
+    Confidence thresholds:
+    - 90%+ = "matched" (high confidence)
+    - 50-90% = "needs_review" (medium confidence)
+    - <50% = "unmapped" (low confidence, may be new exercise)
+    """
+    from backend.core.garmin_matcher import find_garmin_exercise, get_garmin_suggestions
+
+    # Deduplicate and process unique names
+    unique_names = list(set(name.strip() for name in request.names if name.strip()))
+
+    results = []
+    for name in unique_names:
+        # Get best match
+        matched_name, confidence = find_garmin_exercise(name, threshold=30)
+
+        # Get suggestions
+        suggestions_list = get_garmin_suggestions(name, limit=request.limit, score_cutoff=0.3)
+        suggestions = [
+            {"name": sugg_name, "confidence": round(sugg_conf, 2)}
+            for sugg_name, sugg_conf in suggestions_list
+        ]
+
+        # Determine status
+        if matched_name and confidence >= 0.90:
+            status = "matched"
+        elif matched_name and confidence >= 0.50:
+            status = "needs_review"
+        else:
+            status = "unmapped"
+            if suggestions and not matched_name:
+                matched_name = suggestions[0]["name"]
+                confidence = suggestions[0]["confidence"]
+
+        results.append(ExerciseMatchResult(
+            original_name=name,
+            matched_name=matched_name,
+            confidence=round(confidence, 2) if confidence else 0,
+            status=status,
+            suggestions=suggestions,
+        ))
+
+    # Calculate statistics
+    matched_count = len([r for r in results if r.status == "matched"])
+    review_count = len([r for r in results if r.status == "needs_review"])
+    unmapped_count = len([r for r in results if r.status == "unmapped"])
+
+    return ExerciseMatchBatchResponse(
+        results=results,
+        total=len(results),
+        matched=matched_count,
+        needs_review=review_count,
+        unmapped=unmapped_count,
+    )

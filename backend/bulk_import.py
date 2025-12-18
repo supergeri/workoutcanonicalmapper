@@ -34,8 +34,18 @@ from backend.parsers import (
     parse_images_batch,
     is_supported_image,
 )
+from backend.core.garmin_matcher import find_garmin_exercise, get_garmin_suggestions
 
 logger = logging.getLogger(__name__)
+
+# ============================================================================
+# Exercise Matching Constants
+# ============================================================================
+
+# Confidence thresholds for exercise matching
+MATCH_AUTO_THRESHOLD = 0.90      # 90%+ = auto-match
+MATCH_REVIEW_THRESHOLD = 0.70    # 70-90% = needs review
+MATCH_UNMAPPED_THRESHOLD = 0.50  # <50% = unmapped/new
 
 # ============================================================================
 # Pydantic Models
@@ -1092,17 +1102,30 @@ class BulkImportService:
     ) -> BulkMatchResponse:
         """
         Match exercises to Garmin exercise database.
-        Uses existing validation workflow from core/workflow.py.
+
+        Uses fuzzy matching with rapidfuzz to find best matches.
+
+        Confidence thresholds:
+        - 90%+ = "matched" (auto-accept)
+        - 70-90% = "needs_review" (show with option to change)
+        - 50-70% = "needs_review" with lower confidence
+        - <50% = "unmapped" (new exercise or needs manual mapping)
+
+        Args:
+            job_id: Import job ID
+            profile_id: User profile ID
+            user_mappings: Optional dict of {original_name: garmin_name} overrides
         """
         detected = self._get_detected_items(job_id, profile_id, selected_only=True)
 
-        # Collect all unique exercises
+        # Collect all unique exercises with their sources
         exercise_names = set()
         exercise_sources: Dict[str, List[str]] = {}
 
         for item in detected:
             workout = item.get("parsed_workout") or {}
             for block in workout.get("blocks") or []:
+                # Direct exercises
                 for exercise in block.get("exercises", []):
                     name = exercise.get("name", "")
                     if name:
@@ -1111,18 +1134,64 @@ class BulkImportService:
                             exercise_sources[name] = []
                         exercise_sources[name].append(item["id"])
 
-        # TODO: Implement exercise matching using core/workflow.py
-        # This will be fully implemented in AMA-104 (Exercise Matcher Service)
+                # Superset exercises
+                for superset in block.get("supersets", []):
+                    for exercise in superset.get("exercises", []):
+                        name = exercise.get("name", "")
+                        if name:
+                            exercise_names.add(name)
+                            if name not in exercise_sources:
+                                exercise_sources[name] = []
+                            exercise_sources[name].append(item["id"])
 
+        # Match each unique exercise
         exercises = []
-        for name in exercise_names:
+        for name in sorted(exercise_names):
+            # Check if user has provided a mapping override
+            if user_mappings and name in user_mappings:
+                user_choice = user_mappings[name]
+                exercises.append(ExerciseMatch(
+                    id=str(uuid.uuid4()),
+                    original_name=name,
+                    matched_garmin_name=user_choice,
+                    confidence=1.0,  # User confirmed
+                    suggestions=[],
+                    status="matched",
+                    user_selection=user_choice,
+                    source_workout_ids=exercise_sources.get(name, []),
+                    occurrence_count=len(exercise_sources.get(name, [])),
+                ))
+                continue
+
+            # Use Garmin matcher for fuzzy matching
+            matched_name, confidence = find_garmin_exercise(name, threshold=30)
+
+            # Get suggestions for alternatives
+            suggestions_list = get_garmin_suggestions(name, limit=5, score_cutoff=0.3)
+            suggestions = [
+                {"name": sugg_name, "confidence": round(sugg_conf, 2)}
+                for sugg_name, sugg_conf in suggestions_list
+            ]
+
+            # Determine status based on confidence thresholds
+            if matched_name and confidence >= MATCH_AUTO_THRESHOLD:
+                status = "matched"
+            elif matched_name and confidence >= MATCH_UNMAPPED_THRESHOLD:
+                status = "needs_review"
+            else:
+                status = "unmapped"
+                # For unmapped, still include top suggestion as potential match
+                if suggestions and not matched_name:
+                    matched_name = suggestions[0]["name"]
+                    confidence = suggestions[0]["confidence"]
+
             exercises.append(ExerciseMatch(
                 id=str(uuid.uuid4()),
                 original_name=name,
-                matched_garmin_name=user_mappings.get(name) if user_mappings else None,
-                confidence=50,
-                suggestions=[],
-                status="needs_review",
+                matched_garmin_name=matched_name,
+                confidence=round(confidence, 2) if confidence else 0,
+                suggestions=suggestions,
+                status=status,
                 source_workout_ids=exercise_sources.get(name, []),
                 occurrence_count=len(exercise_sources.get(name, [])),
             ))
@@ -1134,6 +1203,7 @@ class BulkImportService:
                 "updated_at": datetime.now(timezone.utc).isoformat(),
             }).eq("id", job_id).eq("profile_id", profile_id).execute()
 
+        # Calculate statistics
         matched = len([e for e in exercises if e.status == "matched"])
         needs_review = len([e for e in exercises if e.status == "needs_review"])
         unmapped = len([e for e in exercises if e.status == "unmapped"])
