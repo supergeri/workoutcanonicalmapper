@@ -654,8 +654,8 @@ class BulkImportService:
         exercise_sources: Dict[str, List[str]] = {}
 
         for item in detected:
-            workout = item.get("parsed_workout", {})
-            for block in workout.get("blocks", []):
+            workout = item.get("parsed_workout") or {}
+            for block in workout.get("blocks") or []:
                 for exercise in block.get("exercises", []):
                     name = exercise.get("name", "")
                     if name:
