@@ -22,6 +22,29 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 USER_DEFAULTS_FILE = ROOT / "shared/settings/user_defaults.yaml"
 
 
+def format_exercise_value(value: str, notes: str = None) -> str:
+    """Format exercise value with optional notes after pipe character.
+
+    YAML format: "Exercise Name": "x10 | coaching notes here"
+    The notes will appear on the Garmin Connect phone app.
+
+    Args:
+        value: The exercise value (e.g., "x10", "lap", "30s")
+        notes: Optional coaching notes to append after pipe
+
+    Returns:
+        Formatted value string with notes if provided
+    """
+    if notes and notes.strip():
+        # Truncate notes if too long (Garmin has limits)
+        max_notes_len = 100
+        clean_notes = notes.strip()
+        if len(clean_notes) > max_notes_len:
+            clean_notes = clean_notes[:max_notes_len-3] + "..."
+        return f"{value} | {clean_notes}"
+    return value
+
+
 def load_user_defaults():
     """Load user default settings."""
     if USER_DEFAULTS_FILE.exists():
@@ -615,6 +638,8 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
             distance_m = ex.get("distance_m")
             duration_sec = ex.get("duration_sec")
             rest_sec = ex.get("rest_sec")
+            # Exercise notes (coaching cues) - will be added after pipe in YAML
+            ex_notes = ex.get("notes")
             # Warm-up sets (AMA-94)
             warmup_sets = ex.get("warmup_sets")
             warmup_reps = ex.get("warmup_reps")
@@ -652,16 +677,16 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                 # If exercise is already a valid Garmin name (empty reason), just show reps
                 reason = mapping_info.get('reason', '')
                 if description:
-                    ex_entry[garmin_name_with_category] = description
+                    ex_entry[garmin_name_with_category] = format_exercise_value(description, ex_notes)
                 elif reps is not None:
                     # Check if this is already a Garmin exercise (no mapping needed)
                     if not reason:
                         # Already a valid Garmin name - just show reps without mapping note
-                        ex_entry[garmin_name_with_category] = f"x{reps}"
+                        ex_entry[garmin_name_with_category] = format_exercise_value(f"x{reps}", ex_notes)
                     else:
                         # Build description with mapping reason
                         original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
-                        ex_entry[garmin_name_with_category] = f"{original_clean} x{reps} ({reason})"
+                        ex_entry[garmin_name_with_category] = format_exercise_value(f"{original_clean} x{reps} ({reason})", ex_notes)
                 elif reps_range:
                     # reps_range specified (e.g., "6-8") - use upper bound for YAML
                     try:
@@ -670,14 +695,14 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                     except:
                         upper_reps = 10
                     if not reason:
-                        ex_entry[garmin_name_with_category] = f"x{upper_reps}"
+                        ex_entry[garmin_name_with_category] = format_exercise_value(f"x{upper_reps}", ex_notes)
                     else:
                         original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
-                        ex_entry[garmin_name_with_category] = f"{original_clean} x{upper_reps} ({reason})"
+                        ex_entry[garmin_name_with_category] = format_exercise_value(f"{original_clean} x{upper_reps} ({reason})", ex_notes)
                 else:
                     # No reps specified - use "lap" (press lap button when done)
                     # This is valid for both cardio AND strength exercises
-                    ex_entry[garmin_name_with_category] = "lap"
+                    ex_entry[garmin_name_with_category] = format_exercise_value("lap", ex_notes)
 
                 # Get rest settings for this exercise
                 ex_rest_type = ex.get('rest_type')
@@ -753,6 +778,8 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                 reps = ex.get("reps")
                 reps_range = ex.get("reps_range")  # e.g., "6-8", "8-10"
                 distance_m = ex.get("distance_m")
+                # Exercise notes (coaching cues) - will be added after pipe in YAML
+                ex_notes = ex.get("notes")
                 # Warm-up sets (AMA-94)
                 warmup_sets = ex.get("warmup_sets")
                 warmup_reps = ex.get("warmup_reps")
@@ -773,16 +800,16 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
 
                 # If exercise is already a valid Garmin name (empty reason), just show reps
                 if description:
-                    ex_entry[garmin_name_with_category] = description
+                    ex_entry[garmin_name_with_category] = format_exercise_value(description, ex_notes)
                 elif reps is not None:
                     # Check if this is already a Garmin exercise (no mapping needed)
                     if not reason:
                         # Already a valid Garmin name - just show reps without mapping note
-                        ex_entry[garmin_name_with_category] = f"x{reps}"
+                        ex_entry[garmin_name_with_category] = format_exercise_value(f"x{reps}", ex_notes)
                     else:
                         # Build description with mapping reason
                         original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
-                        ex_entry[garmin_name_with_category] = f"{original_clean} x{reps} ({reason})"
+                        ex_entry[garmin_name_with_category] = format_exercise_value(f"{original_clean} x{reps} ({reason})", ex_notes)
                 elif reps_range:
                     # reps_range specified (e.g., "6-8") - use upper bound for YAML
                     try:
@@ -791,14 +818,14 @@ def to_hyrox_yaml(blocks_json: dict) -> str:
                     except:
                         upper_reps = 10
                     if not reason:
-                        ex_entry[garmin_name_with_category] = f"x{upper_reps}"
+                        ex_entry[garmin_name_with_category] = format_exercise_value(f"x{upper_reps}", ex_notes)
                     else:
                         original_clean = re.sub(r'^[A-Z]\d+[:\s;]+', '', ex_name, flags=re.IGNORECASE).strip()
-                        ex_entry[garmin_name_with_category] = f"{original_clean} x{upper_reps} ({reason})"
+                        ex_entry[garmin_name_with_category] = format_exercise_value(f"{original_clean} x{upper_reps} ({reason})", ex_notes)
                 else:
                     # No reps specified - use "lap" (press lap button when done)
                     # This is valid for both cardio AND strength exercises
-                    ex_entry[garmin_name_with_category] = "lap"
+                    ex_entry[garmin_name_with_category] = format_exercise_value("lap", ex_notes)
 
                 # Get rest settings for this exercise
                 ex_rest_type = ex.get('rest_type')
