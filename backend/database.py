@@ -236,11 +236,11 @@ def update_workout_export_status(
 def delete_workout(workout_id: str, profile_id: str) -> bool:
     """
     Delete a workout.
-    
+
     Args:
         workout_id: Workout UUID
         profile_id: User profile ID (for security)
-        
+
     Returns:
         True if successful, False otherwise
     """
@@ -248,15 +248,15 @@ def delete_workout(workout_id: str, profile_id: str) -> bool:
     if not supabase:
         logger.error("Supabase client not available")
         return False
-    
+
     try:
         logger.info(f"Attempting to delete workout {workout_id} for profile {profile_id}")
         result = supabase.table("workouts").delete().eq("id", workout_id).eq("profile_id", profile_id).execute()
-        
+
         # Check if any rows were actually deleted
         # Supabase delete() returns result.data with the deleted rows
         deleted_count = len(result.data) if result.data else 0
-        
+
         if deleted_count > 0:
             logger.info(f"Workout {workout_id} deleted successfully ({deleted_count} row(s))")
             return True
@@ -269,5 +269,513 @@ def delete_workout(workout_id: str, profile_id: str) -> bool:
             return False
     except Exception as e:
         logger.error(f"Failed to delete workout {workout_id}: {e}")
+        return False
+
+
+# ============================================================================
+# AMA-122: Favorites, Usage Tracking, Programs, and Tags
+# ============================================================================
+
+def toggle_workout_favorite(workout_id: str, profile_id: str, is_favorite: bool) -> Optional[Dict[str, Any]]:
+    """
+    Toggle the favorite status of a workout.
+
+    Args:
+        workout_id: Workout UUID
+        profile_id: User profile ID (for security)
+        is_favorite: Whether to mark as favorite
+
+    Returns:
+        Updated workout data or None if failed
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return None
+
+    try:
+        update_data = {"is_favorite": is_favorite}
+
+        # If favoriting, get next favorite_order
+        if is_favorite:
+            max_order_result = supabase.table("workouts").select("favorite_order").eq("profile_id", profile_id).eq("is_favorite", True).order("favorite_order", desc=True).limit(1).execute()
+            max_order = 0
+            if max_order_result.data and len(max_order_result.data) > 0 and max_order_result.data[0].get("favorite_order"):
+                max_order = max_order_result.data[0]["favorite_order"]
+            update_data["favorite_order"] = max_order + 1
+        else:
+            update_data["favorite_order"] = None
+
+        result = supabase.table("workouts").update(update_data).eq("id", workout_id).eq("profile_id", profile_id).execute()
+
+        if result.data and len(result.data) > 0:
+            logger.info(f"Workout {workout_id} favorite status updated to {is_favorite}")
+            return result.data[0]
+        return None
+    except Exception as e:
+        logger.error(f"Failed to toggle favorite for workout {workout_id}: {e}")
+        return None
+
+
+def track_workout_usage(workout_id: str, profile_id: str) -> Optional[Dict[str, Any]]:
+    """
+    Track that a workout was used/loaded (increments times_completed and updates last_used_at).
+
+    Args:
+        workout_id: Workout UUID
+        profile_id: User profile ID (for security)
+
+    Returns:
+        Updated workout data or None if failed
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return None
+
+    try:
+        from datetime import datetime, timezone
+
+        # First get current times_completed
+        current = supabase.table("workouts").select("times_completed").eq("id", workout_id).eq("profile_id", profile_id).single().execute()
+
+        if not current.data:
+            return None
+
+        current_count = current.data.get("times_completed") or 0
+
+        update_data = {
+            "times_completed": current_count + 1,
+            "last_used_at": datetime.now(timezone.utc).isoformat()
+        }
+
+        result = supabase.table("workouts").update(update_data).eq("id", workout_id).eq("profile_id", profile_id).execute()
+
+        if result.data and len(result.data) > 0:
+            logger.info(f"Workout {workout_id} usage tracked (count: {current_count + 1})")
+            return result.data[0]
+        return None
+    except Exception as e:
+        logger.error(f"Failed to track usage for workout {workout_id}: {e}")
+        return None
+
+
+def update_workout_tags(workout_id: str, profile_id: str, tags: List[str]) -> Optional[Dict[str, Any]]:
+    """
+    Update the tags for a workout.
+
+    Args:
+        workout_id: Workout UUID
+        profile_id: User profile ID (for security)
+        tags: List of tag strings
+
+    Returns:
+        Updated workout data or None if failed
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return None
+
+    try:
+        result = supabase.table("workouts").update({"tags": tags}).eq("id", workout_id).eq("profile_id", profile_id).execute()
+
+        if result.data and len(result.data) > 0:
+            logger.info(f"Workout {workout_id} tags updated: {tags}")
+            return result.data[0]
+        return None
+    except Exception as e:
+        logger.error(f"Failed to update tags for workout {workout_id}: {e}")
+        return None
+
+
+# ============================================================================
+# Program Management
+# ============================================================================
+
+def create_program(
+    profile_id: str,
+    name: str,
+    description: Optional[str] = None,
+    color: Optional[str] = None,
+    icon: Optional[str] = None
+) -> Optional[Dict[str, Any]]:
+    """
+    Create a new workout program.
+
+    Args:
+        profile_id: User profile ID
+        name: Program name
+        description: Optional description
+        color: Optional color for UI
+        icon: Optional icon identifier
+
+    Returns:
+        Created program data or None if failed
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return None
+
+    try:
+        data = {
+            "profile_id": profile_id,
+            "name": name
+        }
+        if description:
+            data["description"] = description
+        if color:
+            data["color"] = color
+        if icon:
+            data["icon"] = icon
+
+        result = supabase.table("workout_programs").insert(data).execute()
+
+        if result.data and len(result.data) > 0:
+            logger.info(f"Program '{name}' created for profile {profile_id}")
+            return result.data[0]
+        return None
+    except Exception as e:
+        logger.error(f"Failed to create program: {e}")
+        return None
+
+
+def get_programs(profile_id: str, include_inactive: bool = False) -> List[Dict[str, Any]]:
+    """
+    Get all programs for a user.
+
+    Args:
+        profile_id: User profile ID
+        include_inactive: Whether to include inactive programs
+
+    Returns:
+        List of program records
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return []
+
+    try:
+        query = supabase.table("workout_programs").select("*").eq("profile_id", profile_id)
+
+        if not include_inactive:
+            query = query.eq("is_active", True)
+
+        query = query.order("created_at", desc=True)
+
+        result = query.execute()
+        return result.data if result.data else []
+    except Exception as e:
+        logger.error(f"Failed to get programs: {e}")
+        return []
+
+
+def get_program(program_id: str, profile_id: str) -> Optional[Dict[str, Any]]:
+    """
+    Get a single program by ID with its members.
+
+    Args:
+        program_id: Program UUID
+        profile_id: User profile ID (for security)
+
+    Returns:
+        Program data with members or None if not found
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return None
+
+    try:
+        # Get program
+        program_result = supabase.table("workout_programs").select("*").eq("id", program_id).eq("profile_id", profile_id).single().execute()
+
+        if not program_result.data:
+            return None
+
+        program = program_result.data
+
+        # Get program members
+        members_result = supabase.table("program_members").select("*").eq("program_id", program_id).order("day_order").execute()
+
+        program["members"] = members_result.data if members_result.data else []
+
+        return program
+    except Exception as e:
+        logger.error(f"Failed to get program {program_id}: {e}")
+        return None
+
+
+def update_program(
+    program_id: str,
+    profile_id: str,
+    name: Optional[str] = None,
+    description: Optional[str] = None,
+    color: Optional[str] = None,
+    icon: Optional[str] = None,
+    current_day_index: Optional[int] = None,
+    is_active: Optional[bool] = None
+) -> Optional[Dict[str, Any]]:
+    """
+    Update a program.
+
+    Args:
+        program_id: Program UUID
+        profile_id: User profile ID (for security)
+        name: New name (optional)
+        description: New description (optional)
+        color: New color (optional)
+        icon: New icon (optional)
+        current_day_index: New current day (optional)
+        is_active: New active status (optional)
+
+    Returns:
+        Updated program data or None if failed
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return None
+
+    try:
+        update_data = {}
+        if name is not None:
+            update_data["name"] = name
+        if description is not None:
+            update_data["description"] = description
+        if color is not None:
+            update_data["color"] = color
+        if icon is not None:
+            update_data["icon"] = icon
+        if current_day_index is not None:
+            update_data["current_day_index"] = current_day_index
+        if is_active is not None:
+            update_data["is_active"] = is_active
+
+        if not update_data:
+            return get_program(program_id, profile_id)
+
+        result = supabase.table("workout_programs").update(update_data).eq("id", program_id).eq("profile_id", profile_id).execute()
+
+        if result.data and len(result.data) > 0:
+            logger.info(f"Program {program_id} updated")
+            return result.data[0]
+        return None
+    except Exception as e:
+        logger.error(f"Failed to update program {program_id}: {e}")
+        return None
+
+
+def delete_program(program_id: str, profile_id: str) -> bool:
+    """
+    Delete a program.
+
+    Args:
+        program_id: Program UUID
+        profile_id: User profile ID (for security)
+
+    Returns:
+        True if successful, False otherwise
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return False
+
+    try:
+        result = supabase.table("workout_programs").delete().eq("id", program_id).eq("profile_id", profile_id).execute()
+
+        deleted_count = len(result.data) if result.data else 0
+        if deleted_count > 0:
+            logger.info(f"Program {program_id} deleted")
+            return True
+        return False
+    except Exception as e:
+        logger.error(f"Failed to delete program {program_id}: {e}")
+        return False
+
+
+def add_workout_to_program(
+    program_id: str,
+    profile_id: str,
+    workout_id: Optional[str] = None,
+    follow_along_id: Optional[str] = None,
+    day_order: Optional[int] = None
+) -> Optional[Dict[str, Any]]:
+    """
+    Add a workout to a program.
+
+    Args:
+        program_id: Program UUID
+        profile_id: User profile ID (for security)
+        workout_id: Workout UUID (one of workout_id or follow_along_id required)
+        follow_along_id: Follow-along workout ID
+        day_order: Position in program (auto-assigned if not provided)
+
+    Returns:
+        Created member data or None if failed
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return None
+
+    if not workout_id and not follow_along_id:
+        logger.error("Either workout_id or follow_along_id must be provided")
+        return None
+
+    try:
+        # Verify program belongs to user
+        program_check = supabase.table("workout_programs").select("id").eq("id", program_id).eq("profile_id", profile_id).execute()
+        if not program_check.data:
+            logger.error(f"Program {program_id} not found for profile {profile_id}")
+            return None
+
+        # Get next day_order if not provided
+        if day_order is None:
+            max_order_result = supabase.table("program_members").select("day_order").eq("program_id", program_id).order("day_order", desc=True).limit(1).execute()
+            if max_order_result.data and len(max_order_result.data) > 0:
+                day_order = max_order_result.data[0]["day_order"] + 1
+            else:
+                day_order = 0
+
+        data = {
+            "program_id": program_id,
+            "day_order": day_order
+        }
+        if workout_id:
+            data["workout_id"] = workout_id
+        if follow_along_id:
+            data["follow_along_id"] = follow_along_id
+
+        result = supabase.table("program_members").insert(data).execute()
+
+        if result.data and len(result.data) > 0:
+            logger.info(f"Workout added to program {program_id} at position {day_order}")
+            return result.data[0]
+        return None
+    except Exception as e:
+        logger.error(f"Failed to add workout to program: {e}")
+        return None
+
+
+def remove_workout_from_program(member_id: str, profile_id: str) -> bool:
+    """
+    Remove a workout from a program.
+
+    Args:
+        member_id: Program member UUID
+        profile_id: User profile ID (for security)
+
+    Returns:
+        True if successful, False otherwise
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return False
+
+    try:
+        # Get the member to find the program_id
+        member = supabase.table("program_members").select("program_id").eq("id", member_id).single().execute()
+        if not member.data:
+            return False
+
+        # Verify program belongs to user
+        program_check = supabase.table("workout_programs").select("id").eq("id", member.data["program_id"]).eq("profile_id", profile_id).execute()
+        if not program_check.data:
+            logger.error(f"Program not found for profile {profile_id}")
+            return False
+
+        result = supabase.table("program_members").delete().eq("id", member_id).execute()
+
+        deleted_count = len(result.data) if result.data else 0
+        if deleted_count > 0:
+            logger.info(f"Member {member_id} removed from program")
+            return True
+        return False
+    except Exception as e:
+        logger.error(f"Failed to remove workout from program: {e}")
+        return False
+
+
+# ============================================================================
+# User Tags Management
+# ============================================================================
+
+def get_user_tags(profile_id: str) -> List[Dict[str, Any]]:
+    """
+    Get all tags for a user.
+
+    Args:
+        profile_id: User profile ID
+
+    Returns:
+        List of tag records
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return []
+
+    try:
+        result = supabase.table("user_tags").select("*").eq("profile_id", profile_id).order("name").execute()
+        return result.data if result.data else []
+    except Exception as e:
+        logger.error(f"Failed to get user tags: {e}")
+        return []
+
+
+def create_user_tag(profile_id: str, name: str, color: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """
+    Create a new user tag.
+
+    Args:
+        profile_id: User profile ID
+        name: Tag name
+        color: Optional color for UI
+
+    Returns:
+        Created tag data or None if failed
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return None
+
+    try:
+        data = {
+            "profile_id": profile_id,
+            "name": name
+        }
+        if color:
+            data["color"] = color
+
+        result = supabase.table("user_tags").insert(data).execute()
+
+        if result.data and len(result.data) > 0:
+            logger.info(f"Tag '{name}' created for profile {profile_id}")
+            return result.data[0]
+        return None
+    except Exception as e:
+        logger.error(f"Failed to create tag: {e}")
+        return None
+
+
+def delete_user_tag(tag_id: str, profile_id: str) -> bool:
+    """
+    Delete a user tag.
+
+    Args:
+        tag_id: Tag UUID
+        profile_id: User profile ID (for security)
+
+    Returns:
+        True if successful, False otherwise
+    """
+    supabase = get_supabase_client()
+    if not supabase:
+        return False
+
+    try:
+        result = supabase.table("user_tags").delete().eq("id", tag_id).eq("profile_id", profile_id).execute()
+
+        deleted_count = len(result.data) if result.data else 0
+        if deleted_count > 0:
+            logger.info(f"Tag {tag_id} deleted")
+            return True
+        return False
+    except Exception as e:
+        logger.error(f"Failed to delete tag {tag_id}: {e}")
         return False
 

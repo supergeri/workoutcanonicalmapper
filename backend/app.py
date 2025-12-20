@@ -53,7 +53,21 @@ from backend.database import (
     get_workouts,
     get_workout,
     update_workout_export_status,
-    delete_workout
+    delete_workout,
+    # AMA-122: Workout Library Enhancements
+    toggle_workout_favorite,
+    track_workout_usage,
+    update_workout_tags,
+    create_program,
+    get_programs,
+    get_program,
+    update_program,
+    delete_program,
+    add_workout_to_program,
+    remove_workout_from_program,
+    get_user_tags,
+    create_user_tag,
+    delete_user_tag,
 )
 from backend.follow_along_database import (
     save_follow_along_workout,
@@ -963,6 +977,10 @@ def ingest_follow_along_endpoint(request: IngestFollowAlongRequest):
         endpoint = "/ingest/url"  # Use generic URL ingest for Vimeo
         source = "vimeo"
         default_title = "Vimeo Workout"
+    elif "pinterest.com" in video_url or "pin.it" in video_url:
+        endpoint = "/ingest/pinterest"
+        source = "pinterest"
+        default_title = "Pinterest Workout"
     else:
         # Default to Instagram
         endpoint = "/ingest/instagram_test"
@@ -2404,6 +2422,338 @@ async def match_exercise_single(request: ExerciseMatchRequest):
         status=status,
         suggestions=suggestions,
     )
+
+
+# ============================================================================
+# Workout Library Enhancements (AMA-122)
+# ============================================================================
+
+class ToggleFavoriteRequest(BaseModel):
+    profile_id: str
+    is_favorite: bool
+
+
+class TrackUsageRequest(BaseModel):
+    profile_id: str
+
+
+class UpdateTagsRequest(BaseModel):
+    profile_id: str
+    tags: List[str]
+
+
+class CreateProgramRequest(BaseModel):
+    profile_id: str
+    name: str
+    description: Optional[str] = None
+    color: Optional[str] = None
+    icon: Optional[str] = None
+
+
+class UpdateProgramRequest(BaseModel):
+    profile_id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    color: Optional[str] = None
+    icon: Optional[str] = None
+    is_active: Optional[bool] = None
+    current_day_index: Optional[int] = None
+
+
+class AddToProgramRequest(BaseModel):
+    profile_id: str
+    workout_id: Optional[str] = None
+    follow_along_id: Optional[str] = None
+    day_order: Optional[int] = None
+
+
+class CreateTagRequest(BaseModel):
+    profile_id: str
+    name: str
+    color: Optional[str] = None
+
+
+@app.patch("/workouts/{workout_id}/favorite")
+def toggle_workout_favorite_endpoint(workout_id: str, request: ToggleFavoriteRequest):
+    """Toggle favorite status for a workout."""
+    result = toggle_workout_favorite(
+        workout_id=workout_id,
+        profile_id=request.profile_id,
+        is_favorite=request.is_favorite
+    )
+
+    if result:
+        return {
+            "success": True,
+            "workout": result,
+            "message": "Favorite status updated"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to update favorite status"
+        }
+
+
+@app.patch("/workouts/{workout_id}/used")
+def track_workout_usage_endpoint(workout_id: str, request: TrackUsageRequest):
+    """Track that a workout was used (update last_used_at and increment times_completed)."""
+    result = track_workout_usage(
+        workout_id=workout_id,
+        profile_id=request.profile_id
+    )
+
+    if result:
+        return {
+            "success": True,
+            "workout": result,
+            "message": "Usage tracked"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to track usage"
+        }
+
+
+@app.patch("/workouts/{workout_id}/tags")
+def update_workout_tags_endpoint(workout_id: str, request: UpdateTagsRequest):
+    """Update tags for a workout."""
+    result = update_workout_tags(
+        workout_id=workout_id,
+        profile_id=request.profile_id,
+        tags=request.tags
+    )
+
+    if result:
+        return {
+            "success": True,
+            "workout": result,
+            "message": "Tags updated"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to update tags"
+        }
+
+
+# ============================================================================
+# Program Endpoints (AMA-122)
+# ============================================================================
+
+@app.post("/programs")
+def create_program_endpoint(request: CreateProgramRequest):
+    """Create a new workout program."""
+    result = create_program(
+        profile_id=request.profile_id,
+        name=request.name,
+        description=request.description,
+        color=request.color,
+        icon=request.icon
+    )
+
+    if result:
+        return {
+            "success": True,
+            "program": result,
+            "message": "Program created"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to create program"
+        }
+
+
+@app.get("/programs")
+def get_programs_endpoint(
+    profile_id: str = Query(..., description="User profile ID"),
+    include_inactive: bool = Query(False, description="Include inactive programs")
+):
+    """Get all programs for a user."""
+    programs = get_programs(
+        profile_id=profile_id,
+        include_inactive=include_inactive
+    )
+
+    return {
+        "success": True,
+        "programs": programs,
+        "count": len(programs)
+    }
+
+
+@app.get("/programs/{program_id}")
+def get_program_endpoint(
+    program_id: str,
+    profile_id: str = Query(..., description="User profile ID")
+):
+    """Get a single program with its members."""
+    program = get_program(program_id, profile_id)
+
+    if program:
+        return {
+            "success": True,
+            "program": program
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Program not found"
+        }
+
+
+@app.patch("/programs/{program_id}")
+def update_program_endpoint(program_id: str, request: UpdateProgramRequest):
+    """Update a program."""
+    result = update_program(
+        program_id=program_id,
+        profile_id=request.profile_id,
+        name=request.name,
+        description=request.description,
+        color=request.color,
+        icon=request.icon,
+        is_active=request.is_active,
+        current_day_index=request.current_day_index
+    )
+
+    if result:
+        return {
+            "success": True,
+            "program": result,
+            "message": "Program updated"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to update program"
+        }
+
+
+@app.delete("/programs/{program_id}")
+def delete_program_endpoint(
+    program_id: str,
+    profile_id: str = Query(..., description="User profile ID")
+):
+    """Delete a program."""
+    success = delete_program(program_id, profile_id)
+
+    if success:
+        return {
+            "success": True,
+            "message": "Program deleted"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to delete program"
+        }
+
+
+@app.post("/programs/{program_id}/members")
+def add_to_program_endpoint(program_id: str, request: AddToProgramRequest):
+    """Add a workout or follow-along to a program."""
+    result = add_workout_to_program(
+        program_id=program_id,
+        profile_id=request.profile_id,
+        workout_id=request.workout_id,
+        follow_along_id=request.follow_along_id,
+        day_order=request.day_order
+    )
+
+    if result:
+        return {
+            "success": True,
+            "member": result,
+            "message": "Added to program"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to add to program"
+        }
+
+
+@app.delete("/programs/{program_id}/members/{member_id}")
+def remove_from_program_endpoint(
+    program_id: str,
+    member_id: str,
+    profile_id: str = Query(..., description="User profile ID")
+):
+    """Remove a workout from a program."""
+    success = remove_workout_from_program(member_id, profile_id)
+
+    if success:
+        return {
+            "success": True,
+            "message": "Removed from program"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to remove from program"
+        }
+
+
+# ============================================================================
+# User Tags Endpoints (AMA-122)
+# ============================================================================
+
+@app.get("/tags")
+def get_tags_endpoint(
+    profile_id: str = Query(..., description="User profile ID")
+):
+    """Get all tags for a user."""
+    tags = get_user_tags(profile_id)
+
+    return {
+        "success": True,
+        "tags": tags,
+        "count": len(tags)
+    }
+
+
+@app.post("/tags")
+def create_tag_endpoint(request: CreateTagRequest):
+    """Create a new user tag."""
+    result = create_user_tag(
+        profile_id=request.profile_id,
+        name=request.name,
+        color=request.color
+    )
+
+    if result:
+        return {
+            "success": True,
+            "tag": result,
+            "message": "Tag created"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to create tag (may already exist)"
+        }
+
+
+@app.delete("/tags/{tag_id}")
+def delete_tag_endpoint(
+    tag_id: str,
+    profile_id: str = Query(..., description="User profile ID")
+):
+    """Delete a user tag."""
+    success = delete_user_tag(tag_id, profile_id)
+
+    if success:
+        return {
+            "success": True,
+            "message": "Tag deleted"
+        }
+    else:
+        return {
+            "success": False,
+            "message": "Failed to delete tag"
+        }
 
 
 @app.post("/exercises/match/batch", response_model=ExerciseMatchBatchResponse)
