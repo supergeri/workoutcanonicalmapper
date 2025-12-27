@@ -43,17 +43,23 @@ class TestBatchExerciseMatch:
         response = api_client.post(
             "/exercises/match/batch",
             json={
-                "names": ["Bench Press", "xyzzy nonsense", "Squat"],
+                "names": ["Bench Press", "xyzzy nonsense gibberish", "Squat"],
             },
         )
         assert response.status_code == 200
         data = response.json()
         assert len(data["results"]) == 3
-        # First and third should match well, second should be unmapped or low confidence
-        assert data["results"][0]["status"] in ["matched", "needs_review"]
-        # Gibberish may get a low-confidence match, so check for unmapped OR low confidence
-        assert data["results"][1]["status"] == "unmapped" or data["results"][1].get("confidence", 0) < 0.7
-        assert data["results"][2]["status"] in ["matched", "needs_review"]
+
+        # Find results by original_name (order may vary)
+        results_by_name = {r["original_name"]: r for r in data["results"]}
+
+        # Known exercises should match well
+        assert results_by_name["Bench Press"]["status"] in ["matched", "needs_review"]
+        assert results_by_name["Squat"]["status"] in ["matched", "needs_review"]
+
+        # Gibberish should be unmapped or have low confidence
+        gibberish = results_by_name["xyzzy nonsense gibberish"]
+        assert gibberish["status"] == "unmapped" or gibberish.get("confidence", 0) < 0.7
 
     def test_batch_match_all_matched(self, api_client, known_exercises):
         """Test batch with all well-known exercises."""
