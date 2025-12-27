@@ -1871,7 +1871,7 @@ async def generate_pairing_token_endpoint(
     Requires X-User-Id header with the authenticated Clerk user ID.
     """
     try:
-        result = await create_pairing_token(x_user_id)
+        result = create_pairing_token(x_user_id)
         return result
     except Exception as e:
         logger.error(f"Failed to generate pairing token: {e}")
@@ -1889,7 +1889,7 @@ async def pair_device_endpoint(request: PairDeviceRequest):
     Returns a JWT that the iOS app stores and uses for authenticated API calls.
     """
     try:
-        result = await validate_and_use_token(
+        result = validate_and_use_token(
             token=request.token,
             short_code=request.short_code,
             device_info=request.device_info
@@ -1923,7 +1923,7 @@ async def check_pairing_status_endpoint(token: str):
     - paired_at: timestamp when pairing occurred (if paired)
     """
     try:
-        result = await get_pairing_status(token)
+        result = get_pairing_status(token)
         return result
     except Exception as e:
         logger.error(f"Failed to check pairing status: {e}")
@@ -1941,7 +1941,7 @@ async def revoke_pairing_tokens_endpoint(
     Also useful as a security measure if tokens may have been compromised.
     """
     try:
-        count = await revoke_user_tokens(x_user_id)
+        count = revoke_user_tokens(x_user_id)
         return {
             "success": True,
             "message": f"Revoked {count} pairing token(s)",
